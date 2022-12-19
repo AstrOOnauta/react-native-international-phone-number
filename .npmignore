@@ -4,11 +4,18 @@ npm-debug.log
 
 # Dependency directory
 node_modules
+package-lock.json
 
 # Runtime data
 tmp
 
 # Examples (If applicable to your project)
 examples
+
+# NPM CI Release by Github Actions
+.github/
+
+# Gitignore
+.gitignore
 
 gif

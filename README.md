@@ -1,5 +1,5 @@
 <div align = "center">
-  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/develop/gif/preview.gif">
+  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/gif/preview.gif">
 </div>
 
 <br>

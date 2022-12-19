@@ -1,10 +1,10 @@
 {
   "name": "react-native-international-phone-number",
   "author": "AstrOOnauta (https://github.com/AstrOOnauta)",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "International mobile phone input component with mask for React Native",
   "main": "lib/index.js",
-  "types": "lib/index.d.tsx",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

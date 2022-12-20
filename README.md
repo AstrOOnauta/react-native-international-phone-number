@@ -13,10 +13,13 @@
   <a href="https://www.npmjs.com/package/react-native-international-phone-number">
     <img src="https://img.shields.io/npm/dm/react-native-international-phone-number.svg?style=flat-square">
   </a>
-  <a href="https://www.npmjs.com/package/react-native-international-phone-number">
+  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
+    <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number"/>
+  </a>
+  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/issues">
     <img src="https://img.shields.io/github/issues/AstrOOnauta/react-native-international-phone-number"/>
   </a>
-  <a href="https://www.npmjs.com/package/react-native-international-phone-number">
+  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/pulls">
     <img src="https://img.shields.io/github/issues-pr/AstrOOnauta/react-native-international-phone-number"/>
   </a>
 </p>
@@ -86,11 +89,11 @@ export default function App() {
 }
 ```
 
-## Advanced Usage Using React-Hook-Form ans Typescript
+## Advanced Usage - React-Hook-Form and Typescript
 
 ```tsx
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import {
   phoneMask,
   PhoneInput,

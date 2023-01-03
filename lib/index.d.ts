@@ -9,10 +9,15 @@ interface PhoneInputProps extends TextInputProps {
   inputStyle?: StyleProp<ViewStyle>;
   withDarkTheme?: boolean;
   disabled?: boolean;
-  selectedCountry: Country;
+  selectedCountry: undefined | Country;
   setSelectedCountry: Dispatch<SetStateAction<undefined | Country>>;
 }
 
 declare function PhoneInput(props: PhoneInputProps): JSX.Element;
 
-export { PhoneInput };
+declare function phoneMask(
+  value: string,
+  countryCode?: string
+): string;
+
+export { PhoneInput, phoneMask };

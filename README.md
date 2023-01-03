@@ -49,9 +49,15 @@ AND
 > };
 > ```
 
+## Features
+
+- 📱 Works with iOS, Android (Cross-platform) and Expo;
+- 🎨 Lib with UI customizable
+- 🌎 Phone Input Mask according to the selected country.
+
 ## Basic Usage
 
-```tsx
+```jsx
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import {
@@ -89,10 +95,53 @@ export default function App() {
 }
 ```
 
-## Advanced Usage - React-Hook-Form and Typescript
+## Basic Usage - Typescript
 
 ```tsx
 import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import {
+  phoneMask,
+  PhoneInput,
+} from 'react-native-international-phone-number';
+import { Country } from 'react-native-country-picker-modal';
+
+export default function App() {
+  const [selectedCountry, setSelectedCountry] = useState<
+    undefined | Country
+  >(undefined);
+  const [phoneInput, setPhoneInput] = useState<string>('');
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        value={phoneInput}
+        onChangeText={(newValue) =>
+          setPhoneInput(
+            phoneMask(newValue, selectedCountry?.callingCode[0])
+          )
+        }
+      />
+      <View style={{ marginTop: 10 }}>
+        <Text>
+          Country:{' '}
+          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
+        </Text>
+        <Text>
+          Phone: {`${selectedCountry?.callingCode[0]} ${phoneInput}`}
+        </Text>
+      </View>
+    </View>
+  );
+}
+```
+
+## Advanced Usage - React-Hook-Form and Typescript
+
+```tsx
+import React, { useState, useEffect } from 'react';
 import { View, Text, Alert } from 'react-native';
 import {
   phoneMask,
@@ -106,9 +155,7 @@ interface FormProps extends FieldValues {
 }
 
 export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState<
-    undefined | Country
-  >(undefined);
+  const [selectedCountry, setSelectedCountry] = useState<undefined | Country>(undefined);
 
   const { control, handleSubmit, resetField } = useForm();
 
@@ -119,6 +166,10 @@ export default function App() {
     );
     resetField('phoneNumber');
   }
+
+  useEffect(()=>{
+    resetField('phoneNumber')
+  },[selectedCountry])
 
   return (
     <View style={{ width: '100%', flex: 1, padding: 24 }}>
@@ -132,7 +183,7 @@ export default function App() {
             value={value}
             onChangeText={(newValue) =>
               onChange(
-                phoneMask(newValue, selectedCountry.callingCode[0])
+                phoneMask(newValue, selectedCountry?.callingCode[0])
               )
             }
           />
@@ -166,7 +217,7 @@ export default function App() {
 
 ## Methods
 
-- `phoneMask`: (value: string, countryCode: string) => string
+- `phoneMask`: (phoneNumber: string, callingCode: string) => string
 
 ## Contributing
 

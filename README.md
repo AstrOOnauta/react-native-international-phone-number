@@ -204,6 +204,35 @@ export default function App() {
 }
 ```
 
+## Customizing lib
+
+# Dark mode:
+
+```jsx
+  <PhoneInput
+    ...
+    withDarkTheme
+  />
+```
+
+# containerStyle + inputStyle:
+
+```jsx
+  <PhoneInput
+    ...
+    inputStyle={{
+      color: '#F3F3F3',
+    }}
+    containerStyle={{
+      backgroundColor: '#575757',
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: '#F3F3F3',
+      marginVertical: 16,
+    }}
+  />
+```
+
 ## Props
 
 - `value?`: string

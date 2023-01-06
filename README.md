@@ -206,7 +206,7 @@ export default function App() {
 
 ## Customizing lib
 
-# Dark mode:
+### Dark mode:
 
 ```jsx
   <PhoneInput
@@ -215,7 +215,7 @@ export default function App() {
   />
 ```
 
-# containerStyle + inputStyle:
+### containerStyle + inputStyle:
 
 ```jsx
   <PhoneInput

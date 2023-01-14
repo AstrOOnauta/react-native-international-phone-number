@@ -52,7 +52,7 @@ AND
 ## Features
 
 - 📱 Works with iOS, Android (Cross-platform) and Expo;
-- 🎨 Lib with UI customizable
+- 🎨 Lib with UI customizable;
 - 🌎 Phone Input Mask according to the selected country.
 
 ## Basic Usage

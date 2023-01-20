@@ -9,7 +9,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "mobile",
+    "ios",
+    "android",
     "react-native",
+    "expo",
+    "components",
     "typescript",
     "react-hook-form",
     "mask-input",

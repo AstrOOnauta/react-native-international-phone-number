@@ -157,7 +157,7 @@ interface FormProps extends FieldValues {
 export default function App() {
   const [selectedCountry, setSelectedCountry] = useState<undefined | Country>(undefined);
 
-  const { control, handleSubmit, resetField } = useForm();
+  const { control, handleSubmit, resetField } = useForm<FormProps>();
 
   function onSubmit(form: FormProps) {
     Alert.alert(

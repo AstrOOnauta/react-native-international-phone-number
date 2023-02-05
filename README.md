@@ -215,7 +215,11 @@ export default function App() {
   />
 ```
 
-### containerStyle + inputStyle:
+### Custom Lib Styles:
+
+<div>
+  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/images/custom-styles.png">
+</div>
 
 ```jsx
   <PhoneInput
@@ -230,6 +234,12 @@ export default function App() {
       borderColor: '#F3F3F3',
       marginVertical: 16,
     }}
+    flagContainerStyle={{
+      borderTopLeftRadius: 7,
+      borderBottomLeftRadius: 7,
+      backgroundColor: '#808080',
+      justifyContent: 'center',
+    }}
   />
 ```
 
@@ -238,7 +248,8 @@ export default function App() {
 - `value?`: string
 - `onChangeText?`: (text: string) => void
 - `containerStyle?`: StyleProp<ViewStyle>
-- `inputStyle?`: StyleProp<ViewStyle>
+- `flagContainerStyle?`: StyleProp<ViewStyle>
+- `inputStyle?`: StyleProp<InputStyle>
 - `withDarkTheme?`: boolean
 - `disabled?`: boolean
 - `placeholder?`: string

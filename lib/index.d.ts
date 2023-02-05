@@ -11,6 +11,7 @@ interface PhoneInputProps extends TextInputProps {
   placeholder?: string;
   placeholderTextColor?: string;
   containerStyle?: StyleProp<ViewStyle>;
+  flagContainerStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
   withDarkTheme?: boolean;
   disabled?: boolean;

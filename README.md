@@ -100,7 +100,7 @@ export default function App() {
   const [inputValue, setInputValue] = useState('');
 
   function handleInputValue(phoneNumber) {
-    setPhoneInputValue(phoneNumber);
+    setInputValue(phoneNumber);
   }
 
   function handleSelectedCountry(country) {
@@ -200,8 +200,8 @@ export default function App() {
   >(undefined);
   const [inputValue, setInputValue] = useState<string>('');
 
-  function handlePhoneInput(phoneNumber: string) {
-    setPhoneInputValue(phoneNumber);
+  function handleInputValue(phoneNumber: string) {
+    setInputValue(phoneNumber);
   }
 
   function handleSelectedCountry(country: ICountry) {
@@ -249,8 +249,8 @@ export default function App() {
   >(undefined);
   const [inputValue, setInputValue] = useState<string>('');
 
-  function handlePhoneInput(phoneNumber: string) {
-    setPhoneInputValue(phoneNumber);
+  function handleInputValue(phoneNumber: string) {
+    setInputValue(phoneNumber);
   }
 
   function handleSelectedCountry(country: ICountry) {
@@ -427,17 +427,13 @@ export default function App() {
 
 ```jsx
   ...
-
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
-
   ...
-
   <PhoneInput
     ...
     containerStyle={ isDisabled ? { backgroundColor: 'yellow' } : {} }
     disabled={isDisabled}
   />
-
   ...
 ```
 

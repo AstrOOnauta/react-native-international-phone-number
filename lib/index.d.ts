@@ -1,11 +1,16 @@
-import { Dispatch, SetStateAction } from 'react';
 import {
   StyleProp,
   TextInputProps,
   TextStyle,
   ViewStyle,
 } from 'react-native';
-import { Country } from 'react-native-country-picker-modal';
+
+export interface ICountry {
+  callingCode: string;
+  cca2: string;
+  flag: string;
+  name: string;
+}
 
 interface PhoneInputProps extends TextInputProps {
   placeholder?: string;
@@ -15,15 +20,13 @@ interface PhoneInputProps extends TextInputProps {
   inputStyle?: StyleProp<TextStyle>;
   withDarkTheme?: boolean;
   disabled?: boolean;
-  selectedCountry: undefined | Country;
-  setSelectedCountry: Dispatch<SetStateAction<undefined | Country>>;
+  defaultValue?: string;
+  value: string;
+  onChangePhoneNumber: (phoneNumber: string) => void;
+  selectedCountry: undefined | ICountry;
+  onChangeSelectedCountry: (country: ICountry) => void;
 }
 
-declare function PhoneInput(props: PhoneInputProps): JSX.Element;
-
-declare function phoneMask(
-  value: string,
-  countryCode?: string
-): string;
-
-export { PhoneInput, phoneMask };
+export declare function PhoneInput(
+  props: PhoneInputProps
+): JSX.Element;

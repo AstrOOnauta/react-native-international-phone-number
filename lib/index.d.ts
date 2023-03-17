@@ -30,3 +30,5 @@ interface PhoneInputProps extends TextInputProps {
 export declare function PhoneInput(
   props: PhoneInputProps
 ): JSX.Element;
+
+export default function getMatchingCountry(phoneNumber): ICountry | undefined;

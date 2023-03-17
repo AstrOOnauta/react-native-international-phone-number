@@ -31,4 +31,5 @@ export declare function PhoneInput(
   props: PhoneInputProps
 ): JSX.Element;
 
-export default function getMatchingCountry(phoneNumber): ICountry | undefined;
+export declare function getMatchingCountry(phoneNumber): ICountry | undefined;
+export declare function phoneMask(phoneNumber, callingCode, cca2): string;

@@ -1,5 +1,5 @@
 <div align = "center">
-  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/gif/preview.gif">
+  <img src="https://github.com/guiliuri13/CO-react-native-international-phone-number/blob/master/gif/preview.gif">
 </div>
 
 <br>
@@ -13,16 +13,16 @@
   <a href="https://www.npmjs.com/package/react-native-international-phone-number">
     <img src="https://img.shields.io/npm/dm/react-native-international-phone-number.svg?style=flat-square&color=success">
   </a>
-  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
-    <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success"/>
+  <a href="https://github.com/guiliuri13/CO-react-native-international-phone-number">
+    <img src="https://img.shields.io/github/stars/guiliuri13/CO-react-native-international-phone-number?style=flat-square&color=success"/>
   </a>
-  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/issues">
-    <img src="https://img.shields.io/github/issues/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue"/>
+  <a href="https://github.com/guiliuri13/CO-react-native-international-phone-number/issues">
+    <img src="https://img.shields.io/github/issues/guiliuri13/CO-react-native-international-phone-number?style=flat-square&color=blue"/>
   </a>
-  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/pulls">
-    <img src="https://img.shields.io/github/issues-pr/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue"/>
+  <a href="https://github.com/guiliuri13/CO-react-native-international-phone-number/pulls">
+    <img src="https://img.shields.io/github/issues-pr/guiliuri13/CO-react-native-international-phone-number?style=flat-square&color=blue"/>
   </a>
-  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/LICENSE.md">
+  <a href="https://github.com/guiliuri13/CO-react-native-international-phone-number/blob/master/LICENSE.md">
     <img src="https://img.shields.io/:license-isc-yellow.svg?style=flat-square"/>
   </a>
 </p>
@@ -389,7 +389,7 @@ export default function App() {
 - Custom Lib Styles:
 
 <div>
-  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/images/custom-styles.png">
+  <img src="https://github.com/guiliuri13/CO-react-native-international-phone-number/blob/master/images/custom-styles.png">
 </div>
 
 ```jsx
@@ -459,7 +459,7 @@ export default function App() {
 - Fork or clone this repository
 
 ```bash
-  $ git clone https://github.com/AstrOOnauta/react-native-international-phone-number.git
+  $ git clone https://github.com/guiliuri13/CO-react-native-international-phone-number.git
 ```
 
 - Repair, Update and Enjoy 🛠️🚧⚙️
@@ -470,7 +470,7 @@ export default function App() {
 
 ## License
 
-[ISC](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/LICENSE.md)
+[ISC](https://github.com/guiliuri13/CO-react-native-international-phone-number/blob/master/LICENSE.md)
 
 <br>
 

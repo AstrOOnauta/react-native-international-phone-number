@@ -452,6 +452,10 @@ export default function App() {
 - `flagContainerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `inputStyle?:` StyleProp<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
 
+## Functions
+
+- `getCountryByPhoneNumber:` (phoneNumber: string) => ICountry | undefined;
+
 </br>
 
 ## Contributing

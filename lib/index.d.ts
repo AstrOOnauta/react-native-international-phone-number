@@ -5,7 +5,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-export interface ICountry {
+interface ICountry {
   callingCode: string;
   cca2: string;
   flag: string;
@@ -27,6 +27,10 @@ interface PhoneInputProps extends TextInputProps {
   onChangeSelectedCountry: (country: ICountry) => void;
 }
 
-export declare function PhoneInput(
-  props: PhoneInputProps
-): JSX.Element;
+declare function PhoneInput(props: PhoneInputProps): JSX.Element;
+
+declare function getCountryByPhoneNumber(
+  phoneNumber: string
+): ICountry | undefined;
+
+export { PhoneInput, ICountry, getCountryByPhoneNumber };

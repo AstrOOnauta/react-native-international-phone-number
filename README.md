@@ -45,7 +45,7 @@
   - Disabled Mode
   - Custom Disabled Mode Style
 - [Lib Props](#props)
-- [Function](#functions)
+- [Functions](#functions)
 - [Contributing](#contributing)
 - [License](#license)
 

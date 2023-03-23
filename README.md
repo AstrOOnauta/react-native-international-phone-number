@@ -45,6 +45,7 @@
   - Disabled Mode
   - Custom Disabled Mode Style
 - [Lib Props](#props)
+- [Function](#functions)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -451,6 +452,8 @@ export default function App() {
 - `containerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `flagContainerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `inputStyle?:` StyleProp<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
+
+<br>
 
 ## Functions
 

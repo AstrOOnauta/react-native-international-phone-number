@@ -37,9 +37,14 @@ declare function getCountryByCca2(
   phoneNumber: string
 ): ICountry | undefined;
 
+declare function getCountriesByCallingCode(
+  phoneNumber: string
+): ICountry[] | undefined;
+
 export {
   PhoneInput,
   ICountry,
   getCountryByPhoneNumber,
   getCountryByCca2,
+  getCountriesByCallingCode,
 };

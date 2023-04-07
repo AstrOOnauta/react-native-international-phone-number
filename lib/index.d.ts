@@ -33,4 +33,13 @@ declare function getCountryByPhoneNumber(
   phoneNumber: string
 ): ICountry | undefined;
 
-export { PhoneInput, ICountry, getCountryByPhoneNumber };
+declare function getCountryByCca2(
+  phoneNumber: string
+): ICountry | undefined;
+
+export {
+  PhoneInput,
+  ICountry,
+  getCountryByPhoneNumber,
+  getCountryByCca2,
+};

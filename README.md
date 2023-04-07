@@ -29,23 +29,24 @@
 
 <br>
 
-## Table of Contents
+## List of Contents
 
 - [Installation](#installation)
 - [Features](#features)
 - [Basic Usage](#basic-usage)
-  - With Function Component
-  - With Class Component
+  - [With Class Component](#class-component)
+  - [With Function Component](#function-component)
+  - [Custom Default Flag](#custom-default-flag)
 - [Basic Usage - Typescript](#basic-usage---typescript)
 - [Intermediate Usage - Typescrypt + Default Phone Number Value](#intermediate-usage---typescript--default-phone-number-value)
 - [Advanced Usage - React Hook Form + Typescript + Default Phone Number Value](#advanced-usage---react-hook-form--typescript--default-phone-number-value)
 - [Customizing Lib](#customizing-lib)
-  - Theme Mode: Light (default) and Dark
-  - Custom Lib Styles
-  - Disabled Mode
-  - Custom Disabled Mode Style
+  - [Dark Mode](#dark-mode)
+  - [Custom Lib Styles](#custom-lib-styles)
+  - [Disabled Mode](#disabled-mode)
+  - [Custom Disabled Mode Style](#custom-disabled-mode-style)
 - [Lib Props](#props)
-- [Functions](#functions)
+- [Lib Functions](#functions)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -89,49 +90,7 @@ AND
 
 ## Basic Usage
 
-- Function Component:
-
-```jsx
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import { PhoneInput } from 'react-native-international-phone-number';
-
-export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState(undefined);
-  const [inputValue, setInputValue] = useState('');
-
-  function handleInputValue(phoneNumber) {
-    setInputValue(phoneNumber);
-  }
-
-  function handleSelectedCountry(country) {
-    setSelectedCountry(country);
-  }
-
-  return (
-    <View style={{ width: '100%', flex: 1, padding: 24 }}>
-      <PhoneInput
-        value={inputValue}
-        onChangePhoneNumber={handleInputValue}
-        selectedCountry={selectedCountry}
-        onChangeSelectedCountry={handleSelectedCountry}
-      />
-      <View style={{ marginTop: 10 }}>
-        <Text>
-          Country:{' '}
-          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
-        </Text>
-        <Text>
-          Phone Number:{' '}
-          {`${selectedCountry?.callingCode} ${inputValue}`}
-        </Text>
-      </View>
-    </View>
-  );
-}
-```
-
-- Class Component:
+- ### Class Component:
 
 ```jsx
 import React from 'react';
@@ -180,6 +139,95 @@ export class App extends React.Component {
       </View>
     );
   }
+}
+```
+
+- ### Function Component:
+
+```jsx
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import { PhoneInput } from 'react-native-international-phone-number';
+
+export default function App() {
+  const [selectedCountry, setSelectedCountry] = useState(undefined);
+  const [inputValue, setInputValue] = useState('');
+
+  function handleInputValue(phoneNumber) {
+    setInputValue(phoneNumber);
+  }
+
+  function handleSelectedCountry(country) {
+    setSelectedCountry(country);
+  }
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput
+        value={inputValue}
+        onChangePhoneNumber={handleInputValue}
+        selectedCountry={selectedCountry}
+        onChangeSelectedCountry={handleSelectedCountry}
+      />
+      <View style={{ marginTop: 10 }}>
+        <Text>
+          Country:{' '}
+          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
+        </Text>
+        <Text>
+          Phone Number:{' '}
+          {`${selectedCountry?.callingCode} ${inputValue}`}
+        </Text>
+      </View>
+    </View>
+  );
+}
+```
+
+- ### Custom Default Flag:
+
+```jsx
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import {
+  PhoneInput,
+  getCountryByCca2,
+} from 'react-native-international-phone-number';
+
+export default function App() {
+  const [selectedCountry, setSelectedCountry] = useState(
+    getCountryByCca2('CA') // <--- In this exemple, returns the CANADA Country and PhoneInput CANADA Flag
+  );
+  const [inputValue, setInputValue] = useState('');
+
+  function handleInputValue(phoneNumber) {
+    setInputValue(phoneNumber);
+  }
+
+  function handleSelectedCountry(country) {
+    setSelectedCountry(country);
+  }
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput
+        value={inputValue}
+        onChangePhoneNumber={handleInputValue}
+        selectedCountry={selectedCountry}
+        onChangeSelectedCountry={handleSelectedCountry}
+      />
+      <View style={{ marginTop: 10 }}>
+        <Text>
+          Country:{' '}
+          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
+        </Text>
+        <Text>
+          Phone Number:{' '}
+          {`${selectedCountry?.callingCode} ${inputValue}`}
+        </Text>
+      </View>
+    </View>
+  );
 }
 ```
 
@@ -378,7 +426,7 @@ export default function App() {
 
 ## Customizing lib
 
-- Dark Mode:
+- ### Dark Mode:
 
 ```jsx
   <PhoneInput
@@ -387,7 +435,7 @@ export default function App() {
   />
 ```
 
-- Custom Lib Styles:
+- ### Custom Lib Styles:
 
 <div>
   <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/images/custom-styles.png">
@@ -415,7 +463,7 @@ export default function App() {
   />
 ```
 
-- Disabled Mode:
+- ### Disabled Mode:
 
 ```jsx
   <PhoneInput
@@ -424,7 +472,7 @@ export default function App() {
   />
 ```
 
-- Custom Disabled Mode Style:
+- ### Custom Disabled Mode Style:
 
 ```jsx
   ...
@@ -458,6 +506,9 @@ export default function App() {
 ## Functions
 
 - `getCountryByPhoneNumber:` (phoneNumber: string) => ICountry | undefined;
+- `getCountryByCca2:` (phoneNumber: string) => ICountry | undefined;
+- `getCountriesByCallingCode:` (phoneNumber: string) => ICountry[] | undefined;
+- `getCountriesByName:` (phoneNumber: string) => ICountry[] | undefined;
 
 </br>
 

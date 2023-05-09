@@ -122,18 +122,18 @@ export class App extends React.Component {
     return (
       <View style={{ width: '100%', flex: 1, padding: 24 }}>
         <PhoneInput
-          value={this.inputValue}
+          value={this.state.inputValue}
           onChangePhoneNumber={this.handleInputValue}
-          selectedCountry={this.selectedCountry}
+          selectedCountry={this.state.selectedCountry}
           onChangeSelectedCountry={this.handleSelectedCountry}
         />
         <View style={{ marginTop: 10 }}>
           <Text>
             Country:{' '}
-            {`${this.selectedCountry?.name} (${this.selectedCountry?.cca2})`}
+            {`${this.state.selectedCountry?.name} (${this.state.selectedCountry?.cca2})`}
           </Text>
           <Text>
-            Phone Number: {`${this.selectedCountry?.callingCode} ${this.inputValue}`}
+            Phone Number: {`${this.state.selectedCountry?.callingCode} ${this.state.inputValue}`}
           </Text>
         </View>
       </View>

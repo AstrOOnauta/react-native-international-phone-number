@@ -29,6 +29,10 @@
 
 <br>
 
+## Try it out
+
+- [Demo](https://snack.expo.dev/@astroonauta/react-native-international-phone-number)
+
 ## List of Contents
 
 - [Installation](#installation)

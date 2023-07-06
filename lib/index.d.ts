@@ -29,6 +29,8 @@ interface PhoneInputProps extends TextInputProps {
 
 declare function PhoneInput(props: PhoneInputProps): JSX.Element;
 
+declare function getAllCountries(): ICountry[];
+
 declare function getCountryByPhoneNumber(
   phoneNumber: string
 ): ICountry | undefined;
@@ -48,6 +50,7 @@ declare function getCountriesByName(
 export {
   PhoneInput,
   ICountry,
+  getAllCountries,
   getCountryByPhoneNumber,
   getCountryByCca2,
   getCountriesByCallingCode,

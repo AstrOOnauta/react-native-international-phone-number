@@ -509,6 +509,7 @@ export default function App() {
 
 ## Functions
 
+- `getAllCountries:` () => ICountry[];
 - `getCountryByPhoneNumber:` (phoneNumber: string) => ICountry | undefined;
 - `getCountryByCca2:` (phoneNumber: string) => ICountry | undefined;
 - `getCountriesByCallingCode:` (phoneNumber: string) => ICountry[] | undefined;

@@ -497,8 +497,8 @@ export default function App() {
 - `defaultValue?:` string;
 - `value:` string;
 - `onChangePhoneNumber:` (phoneNumber: string) => void;
-- `selectedCountry:` undefined | ICountry;
-- `onChangeSelectedCountry:` (country: ICountry) => void;
+- `selectedCountry:` undefined | [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts);
+- `onChangeSelectedCountry:` (country: [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)) => void;
 - `disabled?:` boolean;
 - `withDarkTheme?:` boolean;
 - `containerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
@@ -509,11 +509,11 @@ export default function App() {
 
 ## Functions
 
-- `getAllCountries:` () => ICountry[];
-- `getCountryByPhoneNumber:` (phoneNumber: string) => ICountry | undefined;
-- `getCountryByCca2:` (phoneNumber: string) => ICountry | undefined;
-- `getCountriesByCallingCode:` (phoneNumber: string) => ICountry[] | undefined;
-- `getCountriesByName:` (phoneNumber: string) => ICountry[] | undefined;
+- `getAllCountries:` () => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)[];
+- `getCountryByPhoneNumber:` (phoneNumber: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts) | undefined;
+- `getCountryByCca2:` (phoneNumber: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts) | undefined;
+- `getCountriesByCallingCode:` (phoneNumber: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)[] | undefined;
+- `getCountriesByName:` (phoneNumber: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)[] | undefined;
 
 </br>
 

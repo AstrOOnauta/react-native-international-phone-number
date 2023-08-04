@@ -492,7 +492,7 @@ export default function App() {
 
 </br>
 
-## Props
+## Component Props ([PhoneInputProps](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputProps.ts))
 
 - `defaultValue?:` string;
 - `value:` string;

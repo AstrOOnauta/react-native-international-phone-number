@@ -47,7 +47,8 @@
 - [Customizing Lib](#customizing-lib)
   - [Dark Mode](#dark-mode)
   - [Custom Lib Styles](#custom-lib-styles)
-  - [Disabled Mode](#disabled-mode)
+  - [Phone Input Disabled Mode](#phone-input-disabled-mode)
+  - [Country Modal Disabled Mode](#country-modal-disabled-mode)
   - [Custom Disabled Mode Style](#custom-disabled-mode-style)
 - [Lib Props](#props)
 - [Lib Functions](#functions)
@@ -467,12 +468,21 @@ export default function App() {
   />
 ```
 
-- ### Disabled Mode:
+- ### Phone Input Disabled Mode:
 
 ```jsx
   <PhoneInput
     ...
     disabled
+  />
+```
+
+- ### Country Modal Disabled Mode:
+
+```jsx
+  <PhoneInput
+    ...
+    modalDisabled
   />
 ```
 
@@ -500,6 +510,7 @@ export default function App() {
 - `selectedCountry:` undefined | [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts);
 - `onChangeSelectedCountry:` (country: [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)) => void;
 - `disabled?:` boolean;
+- `modalDisabled?:` boolean;
 - `withDarkTheme?:` boolean;
 - `containerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `flagContainerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;

@@ -15,6 +15,7 @@ export interface PhoneInputProps extends TextInputProps {
   inputStyle?: StyleProp<TextStyle>;
   withDarkTheme?: boolean;
   disabled?: boolean;
+  modalDisabled?: boolean;
   defaultValue?: string;
   value: string;
   onChangePhoneNumber: (phoneNumber: string) => void;

@@ -31,7 +31,7 @@
 
 <div align = "center">
     <a href="https://www.buymeacoffee.com/astroonauta" target="_blank">
-        <img src="https://survivingmexico.files.wordpress.com/2018/07/button-gif.gif" alt="Buy Me A Coffee" style="height: auto !important;width: 20% !important;">
+        <img src="https://survivingmexico.files.wordpress.com/2018/07/button-gif.gif" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;">
     </a>
 </div>
 

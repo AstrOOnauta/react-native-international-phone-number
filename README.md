@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/npm/v/react-native-international-phone-number.svg?style=flat-square">
   </a>
   <a href="https://www.npmjs.com/package/react-native-international-phone-number">
-    <img src="https://img.shields.io/npm/dm/react-native-international-phone-number.svg?style=flat-square&color=success">
+    <img src="https://img.shields.io/npm/dt/react-native-international-phone-number.svg?style=flat-square&color=success">
   </a>
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
     <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success"/>
@@ -28,6 +28,12 @@
 </p>
 
 <br>
+
+<div align = "center">
+    <a href="https://www.buymeacoffee.com/astroonauta" target="_blank">
+        <img src="https://survivingmexico.files.wordpress.com/2018/07/button-gif.gif" alt="Buy Me A Coffee" style="height: auto !important;width: 20% !important;">
+    </a>
+</div>
 
 ## Try it out
 
@@ -50,7 +56,7 @@
   - [Phone Input Disabled Mode](#phone-input-disabled-mode)
   - [Country Modal Disabled Mode](#country-modal-disabled-mode)
   - [Custom Disabled Mode Style](#custom-disabled-mode-style)
-- [Lib Props](#props)
+- [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Contributing](#contributing)
 - [License](#license)

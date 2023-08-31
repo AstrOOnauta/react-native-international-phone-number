@@ -47,9 +47,12 @@
   - [With Class Component](#class-component)
   - [With Function Component](#function-component)
   - [Custom Default Flag](#custom-default-flag)
-- [Basic Usage - Typescript](#basic-usage---typescript)
-- [Intermediate Usage - Typescrypt + Default Phone Number Value](#intermediate-usage---typescript--default-phone-number-value)
-- [Advanced Usage - React Hook Form + Typescript + Default Phone Number Value](#advanced-usage---react-hook-form--typescript--default-phone-number-value)
+  - [Default Phone Number Value](#default-phone-number-value)
+  - [Typescript](#typescript)
+- [Intermediate Usage](#intermediate-usage)
+  - [Typescript + useRef](#typescript--useref)
+- [Advanced Usage](#advanced-usage)
+  - [React-Hook-Form + Typescript + Default Phone Number Value](#react-hook-form--typescript--default-phone-number-value)
 - [Customizing Lib](#customizing-lib)
   - [Dark Mode](#dark-mode)
   - [Custom Lib Styles](#custom-lib-styles)
@@ -242,78 +245,22 @@ export default function App() {
 }
 ```
 
-<br>
-
-## Basic Usage - Typescript
+- ### Default Phone Number Value
 
 ```tsx
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import {
-  PhoneInput,
-  ICountry,
-} from 'react-native-international-phone-number';
+import { PhoneInput } from 'react-native-international-phone-number';
 
 export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState<
-    undefined | ICountry
-  >(undefined);
-  const [inputValue, setInputValue] = useState<string>('');
+  const [selectedCountry, setSelectedCountry] = useState(undefined);
+  const [inputValue, setInputValue] = useState('');
 
-  function handleInputValue(phoneNumber: string) {
+  function handleInputValue(phoneNumber) {
     setInputValue(phoneNumber);
   }
 
-  function handleSelectedCountry(country: ICountry) {
-    setSelectedCountry(country);
-  }
-
-  return (
-    <View style={{ width: '100%', flex: 1, padding: 24 }}>
-      <PhoneInput
-        value={inputValue}
-        onChangePhoneNumber={handleInputValue}
-        selectedCountry={selectedCountry}
-        onChangeSelectedCountry={handleSelectedCountry}
-      />
-      <View style={{ marginTop: 10 }}>
-        <Text>
-          Country:{' '}
-          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
-        </Text>
-        <Text>
-          Phone Number:{' '}
-          {`${selectedCountry?.callingCode} ${inputValue}`}
-        </Text>
-      </View>
-    </View>
-  );
-}
-```
-
-<br>
-
-## Intermediate Usage - Typescript + Default Phone Number Value
-
-```tsx
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import {
-  PhoneInput,
-  ICountry,
-} from 'react-native-international-phone-number';
-
-export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState<
-    undefined | ICountry
-  >(undefined);
-  const [inputValue, setInputValue] = useState<string>('');
-
-  function handleInputValue(phoneNumber: string) {
-    setInputValue(phoneNumber);
-  }
-
-  function handleSelectedCountry(country: ICountry) {
+  function handleSelectedCountry(country) {
     setSelectedCountry(country);
   }
 
@@ -346,9 +293,110 @@ export default function App() {
 > 1. You need to use a default value with the following format: `+(country callling code)(area code)(number phone)`
 > 2. The lib has the mechanism to set the flag and mask of the supplied `defaultValue`. However, if the supplied `defaultValue` does not match any international standard, the `input mask of the defaultValue` will be set to "BR" (please make sure that the default value is in the format mentioned above).
 
+- ### Typescript
+
+```tsx
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import {
+  PhoneInput,
+  ICountry,
+} from 'react-native-international-phone-number';
+
+export default function App() {
+  const [selectedCountry, setSelectedCountry] = useState<
+    undefined | ICountry
+  >(undefined);
+  const [inputValue, setInputValue] = useState<string>('');
+
+  function handleInputValue(phoneNumber: string) {
+    setInputValue(phoneNumber);
+  }
+
+  function handleSelectedCountry(country: ICountry) {
+    setSelectedCountry(country);
+  }
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput
+        value={inputValue}
+        onChangePhoneNumber={handleInputValue}
+        selectedCountry={selectedCountry}
+        onChangeSelectedCountry={handleSelectedCountry}
+      />
+      <View style={{ marginTop: 10 }}>
+        <Text>
+          Country:{' '}
+          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
+        </Text>
+        <Text>
+          Phone Number:{' '}
+          {`${selectedCountry?.callingCode} ${inputValue}`}
+        </Text>
+      </View>
+    </View>
+  );
+}
+```
+
 <br>
 
-## Advanced Usage - React-Hook-Form + Typescript + Default Phone Number Value
+## Intermediate Usage
+
+- ### Typescript + useRef
+
+```tsx
+import React, { useState, useRef } from 'react';
+import { View, Text } from 'react-native';
+import {
+  PhoneInput,
+  ICountry,
+  IPhoneInputRef,
+} from 'react-native-international-phone-number';
+
+export default function App() {
+  const phoneInputRef = useRef<IPhoneInputRef>(null);
+
+  function onSubmitRef() {
+    Alert.alert(
+      'Intermediate Result',
+      `${phoneInputRef.current?.selectedCountry?.callingCode} ${phoneInputRef.current?.value}`
+    );
+  }
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput ref={phoneInputRef} />
+      <TouchableOpacity
+        style={{
+          width: '100%',
+          paddingVertical: 12,
+          backgroundColor: '#2196F3',
+          borderRadius: 4,
+          marginTop: 10,
+        }}
+        onPress={onSubmit}
+      >
+        <Text
+          style={{
+            color: '#F3F3F3',
+            textAlign: 'center',
+            fontSize: 16,
+            fontWeight: 'bold',
+          }}
+        >
+          Submit
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+```
+
+## Advanced Usage
+
+- ### React-Hook-Form + Typescript + Default Phone Number Value
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -357,7 +405,7 @@ import {
   PhoneInput,
   ICountry,
 } from 'react-native-international-phone-number';
-import { Controller, FieldValues, useForm } from 'react-hook-form';
+import { Controller, FieldValues } from 'react-hook-form';
 
 interface FormProps extends FieldValues {
   phoneNumber: string;
@@ -367,9 +415,6 @@ export default function App() {
   const [selectedCountry, setSelectedCountry] = useState<
     undefined | ICountry
   >(undefined);
-
-  const { control, handleSubmit, setValue, watch } =
-    useForm<FormProps>();
 
   function handleSelectedCountry(country: ICountry) {
     setSelectedCountry(country);
@@ -381,12 +426,6 @@ export default function App() {
       `${selectedCountry?.callingCode} ${form.phoneNumber}`
     );
   }
-
-  useEffect(() => {
-    const watchPhoneNumber = watch('phoneNumber');
-
-    setValue('phoneNumber', watchPhoneNumber);
-  }, []);
 
   return (
     <View style={{ width: '100%', flex: 1, padding: 24 }}>
@@ -511,16 +550,17 @@ export default function App() {
 ## Component Props ([PhoneInputProps](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputProps.ts))
 
 - `defaultValue?:` string;
-- `value:` string;
-- `onChangePhoneNumber:` (phoneNumber: string) => void;
-- `selectedCountry:` undefined | [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts);
-- `onChangeSelectedCountry:` (country: [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)) => void;
+- `value?:` string;
+- `onChangePhoneNumber?:` (phoneNumber: string) => void;
+- `selectedCountry?:` undefined | [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts);
+- `onChangeSelectedCountry?:` (country: [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)) => void;
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;
 - `withDarkTheme?:` boolean;
 - `containerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `flagContainerStyle?:` StyleProp<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `inputStyle?:` StyleProp<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
+- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputeRef.ts)>
 
 <br>
 

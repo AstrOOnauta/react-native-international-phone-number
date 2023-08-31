@@ -1,7 +1,13 @@
+import { Ref } from 'react';
+
 import { ICountry } from './interfaces/country';
+import { IPhoneInputRef } from './interfaces/phoneInputRef';
 import { PhoneInputProps } from './interfaces/phoneInputProps';
 
-declare function PhoneInput(props: PhoneInputProps): JSX.Element;
+declare function PhoneInput<IPhoneInputRef, PhoneInputProps>(
+  props: PhoneInputProps,
+  ref?: Ref<IPhoneInputRef>
+): JSX.Element;
 
 declare function getAllCountries(): ICountry[];
 
@@ -29,5 +35,6 @@ export {
   getCountriesByCallingCode,
   getCountriesByName,
   ICountry,
+  IPhoneInputRef,
   PhoneInputProps,
 };

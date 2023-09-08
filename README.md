@@ -48,6 +48,7 @@
   - [With Function Component](#function-component)
   - [Custom Default Flag](#custom-default-flag)
   - [Default Phone Number Value](#default-phone-number-value)
+  - [Custom Phone Mask](#custom-phone-mask)
   - [Typescript](#typescript)
 - [Intermediate Usage](#intermediate-usage)
   - [Typescript + useRef](#typescript--useref)
@@ -292,6 +293,49 @@ export default function App() {
 >
 > 1. You need to use a default value with the following format: `+(country callling code)(area code)(number phone)`
 > 2. The lib has the mechanism to set the flag and mask of the supplied `defaultValue`. However, if the supplied `defaultValue` does not match any international standard, the `input mask of the defaultValue` will be set to "BR" (please make sure that the default value is in the format mentioned above).
+
+- ### Custom Phone Mask
+
+```tsx
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import { PhoneInput } from 'react-native-international-phone-number';
+
+export default function App() {
+  const [selectedCountry, setSelectedCountry] = useState(undefined);
+  const [inputValue, setInputValue] = useState('');
+
+  function handleInputValue(phoneNumber) {
+    setInputValue(phoneNumber);
+  }
+
+  function handleSelectedCountry(country) {
+    setSelectedCountry(country);
+  }
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput
+        customMask={['#### ####', '##### ####']}
+        value={inputValue}
+        onChangePhoneNumber={handleInputValue}
+        selectedCountry={selectedCountry}
+        onChangeSelectedCountry={handleSelectedCountry}
+      />
+      <View style={{ marginTop: 10 }}>
+        <Text>
+          Country:{' '}
+          {`${selectedCountry?.name} (${selectedCountry?.cca2})`}
+        </Text>
+        <Text>
+          Phone Number:{' '}
+          {`${selectedCountry?.callingCode} ${inputValue}`}
+        </Text>
+      </View>
+    </View>
+  );
+}
+```
 
 - ### Typescript
 
@@ -551,6 +595,7 @@ export default function App() {
 
 ## Component Props ([PhoneInputProps](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputProps.ts))
 
+- `customMask?:` string[];
 - `defaultValue?:` string;
 - `value?:` string;
 - `onChangePhoneNumber?:` (phoneNumber: string) => void;

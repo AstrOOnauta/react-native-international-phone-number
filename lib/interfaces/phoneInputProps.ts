@@ -24,6 +24,7 @@ interface IPhoneInputPropsWithoutRef extends TextInputProps {
   selectedCountry: undefined | ICountry;
   onChangeSelectedCountry: (country: ICountry) => void;
   ref?: never;
+  customMask?:Array<string>;
 }
 
 interface IPhoneInputPropsWithRef extends TextInputProps {
@@ -41,6 +42,7 @@ interface IPhoneInputPropsWithRef extends TextInputProps {
   selectedCountry?: never;
   onChangeSelectedCountry?: never;
   ref: Ref<IPhoneInputRef>;
+  customMask?:Array<string>;
 }
 
 export type PhoneInputProps =

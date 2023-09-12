@@ -1,7 +1,7 @@
 {
   "name": "react-native-international-phone-number",
   "author": "AstrOOnauta (https://github.com/AstrOOnauta)",
-  "version": "0.4.15",
+  "version": "0.5.0",
   "description": "International mobile phone input component with mask for React Native",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,11 +20,15 @@
     "mask-input",
     "phone-input",
     "international-number-phone",
-    "components",
+    "picker",
     "country-picker",
     "country",
     "flag",
-    "custom-lib"
+    "custom-lib",
+    "codes",
+    "search",
+    "animated",
+    "input"
   ],
   "license": "ISC",
   "repository": {
@@ -40,7 +44,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "react-native-country-picker-modal": "^2.0.0"
+    "react-native-country-codes-picker": "^2.3.3"
   },
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.61.0"

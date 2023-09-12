@@ -1,3 +1,4 @@
+import { Ref } from 'react';
 import {
   StyleProp,
   TextInputProps,
@@ -6,43 +7,55 @@ import {
 } from 'react-native';
 
 import { ICountry } from './country';
-import { Ref } from 'react';
+import { ICountryCca2 } from './countryCca2';
+import { ILanguage } from './language';
+import { ITheme } from './theme';
 import { IPhoneInputRef } from './phoneInputRef';
 
 interface IPhoneInputPropsWithoutRef extends TextInputProps {
+  language?: ILanguage;
   placeholder?: string;
   placeholderTextColor?: string;
+  selectionColor?: string;
   containerStyle?: StyleProp<ViewStyle>;
   flagContainerStyle?: StyleProp<ViewStyle>;
+  flagTextStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
-  withDarkTheme?: boolean;
+  theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;
+  modalHeight?: number | string;
+  defaultCountry?: ICountryCca2;
   defaultValue?: string;
   value: string;
   onChangePhoneNumber: (phoneNumber: string) => void;
-  selectedCountry: undefined | ICountry;
+  selectedCountry: ICountry | undefined | null;
   onChangeSelectedCountry: (country: ICountry) => void;
+  customMask?: Array<string>;
   ref?: never;
-  customMask?:Array<string>;
 }
 
 interface IPhoneInputPropsWithRef extends TextInputProps {
+  language?: ILanguage;
   placeholder?: string;
   placeholderTextColor?: string;
+  selectionColor?: string;
   containerStyle?: StyleProp<ViewStyle>;
   flagContainerStyle?: StyleProp<ViewStyle>;
+  flagTextStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
-  withDarkTheme?: boolean;
+  theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;
+  modalHeight?: number | string;
+  defaultCountry?: ICountryCca2;
   defaultValue?: string;
   value?: never;
   onChangePhoneNumber?: never;
   selectedCountry?: never;
   onChangeSelectedCountry?: never;
+  customMask?: Array<string>;
   ref: Ref<IPhoneInputRef>;
-  customMask?:Array<string>;
 }
 
 export type PhoneInputProps =

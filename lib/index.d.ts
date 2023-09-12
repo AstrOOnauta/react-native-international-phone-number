@@ -1,4 +1,6 @@
+import { ITheme } from './interfaces/theme';
 import { ICountry } from './interfaces/country';
+import { ILanguage } from './interfaces/language';
 import { IPhoneInputRef } from './interfaces/phoneInputRef';
 import { PhoneInputProps } from './interfaces/phoneInputProps';
 
@@ -10,25 +12,27 @@ declare function getCountryByPhoneNumber(
   phoneNumber: string
 ): ICountry | undefined;
 
-declare function getCountryByCca2(
-  phoneNumber: string
-): ICountry | undefined;
+declare function getCountryByCca2(cca2: string): ICountry | undefined;
 
 declare function getCountriesByCallingCode(
-  phoneNumber: string
+  callingCode: string
 ): ICountry[] | undefined;
 
 declare function getCountriesByName(
-  phoneNumber: string
+  name: string,
+  language: ILanguage
 ): ICountry[] | undefined;
 
+export default PhoneInput;
+
 export {
-  PhoneInput,
   getAllCountries,
   getCountryByPhoneNumber,
   getCountryByCca2,
   getCountriesByCallingCode,
   getCountriesByName,
+  ITheme,
+  ILanguage,
   ICountry,
   IPhoneInputRef,
   PhoneInputProps,

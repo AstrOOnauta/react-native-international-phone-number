@@ -9,6 +9,8 @@ export interface IPhoneInputRef extends TextInput {
   focus: () => void;
   getValue: () => string;
   value: string;
+  getFullPhoneNumber: () => string;
+  fullPhoneNumber: string;
   getSelectedCountry: () => ICountry;
   selectedCountry: ICountry;
 }

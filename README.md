@@ -554,6 +554,7 @@ export default function App() {
 - `flagContainerStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
 - `flagTextStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
 - `inputStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
+- `modalStyle?:` [IModalStyle](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/modalStyle.ts);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputRef.ts)>
 
 <br>

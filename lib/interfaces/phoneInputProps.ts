@@ -10,6 +10,7 @@ import { ICountry } from './country';
 import { ICountryCca2 } from './countryCca2';
 import { ILanguage } from './language';
 import { ITheme } from './theme';
+import { IModalStyle } from './modalStyle';
 import { IPhoneInputRef } from './phoneInputRef';
 
 interface IPhoneInputPropsWithoutRef extends TextInputProps {
@@ -21,6 +22,7 @@ interface IPhoneInputPropsWithoutRef extends TextInputProps {
   flagContainerStyle?: StyleProp<ViewStyle>;
   flagTextStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
+  modalStyle?: IModalStyle;
   theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;
@@ -44,6 +46,7 @@ interface IPhoneInputPropsWithRef extends TextInputProps {
   flagContainerStyle?: StyleProp<ViewStyle>;
   flagTextStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
+  modalStyle?: IModalStyle;
   theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;

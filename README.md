@@ -436,6 +436,45 @@ export default function App() {
         fontWeight: 'bold',
         color: '#F3F3F3',
     }}
+    modalStyle={{
+      modal: {
+        backgroundColor: '#333333',
+        borderWidth: 1,
+      },
+      backdrop: {},
+      divider: {
+        backgroundColor: 'transparent',
+      },
+      countriesList: {},
+      searchInput: {
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#F3F3F3',
+        color: '#F3F3F3',
+        backgroundColor: '#333333',
+        paddingHorizontal: 12,
+        height: 46,
+      },
+      countryButton: {
+        borderWidth: 1,
+        borderColor: '#F3F3F3',
+        backgroundColor: '#666666',
+        marginVertical: 4,
+        paddingVertical: 0,
+      },
+      noCountryText: {},
+      noCountryContainer: {},
+      flag: {
+        color: '#FFFFFF',
+        fontSize: 20,
+      },
+      callingCode: {
+        color: '#F3F3F3',
+      },
+      countryName: {
+        color: '#F3F3F3',
+      },
+    }}
   />
   ...
 ```

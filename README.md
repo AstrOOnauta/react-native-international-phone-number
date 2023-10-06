@@ -1,7 +1,7 @@
 <br>
 
 <div align = "center">
-  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/images/preview.png" alt="React Native International Phone Number Input Lib preview">
+  <img src="lib/assets/images/preview.png" alt="React Native International Phone Number Input Lib preview">
 </div>
 
 <br>
@@ -24,7 +24,7 @@
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/pulls">
     <img src="https://img.shields.io/github/issues-pr/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue"/>
   </a>
-  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/LICENSE.md">
+  <a href="LICENSE.md">
     <img src="https://img.shields.io/:license-isc-yellow.svg?style=flat-square"/>
   </a>
 </p>
@@ -45,6 +45,7 @@
 
 - [Old Versions](#old-versions)
 - [Installation](#installation)
+- [Additional Config to Web](#additional-config-to-web)
 - [Features](#features)
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
@@ -76,6 +77,7 @@
 ## Old Versions
 
 - [Version 0.4.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.4.x)
+- [Version 0.5.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.5.x)
 
 <br>
 
@@ -91,18 +93,42 @@ OR
 $ yarn add react-native-international-phone-number
 ```
 
-AND
+## Additional config to `Web`
 
-> Update your `metro.config.js` file:
->
-> ```bash
-> module.exports = {
->  ...
->  resolver: {
->    sourceExts: ['jsx', 'js', 'ts', 'tsx', 'cjs', 'json'],
->  },
-> };
-> ```
+- Using React Native CLI:
+
+create a `react-native.config.js` file at the root of your react-native project with:
+
+```bash
+ module.exports = {
+  project: {
+    ios: {},
+    android: {},
+  },
+  assets: [
+    './node_modules/react-native-international-phone-number/assets/fonts',
+  ],
+ };
+```
+
+- Using Expo:
+
+1. Install [expo-fonts](https://docs.expo.dev/versions/latest/sdk/font/): `npx expo install expo-font`;
+2. Initialize the `expo-font`:
+
+```bash
+ import { useFonts } from 'expo-font';
+
+ ...
+
+ useFonts({
+    'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/assets/fonts/TwemojiMozilla.ttf'),
+  });
+
+ ...
+```
+
+> Observation: _you need to recompile your project after adding new fonts._
 
 <br>
 
@@ -395,6 +421,8 @@ export default function App() {
 
 ## Customizing lib
 
+<img src="lib/assets/images/custom-styles.png" alt="Custom lib styles">
+
 - ### Dark Mode:
 
 ```jsx
@@ -408,35 +436,34 @@ export default function App() {
 
 - ### Custom Lib Styles:
 
-<div>
-  <img src="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/images/custom-styles.png" alt="Lib with custom styles">
-</div>
-
 ```jsx
   ...
   <PhoneInput
     ...
-    inputStyle={{
-      color: '#F3F3F3',
-    }}
-    containerStyle={{
-      backgroundColor: '#575757',
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: '#F3F3F3',
-    }}
-    flagContainerStyle={{
-      borderTopLeftRadius: 7,
-      borderBottomLeftRadius: 7,
-      backgroundColor: '#808080',
-      justifyContent: 'center',
-    }}
-    flagTextStyle={{
+    phoneInputStyles={{
+      container: {
+        backgroundColor: '#575757',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#F3F3F3',
+      },
+      flagContainer: {
+        borderTopLeftRadius: 7,
+        borderBottomLeftRadius: 7,
+        backgroundColor: '#808080',
+        justifyContent: 'center',
+      },
+      flag: {}
+      callingCode: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#F3F3F3',
+      },
+      input: {
+        color: '#F3F3F3',
+      },
     }}
-    modalStyle={{
+    modalStyles={{
       modal: {
         backgroundColor: '#333333',
         borderWidth: 1,
@@ -576,35 +603,32 @@ export default function App() {
 
 </br>
 
-## Component Props ([PhoneInputProps](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputProps.ts))
+## Component Props ([PhoneInputProps](lib/interfaces/phoneInputProps.ts))
 
-- `language?:` [ILanguage](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/language.ts);
+- `language?:` [ILanguage](lib/interfaces/language.ts);
 - `customMask?:` string[];
 - `defaultValue?:` string;
 - `value?:` string;
 - `onChangePhoneNumber?:` (phoneNumber: string) => void;
-- `selectedCountry?:` [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts);
-- `onChangeSelectedCountry?:` (country: [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)) => void;
+- `selectedCountry?:` [ICountry](lib/interfaces/country.ts);
+- `onChangeSelectedCountry?:` (country: [ICountry](lib/interfaces/country.ts)) => void;
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;
 - `modalHeight?:` number | string;
-- `theme?:` [ITheme](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/theme.ts);
-- `containerStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
-- `flagContainerStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[ViewStyle](https://reactnative.dev/docs/view-style-props)>;
-- `flagTextStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
-- `inputStyle?:` [StyleProp](https://reactnative.dev/docs/style)<[TextStyle](https://reactnative.dev/docs/text-style-props)>;
-- `modalStyle?:` [IModalStyle](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/modalStyle.ts);
-- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputRef.ts)>
+- `theme?:` [ITheme](lib/interfaces/theme.ts);
+- `modalStyles?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
+- `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
+- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
 
 <br>
 
 ## Functions
 
-- `getAllCountries:` () => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)[];
-- `getCountriesByCallingCode:` (callingCode: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)[] | undefined;
-- `getCountryByCca2:` (cca2: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts) | undefined;
-- `getCountriesByName:` (name: string, language: [ILanguage](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/language.ts)) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts)[] | undefined;
-- `getCountryByPhoneNumber:` (phoneNumber: string) => [ICountry](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/country.ts) | undefined;
+- `getAllCountries:` () => [ICountry](lib/interfaces/country.ts)[];
+- `getCountriesByCallingCode:` (callingCode: string) => [ICountry](lib/interfaces/country.ts)[] | undefined;
+- `getCountryByCca2:` (cca2: string) => [ICountry](lib/interfaces/country.ts) | undefined;
+- `getCountriesByName:` (name: string, language: [ILanguage](lib/interfaces/language.ts)) => [ICountry](lib/interfaces/country.ts)[] | undefined;
+- `getCountryByPhoneNumber:` (phoneNumber: string) => [ICountry](lib/interfaces/country.ts) | undefined;
 
 </br>
 
@@ -651,7 +675,7 @@ export default function App() {
 
 ## License
 
-[ISC](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/LICENSE.md)
+[ISC](LICENSE.md)
 
 <br>
 

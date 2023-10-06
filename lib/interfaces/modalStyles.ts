@@ -1,6 +1,6 @@
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-export interface IModalStyle {
+export interface IModalStyles {
   // Styles for whole modal [View]
   modal?: StyleProp<ViewStyle>;
   // Styles for modal backdrop [View]

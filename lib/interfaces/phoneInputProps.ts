@@ -1,16 +1,12 @@
 import { Ref } from 'react';
-import {
-  StyleProp,
-  TextInputProps,
-  TextStyle,
-  ViewStyle,
-} from 'react-native';
+import { TextInputProps } from 'react-native';
 
 import { ICountry } from './country';
 import { ICountryCca2 } from './countryCca2';
 import { ILanguage } from './language';
 import { ITheme } from './theme';
-import { IModalStyle } from './modalStyle';
+import { IModalStyles } from './modalStyles';
+import { IPhoneInputStyles } from './phoneInputStyles';
 import { IPhoneInputRef } from './phoneInputRef';
 
 interface IPhoneInputPropsWithoutRef extends TextInputProps {
@@ -18,11 +14,8 @@ interface IPhoneInputPropsWithoutRef extends TextInputProps {
   placeholder?: string;
   placeholderTextColor?: string;
   selectionColor?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  flagContainerStyle?: StyleProp<ViewStyle>;
-  flagTextStyle?: StyleProp<TextStyle>;
-  inputStyle?: StyleProp<TextStyle>;
-  modalStyle?: IModalStyle;
+  phoneInputStyle?: IPhoneInputStyles;
+  modalStyle?: IModalStyles;
   theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;
@@ -42,11 +35,8 @@ interface IPhoneInputPropsWithRef extends TextInputProps {
   placeholder?: string;
   placeholderTextColor?: string;
   selectionColor?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  flagContainerStyle?: StyleProp<ViewStyle>;
-  flagTextStyle?: StyleProp<TextStyle>;
-  inputStyle?: StyleProp<TextStyle>;
-  modalStyle?: IModalStyle;
+  phoneInputStyle?: IPhoneInputStyles;
+  modalStyle?: IModalStyles;
   theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;

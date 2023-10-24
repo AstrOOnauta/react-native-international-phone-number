@@ -136,7 +136,7 @@ create a `react-native.config.js` file at the root of your react-native project 
 
 ## Features
 
-- 📱 Works with iOS, Android (Cross-platform) and Expo;
+- 📱 Works with iOS, Android (Cross-platform), Expo and Web;
 - 🎨 Lib with UI customizable;
 - 🌎 Phone Input Mask according with the selected country;
 - 👨‍💻 Functional and class component support;

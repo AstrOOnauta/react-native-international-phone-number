@@ -27,6 +27,8 @@ interface IPhoneInputPropsWithoutRef extends TextInputProps {
   selectedCountry: ICountry | undefined | null;
   onChangeSelectedCountry: (country: ICountry) => void;
   customMask?: Array<string>;
+  showOnly?: Array<ICountryCca2>;
+  excludedCountries?: Array<ICountryCca2>;
   ref?: never;
 }
 
@@ -48,6 +50,8 @@ interface IPhoneInputPropsWithRef extends TextInputProps {
   selectedCountry?: never;
   onChangeSelectedCountry?: never;
   customMask?: Array<string>;
+  showOnly?: Array<ICountryCca2>;
+  excludedCountries?: Array<ICountryCca2>;
   ref: Ref<IPhoneInputRef>;
 }
 

@@ -66,6 +66,8 @@
   - [Custom Phone Mask](#custom-phone-mask)
   - [Custom Default Flag/Country](#custom-default-flagcountry)
   - [Default Phone Number Value](#default-phone-number-value)
+  - [Show Only Some Countries Inside Modal](#show-only-some-countries)
+  - [Exclude some countries Inside Modal](#exclude-some-countries)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
@@ -453,7 +455,7 @@ export default function App() {
         backgroundColor: '#808080',
         justifyContent: 'center',
       },
-      flag: {}
+      flag: {},
       callingCode: {
         fontSize: 16,
         fontWeight: 'bold',
@@ -601,6 +603,28 @@ export default function App() {
 > 1. You need to use a default value with the following format: `+(country callling code)(area code)(number phone)`
 > 2. The lib has the mechanism to set the flag and mask of the supplied `defaultValue`. However, if the supplied `defaultValue` does not match any international standard, the `input mask of the defaultValue` will be set to "BR" (please make sure that the default value is in the format mentioned above).
 
+- ### Show Only Some Countries Inside Modal:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    showOnly={['BR', 'PT', 'CA', 'US']}
+  />
+  ...
+```
+
+- ### Exclude Some Countries Inside Modal:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    excludedCountries={['BR', 'PT', 'CA', 'US']}
+  />
+  ...
+```
+
 </br>
 
 ## Component Props ([PhoneInputProps](lib/interfaces/phoneInputProps.ts))
@@ -610,13 +634,16 @@ export default function App() {
 - `defaultValue?:` string;
 - `value?:` string;
 - `onChangePhoneNumber?:` (phoneNumber: string) => void;
+- `defaultCountry?:` [ICountryCca2](lib/interfaces/countryCca2.ts);
 - `selectedCountry?:` [ICountry](lib/interfaces/country.ts);
 - `onChangeSelectedCountry?:` (country: [ICountry](lib/interfaces/country.ts)) => void;
+- `showOnly?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
+- `excludedCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;
 - `modalHeight?:` number | string;
 - `theme?:` [ITheme](lib/interfaces/theme.ts);
-- `modalStyles?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
+- `phoneInputStyle?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
 - `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
 

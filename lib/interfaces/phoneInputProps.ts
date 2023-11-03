@@ -9,7 +9,7 @@ import { IModalStyles } from './modalStyles';
 import { IPhoneInputStyles } from './phoneInputStyles';
 import { IPhoneInputRef } from './phoneInputRef';
 
-interface IPhoneInputPropsWithoutRef extends TextInputProps {
+interface BasePhoneInput extends TextInputProps {
   language?: ILanguage;
   placeholder?: string;
   placeholderTextColor?: string;
@@ -22,40 +22,26 @@ interface IPhoneInputPropsWithoutRef extends TextInputProps {
   modalHeight?: number | string;
   defaultCountry?: ICountryCca2;
   defaultValue?: string;
+  customMask?: Array<string>;
+  showOnly?: Array<ICountryCca2>;
+  excludedCountries?: Array<ICountryCca2>;
+  modalSearchInputPlaceholder?: string;
+  modalNotFoundCountryMessage?: string;
+}
+
+interface IPhoneInputPropsWithoutRef extends BasePhoneInput {
   value: string;
   onChangePhoneNumber: (phoneNumber: string) => void;
   selectedCountry: ICountry | undefined | null;
   onChangeSelectedCountry: (country: ICountry) => void;
-  customMask?: Array<string>;
-  showOnly?: Array<ICountryCca2>;
-  excludedCountries?: Array<ICountryCca2>;
-  modalSearchInputPlaceholder?: string;
-  modalNotFoundCountryMessage?: string;
   ref?: never;
 }
 
-interface IPhoneInputPropsWithRef extends TextInputProps {
-  language?: ILanguage;
-  placeholder?: string;
-  placeholderTextColor?: string;
-  selectionColor?: string;
-  phoneInputStyle?: IPhoneInputStyles;
-  modalStyle?: IModalStyles;
-  theme?: ITheme;
-  disabled?: boolean;
-  modalDisabled?: boolean;
-  modalHeight?: number | string;
-  defaultCountry?: ICountryCca2;
-  defaultValue?: string;
+interface IPhoneInputPropsWithRef extends BasePhoneInput {
   value?: never;
   onChangePhoneNumber?: never;
   selectedCountry?: never;
   onChangeSelectedCountry?: never;
-  customMask?: Array<string>;
-  showOnly?: Array<ICountryCca2>;
-  excludedCountries?: Array<ICountryCca2>;
-  modalSearchInputPlaceholder?: string;
-  modalNotFoundCountryMessage?: string;
   ref: Ref<IPhoneInputRef>;
 }
 

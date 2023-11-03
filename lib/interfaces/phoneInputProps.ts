@@ -29,6 +29,8 @@ interface IPhoneInputPropsWithoutRef extends TextInputProps {
   customMask?: Array<string>;
   showOnly?: Array<ICountryCca2>;
   excludedCountries?: Array<ICountryCca2>;
+  modalSearchInputPlaceholder?: string;
+  modalNotFoundCountryMessage?: string;
   ref?: never;
 }
 
@@ -52,6 +54,8 @@ interface IPhoneInputPropsWithRef extends TextInputProps {
   customMask?: Array<string>;
   showOnly?: Array<ICountryCca2>;
   excludedCountries?: Array<ICountryCca2>;
+  modalSearchInputPlaceholder?: string;
+  modalNotFoundCountryMessage?: string;
   ref: Ref<IPhoneInputRef>;
 }
 

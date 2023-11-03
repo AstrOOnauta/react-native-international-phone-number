@@ -58,6 +58,7 @@
 - [Customizing Lib](#customizing-lib)
   - [Dark Mode](#dark-mode)
   - [Custom Lib Styles](#custom-lib-styles)
+  - [Custom Placeholders/Messages](#custom-placeholdersmessages)
   - [Custom Modal Height](#custom-modal-height)
   - [Country Modal Disabled Mode](#country-modal-disabled-mode)
   - [Phone Input Disabled Mode](#phone-input-disabled-mode)
@@ -508,6 +509,19 @@ export default function App() {
   ...
 ```
 
+- ### Custom Placeholders/Messages:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    placeholder="Custom Phone Input Placeholder"
+    modalSearchInputPlaceholder="Custom Modal Search Input Placeholder"
+    modalNotFoundCountryMessage="Custom Modal Not Found Country Message"
+  />
+  ...
+```
+
 - ### Custom Modal Height:
 
 ```jsx
@@ -645,6 +659,8 @@ export default function App() {
 - `theme?:` [ITheme](lib/interfaces/theme.ts);
 - `phoneInputStyle?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
 - `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
+- `modalSearchInputPlaceholder?:` string;
+- `modalNotFoundCountryMessage?:` string;
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
 
 <br>

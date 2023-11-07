@@ -14,8 +14,8 @@ interface BasePhoneInput extends TextInputProps {
   placeholder?: string;
   placeholderTextColor?: string;
   selectionColor?: string;
-  phoneInputStyle?: IPhoneInputStyles;
-  modalStyle?: IModalStyles;
+  phoneInputStyles?: IPhoneInputStyles;
+  modalStyles?: IModalStyles;
   theme?: ITheme;
   disabled?: boolean;
   modalDisabled?: boolean;

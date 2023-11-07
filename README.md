@@ -657,7 +657,7 @@ export default function App() {
 - `modalDisabled?:` boolean;
 - `modalHeight?:` number | string;
 - `theme?:` [ITheme](lib/interfaces/theme.ts);
-- `phoneInputStyle?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
+- `phoneInputStyles?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
 - `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
 - `modalSearchInputPlaceholder?:` string;
 - `modalNotFoundCountryMessage?:` string;

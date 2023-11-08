@@ -109,9 +109,14 @@ create a `react-native.config.js` file at the root of your react-native project 
     android: {},
   },
   assets: [
-    './node_modules/react-native-international-phone-number/assets/fonts',
+    './node_modules/react-native-international-phone-number/lib/assets/fonts',
   ],
  };
+```
+
+Then link the font to your native projects with:
+```bash
+npx react-native-asset
 ```
 
 - Using Expo:
@@ -125,7 +130,7 @@ create a `react-native.config.js` file at the root of your react-native project 
  ...
 
  useFonts({
-    'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/assets/fonts/TwemojiMozilla.ttf'),
+    'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/lib/assets/fonts/TwemojiMozilla.ttf'),
   });
 
  ...

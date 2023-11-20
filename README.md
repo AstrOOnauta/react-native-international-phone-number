@@ -45,7 +45,7 @@
 
 - [Old Versions](#old-versions)
 - [Installation](#installation)
-- [Additional Config to Web](#additional-config-to-web)
+- [Additional Config](#additional-config)
 - [Features](#features)
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
@@ -96,7 +96,9 @@ OR
 $ yarn add react-native-international-phone-number
 ```
 
-## Additional config to `Web`
+## Additional config
+
+### iOS and Web
 
 - Using React Native CLI:
 
@@ -115,6 +117,7 @@ create a `react-native.config.js` file at the root of your react-native project 
 ```
 
 Then link the font to your native projects with:
+
 ```bash
 npx react-native-asset
 ```
@@ -135,6 +138,23 @@ npx react-native-asset
 
  ...
 ```
+
+> Observation: _you need to recompile your project after adding new fonts._
+
+## only iOS
+
+- Edit `Info.plist` inside `ios` folder with following code:
+
+```bash
+...
+<key>UIAppFonts</key>
+<array>
+	<string>TwemojiMozilla.ttf</string>
+  ...
+</array>
+```
+
+and add the font `Twemoji Mozilla` to the Copy Bundle Resources, in Build Phases inside your project XCode.
 
 > Observation: _you need to recompile your project after adding new fonts._
 

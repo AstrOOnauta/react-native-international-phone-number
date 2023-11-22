@@ -133,7 +133,7 @@ npx react-native-asset
  ...
 
  useFonts({
-    'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/lib/assets/fonts/TwemojiMozilla.ttf'),
+    'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/lib/assets/fonts/TwemojiMozilla.woff2'),
   });
 
  ...
@@ -149,7 +149,7 @@ npx react-native-asset
 ...
 <key>UIAppFonts</key>
 <array>
-	<string>TwemojiMozilla.ttf</string>
+	<string>TwemojiMozilla.woff2</string>
   ...
 </array>
 ```

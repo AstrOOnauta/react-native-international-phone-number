@@ -45,7 +45,7 @@
 
 - [Old Versions](#old-versions)
 - [Installation](#installation)
-- [Additional Config](#additional-config)
+- [Additional Config to Web](#additional-config-to-web)
 - [Features](#features)
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
@@ -58,6 +58,7 @@
 - [Customizing Lib](#customizing-lib)
   - [Dark Mode](#dark-mode)
   - [Custom Lib Styles](#custom-lib-styles)
+  - [Custom Caret](#custom-caret)
   - [Custom Placeholders/Messages](#custom-placeholdersmessages)
   - [Custom Modal Height](#custom-modal-height)
   - [Country Modal Disabled Mode](#country-modal-disabled-mode)
@@ -79,8 +80,9 @@
 
 ## Old Versions
 
-- [Version 0.4.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.4.x)
+- [Version 0.6.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.6.x)
 - [Version 0.5.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.5.x)
+- [Version 0.4.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.4.x)
 
 <br>
 
@@ -96,9 +98,7 @@ OR
 $ yarn add react-native-international-phone-number
 ```
 
-## Additional config
-
-### iOS and Web
+## Additional config to `Web`
 
 - Using React Native CLI:
 
@@ -141,23 +141,6 @@ npx react-native-asset
 
 > Observation: _you need to recompile your project after adding new fonts._
 
-## only iOS
-
-- Edit `Info.plist` inside `ios` folder with following code:
-
-```bash
-...
-<key>UIAppFonts</key>
-<array>
-	<string>TwemojiMozilla.woff2</string>
-  ...
-</array>
-```
-
-and add the font `Twemoji Mozilla` to the Copy Bundle Resources, in Build Phases inside your project XCode.
-
-> Observation: _you need to recompile your project after adding new fonts._
-
 <br>
 
 ## Features
@@ -166,7 +149,7 @@ and add the font `Twemoji Mozilla` to the Copy Bundle Resources, in Build Phases
 - 🎨 Lib with UI customizable;
 - 🌎 Phone Input Mask according with the selected country;
 - 👨‍💻 Functional and class component support;
-- 🈶 18 languages supported.
+- 🈶 20 languages supported.
 
 <br>
 
@@ -482,6 +465,13 @@ export default function App() {
         justifyContent: 'center',
       },
       flag: {},
+      caret: {
+        color: '#F3F3F3',
+        fontSize: 16,
+      },
+      divider: {
+        backgroundColor: '#F3F3F3',
+      }
       callingCode: {
         fontSize: 16,
         fontWeight: 'bold',
@@ -530,6 +520,17 @@ export default function App() {
         color: '#F3F3F3',
       },
     }}
+  />
+  ...
+```
+
+- ### Custom Caret:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    customCaret={<Icon name="chevron-down" size={30} color="#000000" />}  // react-native-vector-icons
   />
   ...
 ```
@@ -686,6 +687,7 @@ export default function App() {
 - `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
 - `modalSearchInputPlaceholder?:` string;
 - `modalNotFoundCountryMessage?:` string;
+- `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
 
 <br>
@@ -704,24 +706,26 @@ export default function App() {
 
 ```js
   "name": {
-    "en": "English",
-    "ru": "Russian",
-    "pl": "Polish",
-    "ua": "Ukrainian",
-    "cz": "Czech",
-    "by": "Belarusian",
-    "pt": "Portuguese",
-    "es": "Espanol",
-    "ro": "Romanian",
     "bg": "Bulgarian",
-    "de": "German",
-    "fr": "French",
-    "nl": "Dutch",
-    "it": "Italian",
+    "by": "Belarusian",
     "cn": "Chinese",
+    "cz": "Czech",
+    "de": "German",
     "ee": "Estonian",
+    "el": "Greek",
+    "en": "English",
+    "es": "Espanol",
+    "fr": "French",
+    "he": "Hebrew",
+    "it": "Italian",
     "jp": "Japanese",
-    "he": "Hebrew"
+    "nl": "Dutch",
+    "pl": "Polish",
+    "pt": "Portuguese",
+    "ro": "Romanian",
+    "ru": "Russian",
+    "ua": "Ukrainian",
+    "zh": "Chinese (Simplified)"
   },
 ```
 

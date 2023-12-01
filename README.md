@@ -70,6 +70,7 @@
   - [Default Phone Number Value](#default-phone-number-value)
   - [Show Only Some Countries Inside Modal](#show-only-some-countries)
   - [Exclude some countries Inside Modal](#exclude-some-countries)
+  - [Show Popular Countries at the Top of the Countries List Inside Modal](#show-popular-countries-at-the-top-of-the-countries-list-inside-modal)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
@@ -665,6 +666,17 @@ export default function App() {
   ...
 ```
 
+- ### Show Popular Countries at the Top of the Countries List Inside Modal:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    popularCountriess={['BR', 'PT', 'CA', 'US']}
+  />
+  ...
+```
+
 </br>
 
 ## Component Props ([PhoneInputProps](lib/interfaces/phoneInputProps.ts))
@@ -679,6 +691,7 @@ export default function App() {
 - `onChangeSelectedCountry?:` (country: [ICountry](lib/interfaces/country.ts)) => void;
 - `showOnly?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `excludedCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
+- `popularCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;
 - `modalHeight?:` number | string;

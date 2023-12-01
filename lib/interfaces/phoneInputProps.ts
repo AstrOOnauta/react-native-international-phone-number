@@ -25,6 +25,7 @@ interface BasePhoneInput extends TextInputProps {
   customMask?: Array<string>;
   showOnly?: Array<ICountryCca2>;
   excludedCountries?: Array<ICountryCca2>;
+  popularCountries?: Array<ICountryCca2>;
   modalSearchInputPlaceholder?: string;
   modalNotFoundCountryMessage?: string;
   customCaret?: ReactNode;

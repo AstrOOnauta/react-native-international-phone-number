@@ -641,7 +641,7 @@ export default function App() {
 
 > Observations:
 >
-> 1. You need to use a default value with the following format: `+(country callling code)(area code)(number phone)`
+> 1. You need to use a default value with the [e164](https://en.wikipedia.org/wiki/E.164) format: `+(country callling code)(area code)(number phone)`
 > 2. The lib has the mechanism to set the flag and mask of the supplied `defaultValue`. However, if the supplied `defaultValue` does not match any international standard, the `input mask of the defaultValue` will be set to "BR" (please make sure that the default value is in the format mentioned above).
 
 - ### Show Only Some Countries Inside Modal:

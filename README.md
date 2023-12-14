@@ -699,6 +699,8 @@ export default function App() {
 - `phoneInputStyles?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
 - `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
 - `modalSearchInputPlaceholder?:` string;
+- `modalSearchInputPlaceholderTextColor?:` string;
+- `modalSearchInputSelectionColor?:` string;
 - `modalNotFoundCountryMessage?:` string;
 - `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>

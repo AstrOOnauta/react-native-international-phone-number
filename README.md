@@ -150,7 +150,7 @@ npx react-native-asset
 - 🎨 Lib with UI customizable;
 - 🌎 Phone Input Mask according with the selected country;
 - 👨‍💻 Functional and class component support;
-- 🈶 20 languages supported.
+- 🈶 21 languages supported.
 
 <br>
 
@@ -740,7 +740,8 @@ export default function App() {
     "ro": "Romanian",
     "ru": "Russian",
     "ua": "Ukrainian",
-    "zh": "Chinese (Simplified)"
+    "zh": "Chinese (Simplified)",
+    "ar": "Arabic"
   },
 ```
 

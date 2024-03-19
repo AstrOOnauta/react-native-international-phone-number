@@ -641,7 +641,7 @@ export default function App() {
 
 > Observations:
 >
-> 1. You need to use a default value with the following format: `+(country callling code)(area code)(number phone)`
+> 1. You need to use a default value with the [e164](https://en.wikipedia.org/wiki/E.164) format: `+(country callling code)(area code)(number phone)`
 > 2. The lib has the mechanism to set the flag and mask of the supplied `defaultValue`. However, if the supplied `defaultValue` does not match any international standard, the `input mask of the defaultValue` will be set to "BR" (please make sure that the default value is in the format mentioned above).
 
 - ### Show Only Some Countries Inside Modal:
@@ -699,6 +699,8 @@ export default function App() {
 - `phoneInputStyles?:` [IPhoneInputStyles](lib/interfaces/phoneInputStyles.ts);
 - `modalStyles?:` [IModalStyles](lib/interfaces/modalStyles.ts);
 - `modalSearchInputPlaceholder?:` string;
+- `modalSearchInputPlaceholderTextColor?:` string;
+- `modalSearchInputSelectionColor?:` string;
 - `modalNotFoundCountryMessage?:` string;
 - `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
@@ -738,7 +740,8 @@ export default function App() {
     "ro": "Romanian",
     "ru": "Russian",
     "ua": "Ukrainian",
-    "zh": "Chinese (Simplified)"
+    "zh": "Chinese (Simplified)",
+    "ar": "Arabic",
     "tr": "Turkish"
   },
 ```

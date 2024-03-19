@@ -741,7 +741,8 @@ export default function App() {
     "ru": "Russian",
     "ua": "Ukrainian",
     "zh": "Chinese (Simplified)",
-    "ar": "Arabic"
+    "ar": "Arabic",
+    "tr": "Turkish"
   },
 ```
 

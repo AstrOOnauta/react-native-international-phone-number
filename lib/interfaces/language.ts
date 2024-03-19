@@ -17,4 +17,5 @@ export type ILanguage =
   | 'ee'
   | 'jp'
   | 'he'
+  | 'ar'
   | 'tr';

@@ -17,4 +17,5 @@ export interface ICountryName {
   ee: string;
   jp: string;
   he: string;
+  ar: string;
 }

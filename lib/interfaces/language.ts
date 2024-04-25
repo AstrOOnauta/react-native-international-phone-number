@@ -1,5 +1,11 @@
 export type ILanguage =
   | 'en'
+  | 'sl'
+  | 'hr'
+  | 'sq'
+  | 'sr'
+  | 'hr'
+  | 'mk'
   | 'ru'
   | 'pl'
   | 'ua'

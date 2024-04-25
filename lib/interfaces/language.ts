@@ -1,11 +1,5 @@
 export type ILanguage =
   | 'en'
-  | 'sl'
-  | 'hr'
-  | 'sq'
-  | 'sr'
-  | 'hr'
-  | 'mk'
   | 'ru'
   | 'pl'
   | 'ua'
@@ -23,4 +17,10 @@ export type ILanguage =
   | 'ee'
   | 'jp'
   | 'he'
-  | 'ar';
+  | 'ar'
+  | 'sl'
+  | 'hr'
+  | 'sq'
+  | 'sr'
+  | 'hr'
+  | 'mk';

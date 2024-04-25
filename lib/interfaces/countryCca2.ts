@@ -235,6 +235,7 @@ export type ICountryCca2 =
   | 'VU'
   | 'WF'
   | 'WS'
+  | 'XK'
   | 'YE'
   | 'YT'
   | 'ZA'

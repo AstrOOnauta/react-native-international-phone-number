@@ -18,4 +18,10 @@ export interface ICountryName {
   jp: string;
   he: string;
   ar: string;
+  sl: string;
+  hr: string;
+  sq: string;
+  sr: string;
+  hr: string;
+  mk: string;
 }

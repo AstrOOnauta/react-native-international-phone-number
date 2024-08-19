@@ -33,12 +33,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AstrOOnauta/react-native-international-phone-number.git"
+    "url": "git+https://github.com/valicon/react-native-international-phone-number.git"
   },
   "bugs": {
-    "url": "https://github.com/AstrOOnauta/react-native-international-phone-number/issues"
+    "url": "https://github.com/valicon/react-native-international-phone-number/issues"
   },
-  "homepage": "https://github.com/AstrOOnauta/react-native-international-phone-number",
+  "homepage": "https://github.com/valicon/react-native-international-phone-number",
   "peerDependencies": {
     "react": "*",
     "react-native": "*"

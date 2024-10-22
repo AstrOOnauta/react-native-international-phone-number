@@ -44,7 +44,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "react-native-country-codes-picker": "2.3.4"
+    "react-native-country-codes-picker": "2.3.5"
   },
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.61.0"

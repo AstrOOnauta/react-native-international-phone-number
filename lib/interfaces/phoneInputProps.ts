@@ -26,6 +26,8 @@ interface BasePhoneInput extends TextInputProps {
   showOnly?: Array<ICountryCca2>;
   excludedCountries?: Array<ICountryCca2>;
   popularCountries?: Array<ICountryCca2>;
+  popularCountriesSectionTitle?:string,
+  restOfCountriesSectionTitle?:string,
   modalSearchInputPlaceholder?: string;
   modalSearchInputPlaceholderTextColor?: string;
   modalSearchInputSelectionColor?: string;

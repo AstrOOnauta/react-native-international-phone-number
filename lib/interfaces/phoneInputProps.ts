@@ -26,13 +26,14 @@ interface BasePhoneInput extends TextInputProps {
   showOnly?: Array<ICountryCca2>;
   excludedCountries?: Array<ICountryCca2>;
   popularCountries?: Array<ICountryCca2>;
-  popularCountriesSectionTitle?:string,
-  restOfCountriesSectionTitle?:string,
+  popularCountriesSectionTitle?: string;
+  restOfCountriesSectionTitle?: string;
   modalSearchInputPlaceholder?: string;
   modalSearchInputPlaceholderTextColor?: string;
   modalSearchInputSelectionColor?: string;
   modalNotFoundCountryMessage?: string;
   customCaret?: ReactNode;
+  rtl?: boolean;
 }
 
 interface IPhoneInputPropsWithoutRef extends BasePhoneInput {

@@ -71,6 +71,7 @@
   - [Show Only Some Countries Inside Modal](#show-only-some-countries)
   - [Exclude some countries Inside Modal](#exclude-some-countries)
   - [Show Popular Countries at the Top of the Countries List Inside Modal](#show-popular-countries-at-the-top-of-the-countries-list-inside-modal)
+  - [Right to Left Input](#right-to-left-input)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
@@ -673,6 +674,21 @@ export default function App() {
   <PhoneInput
     ...
     popularCountriess={['BR', 'PT', 'CA', 'US']}
+    popularCountriesSectionTitle='Suggested'
+    restOfCountriesSectionTitle='All'
+  />
+  ...
+```
+
+- ### Right to Left Input:
+
+```jsx
+  import { I18nManager } from "react-native";
+
+  ...
+  <PhoneInput
+    ...
+    rtl={I18nManager.isRTL}
   />
   ...
 ```
@@ -692,6 +708,9 @@ export default function App() {
 - `showOnly?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `excludedCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `popularCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
+- `popularCountriesSectionTitle?:` string;
+- `restOfCountriesSectionTitle?:` string;
+- `rtl?:` boolean;
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;
 - `modalHeight?:` number | string;
@@ -703,7 +722,7 @@ export default function App() {
 - `modalSearchInputSelectionColor?:` string;
 - `modalNotFoundCountryMessage?:` string;
 - `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
-- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
+- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>;
 
 <br>
 

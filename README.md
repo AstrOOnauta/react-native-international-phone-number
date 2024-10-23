@@ -72,6 +72,7 @@
   - [Exclude some countries Inside Modal](#exclude-some-countries)
   - [Show Popular Countries at the Top of the Countries List Inside Modal](#show-popular-countries-at-the-top-of-the-countries-list-inside-modal)
   - [Right to Left Input](#right-to-left-input)
+  - [Dont allow Zero After Calling Code](dont-allow-zero-after-calling-code)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
@@ -693,6 +694,17 @@ export default function App() {
   ...
 ```
 
+- ### Don't allow Zero After Calling Code:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    allowZeroAfterCallingCode={false}
+  />
+  ...
+```
+
 </br>
 
 ## Component Props ([PhoneInputProps](lib/interfaces/phoneInputProps.ts))
@@ -723,6 +735,7 @@ export default function App() {
 - `modalNotFoundCountryMessage?:` string;
 - `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>;
+- `allowZeroAfterCallingCode?:` boolean
 
 <br>
 

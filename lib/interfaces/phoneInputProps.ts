@@ -34,6 +34,7 @@ interface BasePhoneInput extends TextInputProps {
   modalNotFoundCountryMessage?: string;
   customCaret?: ReactNode;
   rtl?: boolean;
+  allowZeroAfterCallingCode?: boolean;
 }
 
 interface IPhoneInputPropsWithoutRef extends BasePhoneInput {

@@ -72,7 +72,7 @@
   - [Exclude some countries Inside Modal](#exclude-some-countries)
   - [Show Popular Countries at the Top of the Countries List Inside Modal](#show-popular-countries-at-the-top-of-the-countries-list-inside-modal)
   - [Right to Left Input](#right-to-left-input)
-  - [Dont allow Zero After Calling Code](dont-allow-zero-after-calling-code)
+  - [Dont allow Zero After Calling Code](#dont-allow-zero-after-calling-code)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
@@ -83,6 +83,7 @@
 
 ## Old Versions
 
+- [Version 0.7.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.7.x)
 - [Version 0.6.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.6.x)
 - [Version 0.5.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.5.x)
 - [Version 0.4.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.4.x)
@@ -108,7 +109,7 @@ $ yarn add react-native-international-phone-number
 create a `react-native.config.js` file at the root of your react-native project with:
 
 ```bash
- module.exports = {
+module.exports = {
   project: {
     ios: {},
     android: {},
@@ -116,7 +117,7 @@ create a `react-native.config.js` file at the root of your react-native project 
   assets: [
     './node_modules/react-native-international-phone-number/lib/assets/fonts',
   ],
- };
+};
 ```
 
 Then link the font to your native projects with:
@@ -127,19 +128,32 @@ npx react-native-asset
 
 - Using Expo:
 
-1. Install [expo-fonts](https://docs.expo.dev/versions/latest/sdk/font/): `npx expo install expo-font`;
-2. Initialize the `expo-font`:
+1. Change the `app.json` file to:
 
 ```bash
- import { useFonts } from 'expo-font';
+  ...
 
- ...
+  "web": {
+    ...
+    "output": "single",
+    ...
+  },
+  ...
+```
 
- useFonts({
+2. Install [expo-fonts](https://docs.expo.dev/versions/latest/sdk/font/): `npx expo install expo-font`;
+3. Initialize the `expo-font`:
+
+```bash
+  import { useFonts } from 'expo-font';
+
+  ...
+
+  useFonts({
     'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/lib/assets/fonts/TwemojiMozilla.woff2'),
   });
 
- ...
+  ...
 ```
 
 > Observation: _you need to recompile your project after adding new fonts._

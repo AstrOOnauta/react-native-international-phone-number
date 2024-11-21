@@ -161,7 +161,7 @@ npx react-native-asset
 
 > Observation: you need to recompile your project after adding new fonts.
 
-- ### Using Expo Web:
+- ### Using Web:
 
 Change the `app.json` file to:
 

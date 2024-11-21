@@ -37,16 +37,32 @@
     </a>
 </div>
 
+<br>
+
+## Features
+
+- 📱 Works with iOS, Android (Cross-platform), Expo and Web;
+- 🎨 Lib with UI customizable;
+- 🌎 Phone Input Mask according with the selected country;
+- 👨‍💻 Functional and class component support;
+- 🈶 22 languages supported.
+
+<br>
+
 ## Try it out
 
 - [Demo](https://snack.expo.dev/@astroonauta/react-native-international-phone-number)
+
+<br>
 
 ## List of Contents
 
 - [Old Versions](#old-versions)
 - [Installation](#installation)
-- [Additional Config to Web](#additional-config-to-web)
-- [Features](#features)
+- [Additional Config](#additional-config)
+  - [React Native CLI](#using-react-native-cli)
+  - [Expo](#using-expo)
+  - [Web](#using-web)
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
   - [With Function Component](#function-component)
@@ -102,11 +118,11 @@ OR
 $ yarn add react-native-international-phone-number
 ```
 
-## Additional config to `Web`
+## Additional config
 
-- Using React Native CLI:
+- ### Using React Native CLI:
 
-create a `react-native.config.js` file at the root of your react-native project with:
+Create a `react-native.config.js` file at the root of your react-native project with:
 
 ```bash
 module.exports = {
@@ -126,23 +142,10 @@ Then link the font to your native projects with:
 npx react-native-asset
 ```
 
-- Using Expo:
+- ### Using Expo:
 
-1. Change the `app.json` file to:
-
-```bash
-  ...
-
-  "web": {
-    ...
-    "output": "single",
-    ...
-  },
-  ...
-```
-
-2. Install [expo-fonts](https://docs.expo.dev/versions/latest/sdk/font/): `npx expo install expo-font`;
-3. Initialize the `expo-font`:
+1. Install [expo-fonts](https://docs.expo.dev/versions/latest/sdk/font/): `npx expo install expo-font`;
+2. Initialize the `expo-font`:
 
 ```bash
   import { useFonts } from 'expo-font';
@@ -156,17 +159,22 @@ npx react-native-asset
   ...
 ```
 
-> Observation: _you need to recompile your project after adding new fonts._
+> Observation: you need to recompile your project after adding new fonts.
 
-<br>
+- ### Using Expo Web:
 
-## Features
+Change the `app.json` file to:
 
-- 📱 Works with iOS, Android (Cross-platform), Expo and Web;
-- 🎨 Lib with UI customizable;
-- 🌎 Phone Input Mask according with the selected country;
-- 👨‍💻 Functional and class component support;
-- 🈶 21 languages supported.
+```bash
+  ...
+
+  "web": {
+    ...
+    "output": "single",
+    ...
+  },
+  ...
+```
 
 <br>
 

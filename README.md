@@ -92,6 +92,7 @@
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
+- [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -798,6 +799,17 @@ export default function App() {
     "ar": "Arabic",
     "tr": "Turkish"
   },
+```
+
+<br>
+
+## Testing
+
+When utilizing this package, you may need to target the PhoneInput component in your automated tests. To facilitate this, we provide a testID props for the PhoneInput component. The testID can be integrated with popular testing libraries such as @testing-library/react-native or Maestro. This enables you to efficiently locate and interact with PhoneInput elements within your tests, ensuring a robust and reliable testing experience.
+
+```jsx
+// Assuming PhoneInput has testID="phone-number"
+const phoneInput = getByTestId('phone-number-flag');
 ```
 
 <br>

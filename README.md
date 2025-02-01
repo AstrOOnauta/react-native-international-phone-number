@@ -87,6 +87,8 @@
   - [Show Only Some Countries Inside Modal](#show-only-some-countries)
   - [Exclude some countries Inside Modal](#exclude-some-countries)
   - [Show Popular Countries at the Top of the Countries List Inside Modal](#show-popular-countries-at-the-top-of-the-countries-list-inside-modal)
+  - [Custom Modal Section Titles](#custom-modal-section-titles)
+  - [Hide the Modal Section Titles](#hide-the-modal-section-titles)
   - [Right to Left Input](#right-to-left-input)
   - [Dont allow Zero After Calling Code](#dont-allow-zero-after-calling-code)
 - [Lib Props](#component-props-phoneinputprops)
@@ -545,6 +547,10 @@ export default function App() {
       countryName: {
         color: '#F3F3F3',
       },
+      sectionTitle: {
+        marginVertical: 10,
+        color: '#F3F3F3',
+      }
     }}
   />
   ...
@@ -698,8 +704,31 @@ export default function App() {
   <PhoneInput
     ...
     popularCountriess={['BR', 'PT', 'CA', 'US']}
+  />
+  ...
+```
+
+- ### Custom Modal Section Titles:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    popularCountriess={['BR', 'PT', 'CA', 'US']}
     popularCountriesSectionTitle='Suggested'
     restOfCountriesSectionTitle='All'
+  />
+  ...
+```
+
+- ### Hide the Modal Section Titles:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    popularCountriess={['BR', 'PT', 'CA', 'US']}
+    modalSectionTitleDisabled
   />
   ...
 ```
@@ -745,6 +774,7 @@ export default function App() {
 - `popularCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `popularCountriesSectionTitle?:` string;
 - `restOfCountriesSectionTitle?:` string;
+- `modalSectionTitleDisabled?:` boolean;
 - `rtl?:` boolean;
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;

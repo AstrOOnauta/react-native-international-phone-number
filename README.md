@@ -217,7 +217,7 @@ export class App extends React.Component {
           </Text>
           <Text>
             isValid:{' '}
-            {isValidPhoneNumber(this.state.inputValue, selectedCountry)
+            {isValidPhoneNumber(this.state.inputValue, this.state.selectedCountry)
               ? 'true'
               : 'false'}
           </Text>

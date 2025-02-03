@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 import { ITheme } from './interfaces/theme';
 import { ICountry } from './interfaces/country';
 import { ILanguage } from './interfaces/language';
@@ -23,6 +25,11 @@ declare function getCountriesByName(
   language: ILanguage
 ): ICountry[] | undefined;
 
+declare function isValidPhoneNumber(
+  phoneNumber: string,
+  country: ICountry
+): boolean;
+
 export default PhoneInput;
 
 export {
@@ -31,6 +38,7 @@ export {
   getCountryByCca2,
   getCountriesByCallingCode,
   getCountriesByName,
+  isValidPhoneNumber,
   ITheme,
   ILanguage,
   ICountry,

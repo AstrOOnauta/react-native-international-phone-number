@@ -42,6 +42,7 @@
 ## Features
 
 - 📱 Works with iOS, Android (Cross-platform), Expo and Web;
+- ✅ Check phone number validation;
 - 🎨 Lib with UI customizable;
 - 🌎 Phone Input Mask according with the selected country;
 - 👨‍💻 Functional and class component support;
@@ -102,6 +103,7 @@
 
 ## Old Versions
 
+- [Version 0.8.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.8.x)
 - [Version 0.7.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.7.x)
 - [Version 0.6.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.6.x)
 - [Version 0.5.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.5.x)
@@ -164,21 +166,6 @@ npx react-native-asset
 
 > Observation: you need to recompile your project after adding new fonts.
 
-- ### Using Web:
-
-Change the `app.json` file to:
-
-```bash
-  ...
-
-  "web": {
-    ...
-    "output": "single",
-    ...
-  },
-  ...
-```
-
 <br>
 
 ## Basic Usage
@@ -188,7 +175,7 @@ Change the `app.json` file to:
 ```jsx
 import React from 'react';
 import { View, Text } from 'react-native';
-import PhoneInput from 'react-native-international-phone-number';
+import PhoneInput, { isValidPhoneNumber } from 'react-native-international-phone-number';
 
 export class App extends React.Component {
   constructor(props) {
@@ -228,6 +215,12 @@ export class App extends React.Component {
           <Text>
             Phone Number: {`${this.state.selectedCountry?.callingCode} ${this.state.inputValue}`}
           </Text>
+          <Text>
+            isValid:{' '}
+            {isValidPhoneNumber(this.state.inputValue, selectedCountry)
+              ? 'true'
+              : 'false'}
+          </Text>
         </View>
       </View>
     );
@@ -240,7 +233,9 @@ export class App extends React.Component {
 ```jsx
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import PhoneInput from 'react-native-international-phone-number';
+import PhoneInput, {
+  isValidPhoneNumber,
+} from 'react-native-international-phone-number';
 
 export default function App() {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -271,6 +266,12 @@ export default function App() {
           Phone Number:{' '}
           {`${selectedCountry?.callingCode} ${inputValue}`}
         </Text>
+        <Text>
+          isValid:{' '}
+          {isValidPhoneNumber(inputValue, selectedCountry)
+            ? 'true'
+            : 'false'}
+        </Text>
       </View>
     </View>
   );
@@ -284,6 +285,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import PhoneInput, {
   ICountry,
+  isValidPhoneNumber,
 } from 'react-native-international-phone-number';
 
 export default function App() {
@@ -316,6 +318,12 @@ export default function App() {
           Phone Number:{' '}
           {`${selectedCountry?.callingCode} ${inputValue}`}
         </Text>
+        <Text>
+          isValid:{' '}
+          {isValidPhoneNumber(inputValue, selectedCountry)
+            ? 'true'
+            : 'false'}
+        </Text>
       </View>
     </View>
   );
@@ -342,7 +350,7 @@ export default function App() {
   function onSubmitRef() {
     Alert.alert(
       'Intermediate Result',
-      `${phoneInputRef.current?.selectedCountry?.callingCode} ${phoneInputRef.current?.value}`
+      `Country: ${inputRef.current?.selectedCountry?.name?.en} \nPhone Number: ${inputRef.current?.fullPhoneNumber} \nisValid: ${inputRef.current?.isValid}`
     );
   }
 
@@ -388,6 +396,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import PhoneInput, {
   ICountry,
+  isValidPhoneNumber,
 } from 'react-native-international-phone-number';
 import { Controller, FieldValues } from 'react-hook-form';
 
@@ -405,9 +414,15 @@ export default function App() {
   }
 
   function onSubmit(form: FormProps) {
+    const phoneNumber = `${selectedCountry?.callingCode} ${form.phoneNumber}`;
+    const isValid = isValidPhoneNumber(
+      form.phoneNumber,
+      selectedCountry as ICountry
+    );
+
     Alert.alert(
       'Advanced Result',
-      `${selectedCountry?.callingCode} ${form.phoneNumber}`
+      `Country: ${selectedCountry?.name?.en} \nPhone Number: ${phoneNumber} \nisValid: ${isValid}`
     );
   }
 
@@ -788,7 +803,7 @@ export default function App() {
 - `modalNotFoundCountryMessage?:` string;
 - `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
 - `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>;
-- `allowZeroAfterCallingCode?:` boolean
+- `allowZeroAfterCallingCode?:` boolean.
 
 <br>
 
@@ -799,6 +814,7 @@ export default function App() {
 - `getCountryByCca2:` (cca2: string) => [ICountry](lib/interfaces/country.ts) | undefined;
 - `getCountriesByName:` (name: string, language: [ILanguage](lib/interfaces/language.ts)) => [ICountry](lib/interfaces/country.ts)[] | undefined;
 - `getCountryByPhoneNumber:` (phoneNumber: string) => [ICountry](lib/interfaces/country.ts) | undefined;
+- `isValidPhoneNumber:` (phoneNumber: string, country: [ICountry](lib/interfaces/country.ts)) => boolean.
 
 </br>
 

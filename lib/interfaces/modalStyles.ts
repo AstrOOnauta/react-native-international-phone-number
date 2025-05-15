@@ -23,4 +23,6 @@ export interface IModalStyles {
   callingCode?: StyleProp<TextStyle>;
   // Country name styles [Text]
   countryName?: StyleProp<TextStyle>;
+  // Popular and rest of countries titles styles [Text]
+  sectionTitle?: StyleProp<TextStyle>;
 }

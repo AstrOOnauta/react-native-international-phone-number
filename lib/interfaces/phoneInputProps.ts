@@ -1,4 +1,4 @@
-import React, { Ref, ReactNode } from 'react';
+import { Ref, ReactNode } from 'react';
 import { TextInputProps } from 'react-native';
 
 import { ICountry } from './country';
@@ -26,11 +26,16 @@ interface BasePhoneInput extends TextInputProps {
   showOnly?: Array<ICountryCca2>;
   excludedCountries?: Array<ICountryCca2>;
   popularCountries?: Array<ICountryCca2>;
+  popularCountriesSectionTitle?: string;
+  restOfCountriesSectionTitle?: string;
+  modalSectionTitleDisabled?: boolean;
   modalSearchInputPlaceholder?: string;
   modalSearchInputPlaceholderTextColor?: string;
   modalSearchInputSelectionColor?: string;
   modalNotFoundCountryMessage?: string;
   customCaret?: ReactNode;
+  rtl?: boolean;
+  allowZeroAfterCallingCode?: boolean;
 }
 
 interface IPhoneInputPropsWithoutRef extends BasePhoneInput {

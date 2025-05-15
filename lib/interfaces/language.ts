@@ -23,4 +23,5 @@ export type ILanguage =
   | 'sq'
   | 'sr'
   | 'hr'
-  | 'mk';
+  | 'mk'
+  | 'tr';

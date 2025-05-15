@@ -37,16 +37,33 @@
     </a>
 </div>
 
+<br>
+
+## Features
+
+- 📱 Works with iOS, Android (Cross-platform), Expo and Web;
+- ✅ Check phone number validation;
+- 🎨 Lib with UI customizable;
+- 🌎 Phone Input Mask according with the selected country;
+- 👨‍💻 Functional and class component support;
+- 🈶 22 languages supported.
+
+<br>
+
 ## Try it out
 
 - [Demo](https://snack.expo.dev/@astroonauta/react-native-international-phone-number)
+
+<br>
 
 ## List of Contents
 
 - [Old Versions](#old-versions)
 - [Installation](#installation)
-- [Additional Config to Web](#additional-config-to-web)
-- [Features](#features)
+- [Additional Config](#additional-config)
+  - [React Native CLI](#using-react-native-cli)
+  - [Expo](#using-expo)
+  - [Web](#using-web)
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
   - [With Function Component](#function-component)
@@ -71,9 +88,14 @@
   - [Show Only Some Countries Inside Modal](#show-only-some-countries)
   - [Exclude some countries Inside Modal](#exclude-some-countries)
   - [Show Popular Countries at the Top of the Countries List Inside Modal](#show-popular-countries-at-the-top-of-the-countries-list-inside-modal)
+  - [Custom Modal Section Titles](#custom-modal-section-titles)
+  - [Hide the Modal Section Titles](#hide-the-modal-section-titles)
+  - [Right to Left Input](#right-to-left-input)
+  - [Dont allow Zero After Calling Code](#dont-allow-zero-after-calling-code)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
+- [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -81,6 +103,8 @@
 
 ## Old Versions
 
+- [Version 0.8.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.8.x)
+- [Version 0.7.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.7.x)
 - [Version 0.6.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.6.x)
 - [Version 0.5.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.5.x)
 - [Version 0.4.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.4.x)
@@ -99,14 +123,14 @@ OR
 $ yarn add react-native-international-phone-number
 ```
 
-## Additional config to `Web`
+## Additional config
 
-- Using React Native CLI:
+- ### Using React Native CLI:
 
-create a `react-native.config.js` file at the root of your react-native project with:
+Create a `react-native.config.js` file at the root of your react-native project with:
 
 ```bash
- module.exports = {
+module.exports = {
   project: {
     ios: {},
     android: {},
@@ -114,7 +138,7 @@ create a `react-native.config.js` file at the root of your react-native project 
   assets: [
     './node_modules/react-native-international-phone-number/lib/assets/fonts',
   ],
- };
+};
 ```
 
 Then link the font to your native projects with:
@@ -123,34 +147,24 @@ Then link the font to your native projects with:
 npx react-native-asset
 ```
 
-- Using Expo:
+- ### Using Expo:
 
 1. Install [expo-fonts](https://docs.expo.dev/versions/latest/sdk/font/): `npx expo install expo-font`;
 2. Initialize the `expo-font`:
 
 ```bash
- import { useFonts } from 'expo-font';
+  import { useFonts } from 'expo-font';
 
- ...
+  ...
 
- useFonts({
+  useFonts({
     'TwemojiMozilla': require('./node_modules/react-native-international-phone-number/lib/assets/fonts/TwemojiMozilla.woff2'),
   });
 
- ...
+  ...
 ```
 
-> Observation: _you need to recompile your project after adding new fonts._
-
-<br>
-
-## Features
-
-- 📱 Works with iOS, Android (Cross-platform), Expo and Web;
-- 🎨 Lib with UI customizable;
-- 🌎 Phone Input Mask according with the selected country;
-- 👨‍💻 Functional and class component support;
-- 🈶 21 languages supported.
+> Observation: you need to recompile your project after adding new fonts.
 
 <br>
 
@@ -161,7 +175,7 @@ npx react-native-asset
 ```jsx
 import React from 'react';
 import { View, Text } from 'react-native';
-import PhoneInput from 'react-native-international-phone-number';
+import PhoneInput, { isValidPhoneNumber } from 'react-native-international-phone-number';
 
 export class App extends React.Component {
   constructor(props) {
@@ -201,6 +215,12 @@ export class App extends React.Component {
           <Text>
             Phone Number: {`${this.state.selectedCountry?.callingCode} ${this.state.inputValue}`}
           </Text>
+          <Text>
+            isValid:{' '}
+            {isValidPhoneNumber(this.state.inputValue, this.state.selectedCountry)
+              ? 'true'
+              : 'false'}
+          </Text>
         </View>
       </View>
     );
@@ -213,7 +233,9 @@ export class App extends React.Component {
 ```jsx
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import PhoneInput from 'react-native-international-phone-number';
+import PhoneInput, {
+  isValidPhoneNumber,
+} from 'react-native-international-phone-number';
 
 export default function App() {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -244,6 +266,12 @@ export default function App() {
           Phone Number:{' '}
           {`${selectedCountry?.callingCode} ${inputValue}`}
         </Text>
+        <Text>
+          isValid:{' '}
+          {isValidPhoneNumber(inputValue, selectedCountry)
+            ? 'true'
+            : 'false'}
+        </Text>
       </View>
     </View>
   );
@@ -257,6 +285,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import PhoneInput, {
   ICountry,
+  isValidPhoneNumber,
 } from 'react-native-international-phone-number';
 
 export default function App() {
@@ -289,6 +318,12 @@ export default function App() {
           Phone Number:{' '}
           {`${selectedCountry?.callingCode} ${inputValue}`}
         </Text>
+        <Text>
+          isValid:{' '}
+          {isValidPhoneNumber(inputValue, selectedCountry)
+            ? 'true'
+            : 'false'}
+        </Text>
       </View>
     </View>
   );
@@ -315,7 +350,7 @@ export default function App() {
   function onSubmitRef() {
     Alert.alert(
       'Intermediate Result',
-      `${phoneInputRef.current?.selectedCountry?.callingCode} ${phoneInputRef.current?.value}`
+      `Country: ${inputRef.current?.selectedCountry?.name?.en} \nPhone Number: ${inputRef.current?.fullPhoneNumber} \nisValid: ${inputRef.current?.isValid}`
     );
   }
 
@@ -361,6 +396,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import PhoneInput, {
   ICountry,
+  isValidPhoneNumber,
 } from 'react-native-international-phone-number';
 import { Controller, FieldValues } from 'react-hook-form';
 
@@ -378,9 +414,15 @@ export default function App() {
   }
 
   function onSubmit(form: FormProps) {
+    const phoneNumber = `${selectedCountry?.callingCode} ${form.phoneNumber}`;
+    const isValid = isValidPhoneNumber(
+      form.phoneNumber,
+      selectedCountry as ICountry
+    );
+
     Alert.alert(
       'Advanced Result',
-      `${selectedCountry?.callingCode} ${form.phoneNumber}`
+      `Country: ${selectedCountry?.name?.en} \nPhone Number: ${phoneNumber} \nisValid: ${isValid}`
     );
   }
 
@@ -520,6 +562,10 @@ export default function App() {
       countryName: {
         color: '#F3F3F3',
       },
+      sectionTitle: {
+        marginVertical: 10,
+        color: '#F3F3F3',
+      }
     }}
   />
   ...
@@ -677,6 +723,55 @@ export default function App() {
   ...
 ```
 
+- ### Custom Modal Section Titles:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    popularCountriess={['BR', 'PT', 'CA', 'US']}
+    popularCountriesSectionTitle='Suggested'
+    restOfCountriesSectionTitle='All'
+  />
+  ...
+```
+
+- ### Hide the Modal Section Titles:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    popularCountriess={['BR', 'PT', 'CA', 'US']}
+    modalSectionTitleDisabled
+  />
+  ...
+```
+
+- ### Right to Left Input:
+
+```jsx
+  import { I18nManager } from "react-native";
+
+  ...
+  <PhoneInput
+    ...
+    rtl={I18nManager.isRTL}
+  />
+  ...
+```
+
+- ### Don't allow Zero After Calling Code:
+
+```jsx
+  ...
+  <PhoneInput
+    ...
+    allowZeroAfterCallingCode={false}
+  />
+  ...
+```
+
 </br>
 
 ## Component Props ([PhoneInputProps](lib/interfaces/phoneInputProps.ts))
@@ -692,6 +787,10 @@ export default function App() {
 - `showOnly?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `excludedCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
 - `popularCountries?:` [ICountryCca2[]](lib/interfaces/countryCca2.ts);
+- `popularCountriesSectionTitle?:` string;
+- `restOfCountriesSectionTitle?:` string;
+- `modalSectionTitleDisabled?:` boolean;
+- `rtl?:` boolean;
 - `disabled?:` boolean;
 - `modalDisabled?:` boolean;
 - `modalHeight?:` number | string;
@@ -703,7 +802,8 @@ export default function App() {
 - `modalSearchInputSelectionColor?:` string;
 - `modalNotFoundCountryMessage?:` string;
 - `customCaret?:` [ReactNode](https://reactnative.dev/docs/react-node);
-- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>
+- `ref?:` [Ref](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/663f439d11d78b65f1dfd38d120f3728ea2cc207/types/react/index.d.ts#L100)<[IPhoneInputRef](lib/interfaces/phoneInputRef.ts)>;
+- `allowZeroAfterCallingCode?:` boolean.
 
 <br>
 
@@ -714,6 +814,7 @@ export default function App() {
 - `getCountryByCca2:` (cca2: string) => [ICountry](lib/interfaces/country.ts) | undefined;
 - `getCountriesByName:` (name: string, language: [ILanguage](lib/interfaces/language.ts)) => [ICountry](lib/interfaces/country.ts)[] | undefined;
 - `getCountryByPhoneNumber:` (phoneNumber: string) => [ICountry](lib/interfaces/country.ts) | undefined;
+- `isValidPhoneNumber:` (phoneNumber: string, country: [ICountry](lib/interfaces/country.ts)) => boolean.
 
 </br>
 
@@ -741,8 +842,20 @@ export default function App() {
     "ru": "Russian",
     "ua": "Ukrainian",
     "zh": "Chinese (Simplified)",
-    "ar": "Arabic"
+    "ar": "Arabic",
+    "tr": "Turkish"
   },
+```
+
+<br>
+
+## Testing
+
+When utilizing this package, you may need to target the PhoneInput component in your automated tests. To facilitate this, we provide a testID props for the PhoneInput component. The testID can be integrated with popular testing libraries such as @testing-library/react-native or Maestro. This enables you to efficiently locate and interact with PhoneInput elements within your tests, ensuring a robust and reliable testing experience.
+
+```jsx
+// Assuming PhoneInput has testID="phone-number"
+const phoneInput = getByTestId('phone-number-flag');
 ```
 
 <br>

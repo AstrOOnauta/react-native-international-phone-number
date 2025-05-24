@@ -46,7 +46,8 @@
 - 🎨 Lib with UI customizable;
 - 🌎 Phone Input Mask according with the selected country;
 - 👨‍💻 Functional and class component support;
-- 🈶 22 languages supported.
+- 🈶 22 languages supported;
+- ♿ Accessibility.
 
 <br>
 
@@ -96,6 +97,7 @@
 - [Lib Functions](#functions)
 - [Supported languages](#🎌-supported-languages-🎌)
 - [Testing](#testing)
+- [Accessibility](#accessibility)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -854,8 +856,34 @@ export default function App() {
 When utilizing this package, you may need to target the PhoneInput component in your automated tests. To facilitate this, we provide a testID props for the PhoneInput component. The testID can be integrated with popular testing libraries such as @testing-library/react-native or Maestro. This enables you to efficiently locate and interact with PhoneInput elements within your tests, ensuring a robust and reliable testing experience.
 
 ```jsx
-// Assuming PhoneInput has testID="phone-number"
-const phoneInput = getByTestId('phone-number-flag');
+// Assuming PhoneInput has testID="countryPicker"
+const phoneInput = getByTestId('countryPickerPhoneInput');
+const flagContainerButton = getByTestId(
+  'countryPickerFlagContainerButton'
+);
+```
+
+Others testID provided inside countries modal:
+
+- The wrapping `FlatList` component: 'countryCodesPickerFlatList'
+- The country search `TextInput` component: 'countryCodesPickerSearchInput'
+- The country button (`TouchableOpacity`) component: 'countryCodesPickerCountryButton'
+
+<br>
+
+## Accessibility
+
+Ensure your app is inclusive and usable by everyone by leveraging built-in React Native accessibility features. The accessibility props are covered by this package. Use the default accessibility props or costumize your own:
+
+```jsx
+<PhoneInput
+  accessibilityRoleFlagContainerButton="button"
+  accessibilityLabelFlagContainerButton="Countries button"
+  accessibilityHintFlagContainerButton="Click to open the countries modal"
+  accessibilityRolePhoneInput="input"
+  accessibilityLabelPhoneInput="Phone Number input"
+  accessibilityHintPhoneInput="Write the phone number"
+/>
 ```
 
 <br>

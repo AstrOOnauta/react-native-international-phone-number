@@ -1,33 +1,32 @@
-import { JSX } from 'react';
+import {JSX} from 'react';
+import {ICountry, ICountrySelectLanguages} from 'react-native-country-select';
 
-import { ITheme } from './interfaces/theme';
-import { ICountry } from './interfaces/country';
-import { ILanguage } from './interfaces/language';
-import { IPhoneInputRef } from './interfaces/phoneInputRef';
-import { PhoneInputProps } from './interfaces/phoneInputProps';
+import {ITheme} from './interfaces/theme';
+import {IPhoneInputRef} from './interfaces/phoneInputRef';
+import {PhoneInputProps} from './interfaces/phoneInputProps';
 
 declare function PhoneInput(props: PhoneInputProps): JSX.Element;
 
 declare function getAllCountries(): ICountry[];
 
 declare function getCountryByPhoneNumber(
-  phoneNumber: string
+  phoneNumber: string,
 ): ICountry | undefined;
 
 declare function getCountryByCca2(cca2: string): ICountry | undefined;
 
 declare function getCountriesByCallingCode(
-  callingCode: string
+  callingCode: string,
 ): ICountry[] | undefined;
 
 declare function getCountriesByName(
   name: string,
-  language: ILanguage
+  language: ICountrySelectLanguages,
 ): ICountry[] | undefined;
 
 declare function isValidPhoneNumber(
   phoneNumber: string,
-  country: ICountry
+  country: ICountry,
 ): boolean;
 
 export default PhoneInput;
@@ -40,7 +39,7 @@ export {
   getCountriesByName,
   isValidPhoneNumber,
   ITheme,
-  ILanguage,
+  ICountrySelectLanguages,
   ICountry,
   IPhoneInputRef,
   PhoneInputProps,

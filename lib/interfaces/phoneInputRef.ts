@@ -1,7 +1,7 @@
-import { TextInput } from 'react-native';
+import {TextInput} from 'react-native';
+import {ICountry} from 'react-native-country-select';
 
-import { ICountry } from './country';
-import { PhoneInputProps } from './phoneInputProps';
+import {PhoneInputProps} from './phoneInputProps';
 
 export interface IPhoneInputRef extends TextInput {
   props: PhoneInputProps;
@@ -9,6 +9,8 @@ export interface IPhoneInputRef extends TextInput {
   focus: () => void;
   getValue: () => string;
   value: string;
+  getValueFormatted: () => string;
+  valueFormatted: string;
   getFullPhoneNumber: () => string;
   fullPhoneNumber: string;
   getSelectedCountry: () => ICountry;

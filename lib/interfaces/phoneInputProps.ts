@@ -1,41 +1,52 @@
-import { Ref, ReactNode } from 'react';
-import { TextInputProps } from 'react-native';
+import {Ref, ReactNode} from 'react';
+import {TextInputProps} from 'react-native';
+import {
+  ICountry,
+  ICountryCca2,
+  ICountrySelectLanguages,
+  ICountrySelectStyle,
+} from 'react-native-country-select';
 
-import { ICountry } from './country';
-import { ICountryCca2 } from './countryCca2';
-import { ILanguage } from './language';
-import { ITheme } from './theme';
-import { IModalStyles } from './modalStyles';
-import { IPhoneInputStyles } from './phoneInputStyles';
-import { IPhoneInputRef } from './phoneInputRef';
+import {ITheme} from './theme';
+import {IPhoneInputStyles} from './phoneInputStyles';
+import {IPhoneInputRef} from './phoneInputRef';
 
 interface BasePhoneInput extends TextInputProps {
-  language?: ILanguage;
-  placeholder?: string;
-  placeholderTextColor?: string;
-  selectionColor?: string;
-  phoneInputStyles?: IPhoneInputStyles;
-  modalStyles?: IModalStyles;
   theme?: ITheme;
+  language?: ICountrySelectLanguages;
+  placeholder?: string;
+  phoneInputPlaceholderTextColor?: string;
+  phoneInputSelectionColor?: string;
+  phoneInputStyles?: IPhoneInputStyles;
+  modalStyles?: ICountrySelectStyle;
   disabled?: boolean;
   modalDisabled?: boolean;
-  modalHeight?: number | string;
   defaultCountry?: ICountryCca2;
   defaultValue?: string;
-  customMask?: Array<string>;
-  showOnly?: Array<ICountryCca2>;
-  excludedCountries?: Array<ICountryCca2>;
+  visibleCountries?: Array<ICountryCca2>;
+  hiddenCountries?: Array<ICountryCca2>;
   popularCountries?: Array<ICountryCca2>;
-  popularCountriesSectionTitle?: string;
-  restOfCountriesSectionTitle?: string;
-  modalSectionTitleDisabled?: boolean;
-  modalSearchInputPlaceholder?: string;
-  modalSearchInputPlaceholderTextColor?: string;
-  modalSearchInputSelectionColor?: string;
-  modalNotFoundCountryMessage?: string;
-  customCaret?: ReactNode;
+  customCaret?: () => ReactNode;
   rtl?: boolean;
-  allowZeroAfterCallingCode?: boolean;
+  isFullScreen?: boolean;
+  modalType?: 'bottomSheet' | 'popup';
+  modalSearchInputPlaceholderTextColor?: string;
+  modalSearchInputPlaceholder?: string;
+  modalSearchInputSelectionColor?: string;
+  modalPopularCountriesTitle?: string;
+  modalAllCountriesTitle?: string;
+  modalSectionTitleComponent?: () => ReactNode;
+  modalCountryItemComponent?: () => ReactNode;
+  modalCloseButtonComponent?: () => ReactNode;
+  modalSectionTitleDisabled?: boolean;
+  modalNotFoundCountryMessage?: string;
+  disabledModalBackdropPress?: boolean;
+  removedModalBackdrop?: boolean;
+  onModalBackdropPress?: () => void;
+  onModalRequestClose?: () => void;
+  showModalSearchInput?: boolean;
+  showModalCloseButton?: boolean;
+  showModalScrollIndicator?: boolean;
 }
 
 interface IPhoneInputPropsWithoutRef extends BasePhoneInput {

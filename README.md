@@ -468,6 +468,8 @@ export default function App() {
 | `backdrop`                 | ViewStyle | Modal background overlay  |
 | `container`                | ViewStyle | Modal main container      |
 | `content`                  | ViewStyle | Modal content area        |
+| `dragHandleContainer`      | ViewStyle | Drag Handle area          |
+| `dragHandleIndicator`      | ViewStyle | Drag Handle Indicator     |
 | `searchContainer`          | ViewStyle | Search input wrapper      |
 | `searchInput`              | TextStyle | Search input field        |
 | `list`                     | ViewStyle | Countries list container  |
@@ -510,6 +512,7 @@ export default function App() {
 | `rtl`                                  | `boolean`                       | Enable right-to-left layout                                               |
 | `isFullScreen`                         | `boolean`                       | Show modal in full screen mode                                            |
 | `modalType`                            | `'bottomSheet' \| 'popup'`      | Type of modal presentation                                                |
+| `modalDragHandleIndicatorComponent`    | `() => ReactNode`               | Custom drag handle indicator component                                    |
 | `modalSearchInputPlaceholderTextColor` | `string`                        | Color of modal search placeholder text                                    |
 | `modalSearchInputPlaceholder`          | `string`                        | Placeholder text for modal search input                                   |
 | `modalSearchInputSelectionColor`       | `string`                        | Color of modal search text selection                                      |

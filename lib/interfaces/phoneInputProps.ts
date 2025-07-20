@@ -30,6 +30,7 @@ interface BasePhoneInput extends TextInputProps {
   rtl?: boolean;
   isFullScreen?: boolean;
   modalType?: 'bottomSheet' | 'popup';
+  modalDragHandleIndicatorComponent?: () => ReactNode;
   modalSearchInputPlaceholderTextColor?: string;
   modalSearchInputPlaceholder?: string;
   modalSearchInputSelectionColor?: string;

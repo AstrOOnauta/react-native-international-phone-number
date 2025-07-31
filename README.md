@@ -505,6 +505,7 @@ export default function App() {
 | `modalStyles`                          | `ICountrySelectStyles`          | Custom styles for country selection modal                                 |
 | `disabled`                             | `boolean`                       | Disable the entire phone input                                            |
 | `modalDisabled`                        | `boolean`                       | Disable only the country selection modal                                  |
+| `customMask`                           | `string`                        | Custom phone number mask (format like this: `(###) ###-####`)             |
 | `visibleCountries`                     | `ICountryCca2[]`                | Array of country codes to show in modal                                   |
 | `hiddenCountries`                      | `ICountryCca2[]`                | Array of country codes to hide from modal                                 |
 | `popularCountries`                     | `ICountryCca2[]`                | Array of country codes to show in popular section                         |

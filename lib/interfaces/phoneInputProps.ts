@@ -23,6 +23,7 @@ interface BasePhoneInput extends TextInputProps {
   modalDisabled?: boolean;
   defaultCountry?: ICountryCca2;
   defaultValue?: string;
+  customMask?: string;
   visibleCountries?: Array<ICountryCca2>;
   hiddenCountries?: Array<ICountryCca2>;
   popularCountries?: Array<ICountryCca2>;

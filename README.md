@@ -597,7 +597,8 @@ When utilizing this package, you may need to target the PhoneInput component in 
 ```jsx
 const phoneInput = getByTestId('countryPickerPhoneInput');
 const flagContainerButton = getByTestId('countryPickerFlagContainerButton');
-const countrySelect = getByTestId('countrySelectSearchInput');
+const countrySelectModalContainer = getByTestId('countrySelectContainer');
+const countrySelectModalContent = getByTestId('countrySelectContent');
 const countrySelectBackdrop = getByTestId('countrySelectBackdrop');
 const countrySelectList = getByTestId('countrySelectList');
 const countrySelectSearchInput = getByTestId('countrySelectSearchInput');

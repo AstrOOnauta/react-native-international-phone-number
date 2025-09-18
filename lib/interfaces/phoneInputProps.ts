@@ -49,6 +49,20 @@ interface BasePhoneInput extends TextInputProps {
   showModalSearchInput?: boolean;
   showModalCloseButton?: boolean;
   showModalScrollIndicator?: boolean;
+  accessibilityLabelPhoneInput?: string;
+  accessibilityHintPhoneInput?: string;
+  accessibilityLabelCountriesButton?: string;
+  accessibilityHintCountriesButton?: string;
+  accessibilityLabelBackdrop?: string;
+  accessibilityHintBackdrop?: string;
+  accessibilityLabelCloseButton?: string;
+  accessibilityHintCloseButton?: string;
+  accessibilityLabelSearchInput?: string;
+  accessibilityHintSearchInput?: string;
+  accessibilityLabelCountriesList?: string;
+  accessibilityHintCountriesList?: string;
+  accessibilityLabelCountryItem?: string;
+  accessibilityHintCountryItem?: string;
 }
 
 interface IPhoneInputPropsWithoutRef extends BasePhoneInput {

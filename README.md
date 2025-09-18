@@ -609,7 +609,24 @@ const countrySelectCloseButton = getByTestId('countrySelectCloseButton');
 
 ## Accessibility
 
-Ensure your app is inclusive and usable by everyone by leveraging built-in React Native accessibility features. The accessibility props are covered by this package.
+Ensure your app is inclusive and usable by everyone by leveraging built-in React Native accessibility features. The accessibility props are covered and customizable by this package.
+
+### Custom Accessibility Props Available
+
+- `accessibilityLabelPhoneInput`: Accessibility label for the phone input;
+- `accessibilityHintPhoneInput`: Accessibility hint for the phone input;
+- `accessibilityLabelCountriesButton`: Accessibility label for the countries button to open modal;
+- `accessibilityHintCountriesButton`: Accessibility hint for the countries button to open modal;
+- `accessibilityLabelBackdrop`: Accessibility label for the backdrop;
+- `accessibilityHintBackdrop`: Accessibility hint for the backdrop;
+- `accessibilityLabelCloseButton`: Accessibility label for the close button;
+- `accessibilityHintCloseButton`: Accessibility hint for the close button;
+- `accessibilityLabelSearchInput`: Accessibility label for the search input;
+- `accessibilityHintSearchInput`: Accessibility hint for the search input;
+- `accessibilityLabelCountriesList`: Accessibility label for the countries list;
+- `accessibilityHintCountriesList`: Accessibility hint for the countries list;
+- `accessibilityLabelCountryItem`: Accessibility label for individual country items;
+- `accessibilityHintCountryItem`: Accessibility hint for individual country.
 
 <br>
 

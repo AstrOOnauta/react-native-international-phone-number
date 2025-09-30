@@ -29,6 +29,11 @@ declare function isValidPhoneNumber(
   country: ICountry,
 ): boolean;
 
+declare function getPhoneNumberLength(
+  selectedCountry: ICountry,
+  phoneNumber: string,
+): number;
+
 export default PhoneInput;
 
 export {
@@ -38,6 +43,7 @@ export {
   getCountriesByCallingCode,
   getCountriesByName,
   isValidPhoneNumber,
+  getPhoneNumberLength,
   ITheme,
   ICountrySelectLanguages,
   ICountry,

@@ -70,22 +70,22 @@ interface BasePhoneInput extends TextInputProps {
   accessibilityHintAlphabetLetter?: string;
 }
 
-interface IPhoneInputPropsWithoutRef extends BasePhoneInput {
+interface PhoneInputPropsWithoutRef extends BasePhoneInput {
   value: string;
   onChangePhoneNumber: (phoneNumber: string) => void;
   selectedCountry: ICountry | undefined | null;
   onChangeSelectedCountry: (country: ICountry) => void;
-  ref?: never;
+  ref?: Ref<IPhoneInputRef>;
 }
 
-interface IPhoneInputPropsWithRef extends BasePhoneInput {
-  value?: never;
-  onChangePhoneNumber?: never;
-  selectedCountry?: never;
-  onChangeSelectedCountry?: never;
+interface PhoneInputPropsWithRef extends BasePhoneInput {
   ref: Ref<IPhoneInputRef>;
+  value?: string;
+  onChangePhoneNumber?: (phoneNumber: string) => void;
+  selectedCountry?: ICountry | undefined | null;
+  onChangeSelectedCountry?: (country: ICountry) => void;
 }
 
 export type PhoneInputProps =
-  | IPhoneInputPropsWithRef
-  | IPhoneInputPropsWithoutRef;
+  | PhoneInputPropsWithoutRef
+  | PhoneInputPropsWithRef;

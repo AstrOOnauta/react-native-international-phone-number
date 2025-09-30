@@ -46,6 +46,7 @@ interface BasePhoneInput extends TextInputProps {
   removedModalBackdrop?: boolean;
   onModalBackdropPress?: () => void;
   onModalRequestClose?: () => void;
+  showModalAlphabetFilter?: boolean;
   showModalSearchInput?: boolean;
   showModalCloseButton?: boolean;
   showModalScrollIndicator?: boolean;
@@ -63,6 +64,10 @@ interface BasePhoneInput extends TextInputProps {
   accessibilityHintCountriesList?: string;
   accessibilityLabelCountryItem?: string;
   accessibilityHintCountryItem?: string;
+  accessibilityLabelAlphabetFilter?: string;
+  accessibilityHintAlphabetFilter?: string;
+  accessibilityLabelAlphabetLetter?: string;
+  accessibilityHintAlphabetLetter?: string;
 }
 
 interface IPhoneInputPropsWithoutRef extends BasePhoneInput {

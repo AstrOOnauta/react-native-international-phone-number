@@ -13,6 +13,7 @@ export interface IPhoneInputRef extends TextInput {
   valueFormatted: string;
   getFullPhoneNumber: () => string;
   fullPhoneNumber: string;
+  phoneNumberLength: number;
   getSelectedCountry: () => ICountry;
   selectedCountry: ICountry;
   isValid: boolean;

@@ -69,11 +69,11 @@
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
   - [With Function Component](#function-component)
-  - [With Typescript](#typescript)
+  - [With Typescript + defaultValue](#typescript)
 - [Intermediate Usage](#intermediate-usage)
-  - [Typescript + useRef](#typescript--useref)
+  - [Typescript + useRef + defaultValue](#typescript--useref)
 - [Advanced Usage](#advanced-usage)
-  - [React-Hook-Form + Typescript + Default Phone Number Value](#react-hook-form--typescript--default-phone-number-value)
+  - [React-Hook-Form + Typescript + defaultValue](#react-hook-form--typescript--default-phone-number-value)
 - [Customizing Lib](#customizing-lib)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
@@ -87,6 +87,7 @@
 
 ## Old Versions
 
+- [Version 0.10.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.10.x)
 - [Version 0.9.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.9.x)
 - [Version 0.8.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.8.x)
 - [Version 0.7.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.7.x)
@@ -260,7 +261,7 @@ export default function App() {
 }
 ```
 
-- ### Typescript
+- ### Typescript + DefaultValue
 
 ```tsx
 import React, {useState} from 'react';
@@ -285,6 +286,7 @@ export default function App() {
   return (
     <View style={{width: '100%', flex: 1, padding: 24}}>
       <PhoneInput
+        defaultValue="+12505550199"
         value={inputValue}
         onChangePhoneNumber={handleInputValue}
         selectedCountry={selectedCountry}
@@ -312,7 +314,7 @@ export default function App() {
 
 ## Intermediate Usage
 
-- ### Typescript + useRef
+- ### Typescript + useRef + defaultValue
 
 ```tsx
 import React, {useRef} from 'react';
@@ -334,7 +336,7 @@ export default function App() {
 
   return (
     <View style={{width: '100%', flex: 1, padding: 24}}>
-      <PhoneInput ref={phoneInputRef} />
+      <PhoneInput ref={phoneInputRef} defaultValue="+12505550199" />
       <TouchableOpacity
         style={{
           width: '100%',
@@ -359,13 +361,11 @@ export default function App() {
 }
 ```
 
-> Observation: Don't use the useRef hook combined with the useState hook to manage the phoneNumber and selectedCountry values. Instead, choose to use just one of them (useRef or useState).
-
 <br>
 
 ## Advanced Usage
 
-- ### React-Hook-Form + Typescript + Default Phone Number Value
+- ### React-Hook-Form + Typescript + defaultValue
 
 ```tsx
 import React, {useState, useEffect} from 'react';
@@ -463,26 +463,33 @@ export default function App() {
 
 ### Modal Styles ([modalStyles](https://github.com/AstrOOnauta/react-native-country-select/blob/main/lib/interface/countrySelectStyles.ts))
 
-| Property                   | Type      | Description               |
-| -------------------------- | --------- | ------------------------- |
-| `backdrop`                 | ViewStyle | Modal background overlay  |
-| `container`                | ViewStyle | Modal main container      |
-| `content`                  | ViewStyle | Modal content area        |
-| `dragHandleContainer`      | ViewStyle | Drag Handle area          |
-| `dragHandleIndicator`      | ViewStyle | Drag Handle Indicator     |
-| `searchContainer`          | ViewStyle | Search input wrapper      |
-| `searchInput`              | TextStyle | Search input field        |
-| `list`                     | ViewStyle | Countries list container  |
-| `countryItem`              | ViewStyle | Individual country row    |
-| `flag`                     | TextStyle | Country flag in list      |
-| `countryInfo`              | ViewStyle | Country details container |
-| `callingCode`              | TextStyle | Calling code in list      |
-| `countryName`              | TextStyle | Country name in list      |
-| `sectionTitle`             | TextStyle | Section headers           |
-| `closeButton`              | ViewStyle | Close button container    |
-| `closeButtonText`          | TextStyle | Close button text         |
-| `countryNotFoundContainer` | ViewStyle | No results container      |
-| `countryNotFoundMessage`   | TextStyle | No results message        |
+| Property                     | Type      | Description               |
+| ---------------------------- | --------- | ------------------------- |
+| `backdrop`                   | ViewStyle | Modal background overlay  |
+| `container`                  | ViewStyle | Modal main container      |
+| `content`                    | ViewStyle | Modal content area        |
+| `dragHandleContainer`        | ViewStyle | Drag Handle area          |
+| `dragHandleIndicator`        | ViewStyle | Drag Handle Indicator     |
+| `searchContainer`            | ViewStyle | Search input wrapper      |
+| `searchInput`                | TextStyle | Search input field        |
+| `list`                       | ViewStyle | Countries list container  |
+| `countryItem`                | ViewStyle | Individual country row    |
+| `flag`                       | TextStyle | Country flag in list      |
+| `countryInfo`                | ViewStyle | Country details container |
+| `callingCode`                | TextStyle | Calling code in list      |
+| `countryName`                | TextStyle | Country name in list      |
+| `sectionTitle`               | TextStyle | Section headers           |
+| `closeButton`                | ViewStyle | Close button container    |
+| `closeButtonText`            | TextStyle | Close button text         |
+| `countryNotFoundContainer`   | ViewStyle | No results container      |
+| `countryNotFoundMessage`     | TextStyle | No results message        |
+| `alphabetContainer`          | ViewStyle | Alphabet filter container |
+| `alphabetLetter`             | ViewStyle | Alphabet letter item      |
+| `alphabetLetterText`         | TextStyle | Alphabet letter text      |
+| `alphabetLetterActive`       | ViewStyle | Active letter state       |
+| `alphabetLetterDisabled`     | ViewStyle | Disabled letter state     |
+| `alphabetLetterTextActive`   | TextStyle | Active letter text        |
+| `alphabetLetterTextDisabled` | TextStyle | Disabled letter text      |
 
 <br>
 
@@ -528,6 +535,7 @@ export default function App() {
 | `removedModalBackdrop`                 | `boolean`                       | Remove modal backdrop entirely                                            |
 | `onModalBackdropPress`                 | `() => void`                    | Callback when modal backdrop is pressed                                   |
 | `onModalRequestClose`                  | `() => void`                    | Callback when modal close is requested                                    |
+| `showModalAlphabetFilter`              | `boolean`                       | Show alphabet filter in modal                                             |
 | `showModalSearchInput`                 | `boolean`                       | Show search input in modal                                                |
 | `showModalCloseButton`                 | `boolean`                       | Show close button in modal                                                |
 | `showModalScrollIndicator`             | `boolean`                       | Show scroll indicator in modal                                            |
@@ -545,6 +553,7 @@ export default function App() {
 | `getCountriesByName`        | `(name: string, language: ILanguage)`      | `ICountry[] \| undefined` | Returns countries that match the given name in the specified language |
 | `getCountryByPhoneNumber`   | `(phoneNumber: string)`                    | `ICountry \| undefined`   | Returns the country that matches the given phone number               |
 | `isValidPhoneNumber`        | `(phoneNumber: string, country: ICountry)` | `boolean`                 | Validates if a phone number is valid for the given country            |
+| `getPhoneNumberLength`      | `(country: ICountry, phoneNumber: string)` | `number`                  | Returns total digits of calling code + phone number                   |
 
 </br>
 
@@ -604,6 +613,7 @@ const countrySelectList = getByTestId('countrySelectList');
 const countrySelectSearchInput = getByTestId('countrySelectSearchInput');
 const countrySelectItem = getByTestId('countrySelectItem');
 const countrySelectCloseButton = getByTestId('countrySelectCloseButton');
+const countrySelectAlphabetFilter = getByTestId('countrySelectAlphabetFilter');
 ```
 
 <br>
@@ -627,7 +637,11 @@ Ensure your app is inclusive and usable by everyone by leveraging built-in React
 - `accessibilityLabelCountriesList`: Accessibility label for the countries list;
 - `accessibilityHintCountriesList`: Accessibility hint for the countries list;
 - `accessibilityLabelCountryItem`: Accessibility label for individual country items;
-- `accessibilityHintCountryItem`: Accessibility hint for individual country.
+- `accessibilityHintCountryItem`: Accessibility hint for individual country;
+- `accessibilityLabelAlphabetFilter`: Accessibility label for alphabet filter list;
+- `accessibilityHintAlphabetFilter`: Accessibility hint for alphabet filter list;
+- `accessibilityLabelAlphabetLetter`: Accessibility label for individual alphabet filter letter;
+- `accessibilityHintAlphabetLetter`: Accessibility hint for individual alphabet filter letter.
 
 <br>
 

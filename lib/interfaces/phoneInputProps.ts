@@ -29,6 +29,7 @@ interface BasePhoneInput extends TextInputProps {
   popularCountries?: Array<ICountryCca2>;
   customCaret?: () => ReactNode;
   rtl?: boolean;
+  allowFontScaling?: boolean;
   isFullScreen?: boolean;
   modalType?: 'bottomSheet' | 'popup';
   modalDragHandleIndicatorComponent?: () => ReactNode;

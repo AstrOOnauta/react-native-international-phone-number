@@ -1,7 +1,7 @@
 <br>
 
 <div align = "center">
-  <img src="lib/assets/images/preview.png" alt="React Native International Phone Number Input Lib preview">
+  <img src="https://astroonauta.github.io/react-native-international-phone-number/lib/assets/images/preview.png" alt="React Native International Phone Number Input Lib preview">
 </div>
 
 <br>
@@ -217,8 +217,8 @@ export class App extends React.Component {
 - ### Function Component:
 
 ```jsx
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import PhoneInput, {
   isValidPhoneNumber,
 } from 'react-native-international-phone-number';
@@ -236,24 +236,27 @@ export default function App() {
   }
 
   return (
-    <View style={{width: '100%', flex: 1, padding: 24}}>
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
       <PhoneInput
         value={inputValue}
         onChangePhoneNumber={handleInputValue}
         selectedCountry={selectedCountry}
         onChangeSelectedCountry={handleSelectedCountry}
       />
-      <View style={{marginTop: 10}}>
+      <View style={{ marginTop: 10 }}>
         <Text>
           Country:{' '}
           {`${selectedCountry?.translations?.eng?.common} (${selectedCountry?.cca2})`}
         </Text>
         <Text>
-          Phone Number: {`${selectedCountry?.idd?.root} ${inputValue}`}
+          Phone Number:{' '}
+          {`${selectedCountry?.idd?.root} ${inputValue}`}
         </Text>
         <Text>
           isValid:{' '}
-          {isValidPhoneNumber(inputValue, selectedCountry) ? 'true' : 'false'}
+          {isValidPhoneNumber(inputValue, selectedCountry)
+            ? 'true'
+            : 'false'}
         </Text>
       </View>
     </View>
@@ -264,15 +267,16 @@ export default function App() {
 - ### Typescript + DefaultValue
 
 ```tsx
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import PhoneInput, {
   ICountry,
   isValidPhoneNumber,
 } from 'react-native-international-phone-number';
 
 export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState<null | ICountry>(null);
+  const [selectedCountry, setSelectedCountry] =
+    useState<null | ICountry>(null);
   const [inputValue, setInputValue] = useState<string>('');
 
   function handleInputValue(phoneNumber: string) {
@@ -284,7 +288,7 @@ export default function App() {
   }
 
   return (
-    <View style={{width: '100%', flex: 1, padding: 24}}>
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
       <PhoneInput
         defaultValue="+12505550199"
         value={inputValue}
@@ -292,17 +296,20 @@ export default function App() {
         selectedCountry={selectedCountry}
         onChangeSelectedCountry={handleSelectedCountry}
       />
-      <View style={{marginTop: 10}}>
+      <View style={{ marginTop: 10 }}>
         <Text>
           Country:{' '}
           {`${selectedCountry?.translations?.eng?.common} (${selectedCountry?.cca2})`}
         </Text>
         <Text>
-          Phone Number: {`${selectedCountry?.idd?.root} ${inputValue}`}
+          Phone Number:{' '}
+          {`${selectedCountry?.idd?.root} ${inputValue}`}
         </Text>
         <Text>
           isValid:{' '}
-          {isValidPhoneNumber(inputValue, selectedCountry) ? 'true' : 'false'}
+          {isValidPhoneNumber(inputValue, selectedCountry)
+            ? 'true'
+            : 'false'}
         </Text>
       </View>
     </View>
@@ -317,8 +324,8 @@ export default function App() {
 - ### Typescript + useRef + defaultValue
 
 ```tsx
-import React, {useRef} from 'react';
-import {View, Text} from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text } from 'react-native';
 import PhoneInput, {
   ICountry,
   IPhoneInputRef,
@@ -330,12 +337,12 @@ export default function App() {
   function onSubmitRef() {
     Alert.alert(
       'Intermediate Result',
-      `Country: ${inputRef.current?.selectedCountry?.translations?.eng?.common} \nPhone Number: ${inputRef.current?.fullPhoneNumber} \nisValid: ${inputRef.current?.isValid}`,
+      `Country: ${inputRef.current?.selectedCountry?.translations?.eng?.common} \nPhone Number: ${inputRef.current?.fullPhoneNumber} \nisValid: ${inputRef.current?.isValid}`
     );
   }
 
   return (
-    <View style={{width: '100%', flex: 1, padding: 24}}>
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
       <PhoneInput ref={phoneInputRef} defaultValue="+12505550199" />
       <TouchableOpacity
         style={{
@@ -345,14 +352,16 @@ export default function App() {
           borderRadius: 4,
           marginTop: 10,
         }}
-        onPress={onSubmit}>
+        onPress={onSubmit}
+      >
         <Text
           style={{
             color: '#F3F3F3',
             textAlign: 'center',
             fontSize: 16,
             fontWeight: 'bold',
-          }}>
+          }}
+        >
           Submit
         </Text>
       </TouchableOpacity>
@@ -368,22 +377,22 @@ export default function App() {
 - ### React-Hook-Form + Typescript + defaultValue
 
 ```tsx
-import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import PhoneInput, {
   ICountry,
   isValidPhoneNumber,
 } from 'react-native-international-phone-number';
-import {Controller, FieldValues} from 'react-hook-form';
+import { Controller, FieldValues } from 'react-hook-form';
 
 interface FormProps extends FieldValues {
   phoneNumber: string;
 }
 
 export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState<undefined | ICountry>(
-    undefined,
-  );
+  const [selectedCountry, setSelectedCountry] = useState<
+    undefined | ICountry
+  >(undefined);
 
   function handleSelectedCountry(country: ICountry) {
     setSelectedCountry(country);
@@ -393,21 +402,21 @@ export default function App() {
     const phoneNumber = `${selectedCountry?.idd?.root} ${form.phoneNumber}`;
     const isValid = isValidPhoneNumber(
       form.phoneNumber,
-      selectedCountry as ICountry,
+      selectedCountry as ICountry
     );
 
     Alert.alert(
       'Advanced Result',
-      `Country: ${selectedCountry?.translations?.eng?.common} \nPhone Number: ${phoneNumber} \nisValid: ${isValid}`,
+      `Country: ${selectedCountry?.translations?.eng?.common} \nPhone Number: ${phoneNumber} \nisValid: ${isValid}`
     );
   }
 
   return (
-    <View style={{width: '100%', flex: 1, padding: 24}}>
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
       <Controller
         name="phoneNumber"
         control={control}
-        render={({field: {onChange, value}}) => (
+        render={({ field: { onChange, value } }) => (
           <PhoneInput
             defaultValue="+12505550199"
             value={value}
@@ -424,14 +433,16 @@ export default function App() {
           backgroundColor: '#2196F3',
           borderRadius: 4,
         }}
-        onPress={handleSubmit(onSubmit)}>
+        onPress={handleSubmit(onSubmit)}
+      >
         <Text
           style={{
             color: '#F3F3F3',
             textAlign: 'center',
             fontSize: 16,
             fontWeight: 'bold',
-          }}>
+          }}
+        >
           Submit
         </Text>
       </TouchableOpacity>
@@ -539,6 +550,7 @@ export default function App() {
 | `showModalSearchInput`                 | `boolean`                       | Show search input in modal                                                |
 | `showModalCloseButton`                 | `boolean`                       | Show close button in modal                                                |
 | `showModalScrollIndicator`             | `boolean`                       | Show scroll indicator in modal                                            |
+| `allowFontScaling`                     | `boolean`                       | Allow font scaling based on device settings (default: `true`)             |
 | `ref`                                  | `Ref<IPhoneInputRef>`           | Ref to access component methods                                           |
 
 <br>
@@ -605,15 +617,25 @@ When utilizing this package, you may need to target the PhoneInput component in 
 
 ```jsx
 const phoneInput = getByTestId('countryPickerPhoneInput');
-const flagContainerButton = getByTestId('countryPickerFlagContainerButton');
-const countrySelectModalContainer = getByTestId('countrySelectContainer');
+const flagContainerButton = getByTestId(
+  'countryPickerFlagContainerButton'
+);
+const countrySelectModalContainer = getByTestId(
+  'countrySelectContainer'
+);
 const countrySelectModalContent = getByTestId('countrySelectContent');
 const countrySelectBackdrop = getByTestId('countrySelectBackdrop');
 const countrySelectList = getByTestId('countrySelectList');
-const countrySelectSearchInput = getByTestId('countrySelectSearchInput');
+const countrySelectSearchInput = getByTestId(
+  'countrySelectSearchInput'
+);
 const countrySelectItem = getByTestId('countrySelectItem');
-const countrySelectCloseButton = getByTestId('countrySelectCloseButton');
-const countrySelectAlphabetFilter = getByTestId('countrySelectAlphabetFilter');
+const countrySelectCloseButton = getByTestId(
+  'countrySelectCloseButton'
+);
+const countrySelectAlphabetFilter = getByTestId(
+  'countrySelectAlphabetFilter'
+);
 ```
 
 <br>

@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "react-native-country-select": "0.3.2",
-    "libphonenumber-js": "1.12.23"
+    "libphonenumber-js": "1.12.25"
   },
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.61.0"

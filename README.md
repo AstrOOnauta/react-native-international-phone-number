@@ -551,6 +551,9 @@ export default function App() {
 | `showModalCloseButton`                 | `boolean`                       | Show close button in modal                                                |
 | `showModalScrollIndicator`             | `boolean`                       | Show scroll indicator in modal                                            |
 | `allowFontScaling`                     | `boolean`                       | Allow font scaling based on device settings (default: `true`)             |
+| `initialBottomsheetHeight`             | `number \| string`              | Initial height of the bottom sheet modal                                  |
+| `minBottomsheetHeight`                 | `number \| string`              | Minimum height of the bottom sheet modal                                  |
+| `maxBottomsheetHeight`                 | `number \| string`              | Maximum height of the bottom sheet modal                                  |
 | `ref`                                  | `Ref<IPhoneInputRef>`           | Ref to access component methods                                           |
 
 <br>

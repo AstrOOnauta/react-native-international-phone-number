@@ -69,11 +69,11 @@
 - [Basic Usage](#basic-usage)
   - [With Class Component](#class-component)
   - [With Function Component](#function-component)
-  - [With Typescript + defaultValue](#typescript)
+  - [With Typescript + defaultValue](#typescript--defaultvalue)
 - [Intermediate Usage](#intermediate-usage)
-  - [Typescript + useRef + defaultValue](#typescript--useref)
+  - [Typescript + useRef + defaultValue](#typescript--useref--defaultvalue)
 - [Advanced Usage](#advanced-usage)
-  - [React-Hook-Form + Typescript + defaultValue](#react-hook-form--typescript--default-phone-number-value)
+  - [React-Hook-Form + Typescript + defaultValue](#react-hook-form--typescript--defaultvalue)
 - [Customizing Lib](#customizing-lib)
 - [Lib Props](#component-props-phoneinputprops)
 - [Lib Functions](#functions)
@@ -506,55 +506,56 @@ export default function App() {
 
 ## Component Props ([PhoneInputProps](lib/interfaces/phoneInputProps.ts))
 
-| Prop                                   | Type                            | Description                                                               |
-| -------------------------------------- | ------------------------------- | ------------------------------------------------------------------------- |
-| `theme`                                | `ITheme`                        | Theme configuration for the component                                     |
-| `language`                             | `ILanguage`                     | Language for country names and UI                                         |
-| `defaultValue`                         | `string`                        | Default phone number value (format: `+(country code)(area code)(number)`) |
-| `value`                                | `string`                        | Controlled phone number value                                             |
-| `onChangePhoneNumber`                  | `(phoneNumber: string) => void` | Callback when phone number changes                                        |
-| `defaultCountry`                       | `ICountryCca2`                  | Default selected country (ISO 3166-1 alpha-2)                             |
-| `selectedCountry`                      | `ICountry`                      | Currently selected country object                                         |
-| `onChangeSelectedCountry`              | `(country: ICountry) => void`   | Callback when country selection changes                                   |
-| `placeholder`                          | `string`                        | Placeholder text for phone input                                          |
-| `phoneInputPlaceholderTextColor`       | `string`                        | Color of placeholder text                                                 |
-| `phoneInputSelectionColor`             | `string`                        | Color of text selection                                                   |
-| `phoneInputStyles`                     | `IPhoneInputStyles`             | Custom styles for phone input component                                   |
-| `modalStyles`                          | `ICountrySelectStyles`          | Custom styles for country selection modal                                 |
-| `disabled`                             | `boolean`                       | Disable the entire phone input                                            |
-| `modalDisabled`                        | `boolean`                       | Disable only the country selection modal                                  |
-| `customMask`                           | `string`                        | Custom phone number mask (format like this: `(###) ###-####`)             |
-| `visibleCountries`                     | `ICountryCca2[]`                | Array of country codes to show in modal                                   |
-| `hiddenCountries`                      | `ICountryCca2[]`                | Array of country codes to hide from modal                                 |
-| `popularCountries`                     | `ICountryCca2[]`                | Array of country codes to show in popular section                         |
-| `customCaret`                          | `() => ReactNode`               | Custom dropdown arrow component                                           |
-| `rtl`                                  | `boolean`                       | Enable right-to-left layout                                               |
-| `isFullScreen`                         | `boolean`                       | Show modal in full screen mode                                            |
-| `modalType`                            | `'bottomSheet' \| 'popup'`      | Type of modal presentation                                                |
-| `modalDragHandleIndicatorComponent`    | `() => ReactNode`               | Custom drag handle indicator component                                    |
-| `modalSearchInputPlaceholderTextColor` | `string`                        | Color of modal search placeholder text                                    |
-| `modalSearchInputPlaceholder`          | `string`                        | Placeholder text for modal search input                                   |
-| `modalSearchInputSelectionColor`       | `string`                        | Color of modal search text selection                                      |
-| `modalPopularCountriesTitle`           | `string`                        | Title for popular countries section                                       |
-| `modalAllCountriesTitle`               | `string`                        | Title for all countries section                                           |
-| `modalSectionTitleComponent`           | `() => ReactNode`               | Custom section title component                                            |
-| `modalCountryItemComponent`            | `() => ReactNode`               | Custom country item component                                             |
-| `modalCloseButtonComponent`            | `() => ReactNode`               | Custom close button component                                             |
-| `modalSectionTitleDisabled`            | `boolean`                       | Disable section titles in modal                                           |
-| `modalNotFoundCountryMessage`          | `string`                        | Message when no countries found                                           |
-| `disabledModalBackdropPress`           | `boolean`                       | Disable modal close on backdrop press                                     |
-| `removedModalBackdrop`                 | `boolean`                       | Remove modal backdrop entirely                                            |
-| `onModalBackdropPress`                 | `() => void`                    | Callback when modal backdrop is pressed                                   |
-| `onModalRequestClose`                  | `() => void`                    | Callback when modal close is requested                                    |
-| `showModalAlphabetFilter`              | `boolean`                       | Show alphabet filter in modal                                             |
-| `showModalSearchInput`                 | `boolean`                       | Show search input in modal                                                |
-| `showModalCloseButton`                 | `boolean`                       | Show close button in modal                                                |
-| `showModalScrollIndicator`             | `boolean`                       | Show scroll indicator in modal                                            |
-| `allowFontScaling`                     | `boolean`                       | Allow font scaling based on device settings (default: `true`)             |
-| `initialBottomsheetHeight`             | `number \| string`              | Initial height of the bottom sheet modal                                  |
-| `minBottomsheetHeight`                 | `number \| string`              | Minimum height of the bottom sheet modal                                  |
-| `maxBottomsheetHeight`                 | `number \| string`              | Maximum height of the bottom sheet modal                                  |
-| `ref`                                  | `Ref<IPhoneInputRef>`           | Ref to access component methods                                           |
+| Prop                                   | Type                               | Description                                                               |
+| -------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
+| `theme`                                | `ITheme`                           | Theme configuration for the component                                     |
+| `language`                             | `ILanguage`                        | Language for country names and UI                                         |
+| `defaultValue`                         | `string`                           | Default phone number value (format: `+(country code)(area code)(number)`) |
+| `value`                                | `string`                           | Controlled phone number value                                             |
+| `onChangePhoneNumber`                  | `(phoneNumber: string) => void`    | Callback when phone number changes                                        |
+| `defaultCountry`                       | `ICountryCca2`                     | Default selected country (ISO 3166-1 alpha-2)                             |
+| `selectedCountry`                      | `ICountry`                         | Currently selected country object                                         |
+| `onChangeSelectedCountry`              | `(country: ICountry) => void`      | Callback when country selection changes                                   |
+| `placeholder`                          | `string`                           | Placeholder text for phone input                                          |
+| `phoneInputPlaceholderTextColor`       | `string`                           | Color of placeholder text                                                 |
+| `phoneInputSelectionColor`             | `string`                           | Color of text selection                                                   |
+| `phoneInputStyles`                     | `IPhoneInputStyles`                | Custom styles for phone input component                                   |
+| `modalStyles`                          | `ICountrySelectStyles`             | Custom styles for country selection modal                                 |
+| `disabled`                             | `boolean`                          | Disable the entire phone input                                            |
+| `modalDisabled`                        | `boolean`                          | Disable only the country selection modal                                  |
+| `customMask`                           | `string`                           | Custom phone number mask (format like this: `(###) ###-####`)             |
+| `visibleCountries`                     | `ICountryCca2[]`                   | Array of country codes to show in modal                                   |
+| `hiddenCountries`                      | `ICountryCca2[]`                   | Array of country codes to hide from modal                                 |
+| `popularCountries`                     | `ICountryCca2[]`                   | Array of country codes to show in popular section                         |
+| `customCaret`                          | `() => ReactNode`                  | Custom dropdown arrow component                                           |
+| `customFlag`                           | `(country: ICountry) => ReactNode` | Custom flag component to replace default flag emoji                       |
+| `rtl`                                  | `boolean`                          | Enable right-to-left layout                                               |
+| `isFullScreen`                         | `boolean`                          | Show modal in full screen mode                                            |
+| `modalType`                            | `'bottomSheet' \| 'popup'`         | Type of modal presentation                                                |
+| `modalDragHandleIndicatorComponent`    | `() => ReactNode`                  | Custom drag handle indicator component                                    |
+| `modalSearchInputPlaceholderTextColor` | `string`                           | Color of modal search placeholder text                                    |
+| `modalSearchInputPlaceholder`          | `string`                           | Placeholder text for modal search input                                   |
+| `modalSearchInputSelectionColor`       | `string`                           | Color of modal search text selection                                      |
+| `modalPopularCountriesTitle`           | `string`                           | Title for popular countries section                                       |
+| `modalAllCountriesTitle`               | `string`                           | Title for all countries section                                           |
+| `modalSectionTitleComponent`           | `() => ReactNode`                  | Custom section title component                                            |
+| `modalCountryItemComponent`            | `() => ReactNode`                  | Custom country item component                                             |
+| `modalCloseButtonComponent`            | `() => ReactNode`                  | Custom close button component                                             |
+| `modalSectionTitleDisabled`            | `boolean`                          | Disable section titles in modal                                           |
+| `modalNotFoundCountryMessage`          | `string`                           | Message when no countries found                                           |
+| `disabledModalBackdropPress`           | `boolean`                          | Disable modal close on backdrop press                                     |
+| `removedModalBackdrop`                 | `boolean`                          | Remove modal backdrop entirely                                            |
+| `onModalBackdropPress`                 | `() => void`                       | Callback when modal backdrop is pressed                                   |
+| `onModalRequestClose`                  | `() => void`                       | Callback when modal close is requested                                    |
+| `showModalAlphabetFilter`              | `boolean`                          | Show alphabet filter in modal                                             |
+| `showModalSearchInput`                 | `boolean`                          | Show search input in modal                                                |
+| `showModalCloseButton`                 | `boolean`                          | Show close button in modal                                                |
+| `showModalScrollIndicator`             | `boolean`                          | Show scroll indicator in modal                                            |
+| `allowFontScaling`                     | `boolean`                          | Allow font scaling based on device settings (default: `true`)             |
+| `initialBottomsheetHeight`             | `number \| string`                 | Initial height of the bottom sheet modal                                  |
+| `minBottomsheetHeight`                 | `number \| string`                 | Minimum height of the bottom sheet modal                                  |
+| `maxBottomsheetHeight`                 | `number \| string`                 | Maximum height of the bottom sheet modal                                  |
+| `ref`                                  | `Ref<IPhoneInputRef>`              | Ref to access component methods                                           |
 
 <br>
 

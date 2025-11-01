@@ -44,7 +44,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "react-native-country-select": "0.3.2",
+    "react-native-country-select": "0.3.3",
     "libphonenumber-js": "1.12.25"
   },
   "devDependencies": {

@@ -1,15 +1,17 @@
-import {Ref, ReactNode} from 'react';
-import {TextInputProps} from 'react-native';
+import * as React from 'react';
+import { Ref } from 'react';
+import { TextInputProps } from 'react-native';
 import {
   ICountry,
   ICountryCca2,
   ICountrySelectLanguages,
   ICountrySelectStyle,
+  ISectionTitle,
 } from 'react-native-country-select';
 
-import {ITheme} from './theme';
-import {IPhoneInputStyles} from './phoneInputStyles';
-import {IPhoneInputRef} from './phoneInputRef';
+import { ITheme } from './theme';
+import { IPhoneInputStyles } from './phoneInputStyles';
+import { IPhoneInputRef } from './phoneInputRef';
 
 interface BasePhoneInput extends TextInputProps {
   theme?: ITheme;
@@ -27,7 +29,7 @@ interface BasePhoneInput extends TextInputProps {
   visibleCountries?: Array<ICountryCca2>;
   hiddenCountries?: Array<ICountryCca2>;
   popularCountries?: Array<ICountryCca2>;
-  customCaret?: () => ReactNode;
+  customCaret?: () => React.ReactElement;
   rtl?: boolean;
   allowFontScaling?: boolean;
   isFullScreen?: boolean;
@@ -35,21 +37,26 @@ interface BasePhoneInput extends TextInputProps {
   minBottomsheetHeight?: number | string;
   maxBottomsheetHeight?: number | string;
   initialBottomsheetHeight?: number | string;
-  modalDragHandleIndicatorComponent?: () => ReactNode;
+  modalDragHandleIndicatorComponent?: () => React.ReactElement;
   modalSearchInputPlaceholderTextColor?: string;
   modalSearchInputPlaceholder?: string;
   modalSearchInputSelectionColor?: string;
   modalPopularCountriesTitle?: string;
   modalAllCountriesTitle?: string;
-  modalSectionTitleComponent?: () => ReactNode;
-  modalCountryItemComponent?: () => ReactNode;
-  modalCloseButtonComponent?: () => ReactNode;
+  modalSectionTitleComponent?: (
+    item: ISectionTitle
+  ) => React.ReactElement;
+  modalCountryItemComponent?: (item: ICountry) => React.ReactElement;
+  modalCloseButtonComponent?: () => React.ReactElement;
   modalSectionTitleDisabled?: boolean;
   modalNotFoundCountryMessage?: string;
   disabledModalBackdropPress?: boolean;
   removedModalBackdrop?: boolean;
   onModalBackdropPress?: () => void;
   onModalRequestClose?: () => void;
+  customFlag?: (
+    country: ICountry
+  ) => React.ReactElement | null | undefined;
   showModalAlphabetFilter?: boolean;
   showModalSearchInput?: boolean;
   showModalCloseButton?: boolean;

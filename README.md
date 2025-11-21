@@ -99,14 +99,16 @@
 
 ## Installation
 
+To use this library, make sure you have **react-native-international-phone-number** installed along with its required dependency **react-native-safe-area-context**:
+
 ```bash
-$ npm i --save react-native-international-phone-number
+npm install react-native-international-phone-number react-native-safe-area-context
 ```
 
-OR
+Since **react-native-safe-area-context** includes native code, you’ll need to install the iOS pods on macOS to complete the linking:
 
 ```bash
-$ yarn add react-native-international-phone-number
+npx pod-install ios
 ```
 
 ## Additional config to WEB

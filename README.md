@@ -547,7 +547,7 @@ export default function App() {
 | `modalNotFoundCountryMessage`          | `string`                           | Message when no countries found                                           |
 | `disabledModalBackdropPress`           | `boolean`                          | Disable modal close on backdrop press                                     |
 | `removedModalBackdrop`                 | `boolean`                          | Remove modal backdrop entirely                                            |
-| `onModalBackdropPress`                 | `() => void`                       | Callback when modal backdrop is pressed                                   |
+| `onModalBackdropPress`                 | `(closeModal: () => void) => void` | Callback when modal backdrop is pressed                                   |
 | `onModalRequestClose`                  | `() => void`                       | Callback when modal close is requested                                    |
 | `showModalAlphabetFilter`              | `boolean`                          | Show alphabet filter in modal                                             |
 | `showModalSearchInput`                 | `boolean`                          | Show search input in modal                                                |

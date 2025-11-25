@@ -52,7 +52,7 @@ interface BasePhoneInput extends TextInputProps {
   modalNotFoundCountryMessage?: string;
   disabledModalBackdropPress?: boolean;
   removedModalBackdrop?: boolean;
-  onModalBackdropPress?: () => void;
+  onModalBackdropPress?: (closeModal: () => void) => void;
   onModalRequestClose?: () => void;
   customFlag?: (
     country: ICountry

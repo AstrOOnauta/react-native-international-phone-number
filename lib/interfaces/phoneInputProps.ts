@@ -59,6 +59,7 @@ interface BasePhoneInput extends TextInputProps {
   ) => React.ReactElement | null | undefined;
   showModalAlphabetFilter?: boolean;
   showModalSearchInput?: boolean;
+  showDialCodeSuffix ?: boolean;
   showModalCloseButton?: boolean;
   showModalScrollIndicator?: boolean;
   accessibilityLabelPhoneInput?: string;

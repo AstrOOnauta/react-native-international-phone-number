@@ -7,7 +7,7 @@ import {
   ICountrySelectLanguages,
   ICountrySelectStyle,
   ISectionTitle,
-} from 'react-native-country-select';
+} from 'rn-country-select';
 
 import { ITheme } from './theme';
 import { IPhoneInputStyles } from './phoneInputStyles';

@@ -1,5 +1,5 @@
 import {JSX} from 'react';
-import {ICountry, ICountrySelectLanguages} from 'react-native-country-select';
+import {ICountry, ICountrySelectLanguages} from 'rn-country-select';
 
 import {ITheme} from './interfaces/theme';
 import {IPhoneInputRef} from './interfaces/phoneInputRef';

@@ -1,5 +1,5 @@
 import { TextInput } from 'react-native';
-import { ICountry } from 'react-native-country-select';
+import { ICountry } from 'rn-country-select';
 
 import { PhoneInputProps } from './phoneInputProps';
 

@@ -9,11 +9,11 @@
 <h1 align="center">React Native International Phone Number Input</h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/react-native-international-phone-number">
-    <img src="https://img.shields.io/npm/v/react-native-international-phone-number.svg?style=flat-square">
+  <a href="https://www.npmjs.com/package/rn-international-phone-number">
+    <img src="https://img.shields.io/npm/v/rn-international-phone-number.svg?style=flat-square">
   </a>
-  <a href="https://www.npmjs.com/package/react-native-international-phone-number">
-    <img src="https://img.shields.io/npm/dt/react-native-international-phone-number.svg?style=flat-square&color=success">
+  <a href="https://www.npmjs.com/package/rn-international-phone-number">
+    <img src="https://img.shields.io/npm/dt/rn-international-phone-number.svg?style=flat-square&color=success">
   </a>
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
     <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success"/>
@@ -99,10 +99,10 @@
 
 ## Installation
 
-To use this library, make sure you have **react-native-international-phone-number** installed along with its required dependency **react-native-safe-area-context**:
+To use this library, make sure you have **rn-international-phone-number** installed along with its required dependency **react-native-safe-area-context**:
 
 ```bash
-npm install react-native-international-phone-number react-native-safe-area-context
+npm install rn-international-phone-number react-native-safe-area-context
 ```
 
 Since **react-native-safe-area-context** includes native code, you’ll need to install the iOS pods on macOS to complete the linking:
@@ -124,7 +124,7 @@ module.exports = {
     android: {},
   },
   assets: [
-    './node_modules/react-native-country-select/lib/assets/fonts',
+    './node_modules/rn-country-select/lib/assets/fonts',
   ],
 };
 ```
@@ -146,7 +146,7 @@ npx react-native-asset
   ...
 
   useFonts({
-    'TwemojiMozilla': require('./node_modules/react-native-country-select/lib/assets/fonts/TwemojiMozilla.woff2'),
+    'TwemojiMozilla': require('./node_modules/rn-country-select/lib/assets/fonts/TwemojiMozilla.woff2'),
   });
 
   ...
@@ -163,7 +163,7 @@ npx react-native-asset
 ```jsx
 import React from 'react';
 import { View, Text } from 'react-native';
-import PhoneInput, { isValidPhoneNumber } from 'react-native-international-phone-number';
+import PhoneInput, { isValidPhoneNumber } from 'rn-international-phone-number';
 
 export class App extends React.Component {
   constructor(props) {
@@ -223,7 +223,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import PhoneInput, {
   isValidPhoneNumber,
-} from 'react-native-international-phone-number';
+} from 'rn-international-phone-number';
 
 export default function App() {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -274,7 +274,7 @@ import { View, Text } from 'react-native';
 import PhoneInput, {
   ICountry,
   isValidPhoneNumber,
-} from 'react-native-international-phone-number';
+} from 'rn-international-phone-number';
 
 export default function App() {
   const [selectedCountry, setSelectedCountry] =
@@ -331,7 +331,7 @@ import { View, Text } from 'react-native';
 import PhoneInput, {
   ICountry,
   IPhoneInputRef,
-} from 'react-native-international-phone-number';
+} from 'rn-international-phone-number';
 
 export default function App() {
   const phoneInputRef = useRef<IPhoneInputRef>(null);
@@ -384,7 +384,7 @@ import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import PhoneInput, {
   ICountry,
   isValidPhoneNumber,
-} from 'react-native-international-phone-number';
+} from 'rn-international-phone-number';
 import { Controller, FieldValues } from 'react-hook-form';
 
 interface FormProps extends FieldValues {

@@ -1,5 +1,5 @@
 {
-  "name": "react-native-international-phone-number",
+  "name": "rn-international-phone-number",
   "author": "AstrOOnauta (https://github.com/AstrOOnauta)",
   "version": "0.12.0",
   "description": "International mobile phone input component with mask for React Native",
@@ -44,7 +44,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "react-native-country-select": "0.4.0",
+    "rn-country-select": "0.4.0",
     "libphonenumber-js": "1.12.40"
   },
   "devDependencies": {

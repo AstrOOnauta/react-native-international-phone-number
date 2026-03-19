@@ -163,7 +163,7 @@ npx react-native-asset
 ```jsx
 import React from 'react';
 import { View, Text } from 'react-native';
-import PhoneInput, { isValidPhoneNumber } from 'rn-international-phone-number';
+import PhoneInput, { isValidPhoneNumber } from 'react-native-international-phone-number';
 
 export class App extends React.Component {
   constructor(props) {

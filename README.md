@@ -1,6 +1,6 @@
 <br>
 
-<div align = "center">
+<div align="center">
   <img src="https://astroonauta.github.io/react-native-international-phone-number/lib/assets/images/preview.png" alt="React Native International Phone Number Input Lib preview">
 </div>
 
@@ -31,8 +31,8 @@
 
 <br>
 
-<div align = "center">
-    <a href="https://www.buymeacoffee.com/astroonauta" target="_blank">
+<div align="center">
+    <a href="https://www.buymeacoffee.com/astroonautadev" target="_blank">
         <img src="https://survivingmexico.files.wordpress.com/2018/07/button-gif.gif" alt="Buy Me A Coffee" style="height: auto !important;width: 60% !important;">
     </a>
 </div>
@@ -61,39 +61,27 @@
 
 ## List of Contents
 
-- [Old Versions](#old-versions)
 - [Installation](#installation)
 - [Additional Config to WEB](#additional-config-to-web)
   - [React Native CLI](#using-react-native-cli)
   - [Expo](#using-expo)
-- [Basic Usage](#basic-usage)
-  - [With Class Component](#class-component)
-  - [With Function Component](#function-component)
-  - [With Typescript + defaultValue](#typescript--defaultvalue)
-- [Intermediate Usage](#intermediate-usage)
-  - [Typescript + useRef + defaultValue](#typescript--useref--defaultvalue)
-- [Advanced Usage](#advanced-usage)
-  - [React-Hook-Form + Typescript + defaultValue](#react-hook-form--typescript--defaultvalue)
+- [Discovering the PhoneInput](#discovering-the-phoneinput)
+  - [Basic Usage (Class Component)](#basic-usage-class-component)
+  - [Basic Usage (Function Component)](#basic-usage-function-component)
+  - [Using useRef](#using-useref)
+  - [Setting a Default Value](#setting-a-default-value)
+  - [Controlled by React Hook Form](#controlled-by-react-hook-form)
+  - [Controlled by Formik](#controlled-by-formik)
+  - [Controlled by TanStack Form](#controlled-by-tanstack-form)
 - [Customizing Lib](#customizing-lib)
 - [Lib Props](#component-props-phoneinputprops)
+- [Ref Properties](#ref-properties-iphoneinputref)
 - [Lib Functions](#functions)
 - [Supported languages](#supported-languages)
 - [Testing](#testing)
 - [Accessibility](#accessibility)
 - [Contributing](#contributing)
 - [License](#license)
-
-<br>
-
-## Old Versions
-
-- [Version 0.10.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.10.x)
-- [Version 0.9.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.9.x)
-- [Version 0.8.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.8.x)
-- [Version 0.7.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.7.x)
-- [Version 0.6.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.6.x)
-- [Version 0.5.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.5.x)
-- [Version 0.4.x](https://github.com/AstrOOnauta/react-native-international-phone-number/tree/v0.4.x)
 
 <br>
 
@@ -156,164 +144,74 @@ npx react-native-asset
 
 <br>
 
-## Basic Usage
+## Discovering the PhoneInput
 
-- ### Class Component:
+- ### Basic Usage (Class Component)
 
-```jsx
+```tsx
 import React from 'react';
-import { View, Text } from 'react-native';
-import PhoneInput, { isValidPhoneNumber } from 'rn-international-phone-number';
+import { Text, View } from 'react-native';
+import PhoneInput, { ICountry } from 'rn-international-phone-number';
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectedCountry: null,
-      inputValue: ''
-    }
-  }
+type State = {
+  phone: string;
+  country: ICountry | null;
+};
 
-  function handleSelectedCountry(country) {
-    this.setState({
-      selectedCountry: country
-    })
-  }
+export default class App extends React.Component {
+  state: State = {
+    phone: '',
+    country: null,
+  };
 
-  function handleInputValue(phoneNumber) {
-    this.setState({
-      inputValue: phoneNumber
-    })
-  }
-
-  render(){
+  render() {
     return (
       <View style={{ width: '100%', flex: 1, padding: 24 }}>
         <PhoneInput
-          value={this.state.inputValue}
-          onChangePhoneNumber={this.handleInputValue}
-          selectedCountry={this.state.selectedCountry}
-          onChangeSelectedCountry={this.handleSelectedCountry}
+          value={this.state.phone}
+          onChangePhoneNumber={(next) => this.setState({ phone: next })}
+          country={this.state.country}
+          onChangeCountry={(nextCountry) =>
+            this.setState({ country: nextCountry })
+          }
         />
-        <View style={{ marginTop: 10 }}>
-          <Text>
-            Country:{' '}
-            {`${this.state.selectedCountry?.translations?.eng?.common} (${this.state.selectedCountry?.cca2})`}
-          </Text>
-          <Text>
-            Phone Number: {`${this.state.selectedCountry?.idd?.root} ${this.state.inputValue}`}
-          </Text>
-          <Text>
-            isValid:{' '}
-            {isValidPhoneNumber(this.state.inputValue, this.state.selectedCountry)
-              ? 'true'
-              : 'false'}
-          </Text>
-        </View>
+
+        <Text style={{ marginTop: 12 }}>
+          {`Country: ${this.state.country?.translations?.eng?.common || '-'}
+National: ${this.state.phone}`}
+        </Text>
       </View>
     );
   }
 }
 ```
 
-- ### Function Component:
+<br>
 
-```jsx
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import PhoneInput, {
-  isValidPhoneNumber,
-} from 'rn-international-phone-number';
-
-export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [inputValue, setInputValue] = useState('');
-
-  function handleInputValue(phoneNumber) {
-    setInputValue(phoneNumber);
-  }
-
-  function handleSelectedCountry(country) {
-    setSelectedCountry(country);
-  }
-
-  return (
-    <View style={{ width: '100%', flex: 1, padding: 24 }}>
-      <PhoneInput
-        value={inputValue}
-        onChangePhoneNumber={handleInputValue}
-        selectedCountry={selectedCountry}
-        onChangeSelectedCountry={handleSelectedCountry}
-      />
-      <View style={{ marginTop: 10 }}>
-        <Text>
-          Country:{' '}
-          {`${selectedCountry?.translations?.eng?.common} (${selectedCountry?.cca2})`}
-        </Text>
-        <Text>
-          Phone Number:{' '}
-          {`${selectedCountry?.idd?.root} ${inputValue}`}
-        </Text>
-        <Text>
-          isValid:{' '}
-          {isValidPhoneNumber(inputValue, selectedCountry)
-            ? 'true'
-            : 'false'}
-        </Text>
-      </View>
-    </View>
-  );
-}
-```
-
-- ### Typescript + DefaultValue
+- ### Basic Usage (Function Component)
 
 ```tsx
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import PhoneInput, {
-  ICountry,
-  isValidPhoneNumber,
-} from 'rn-international-phone-number';
+import { Text, View } from 'react-native';
+import PhoneInput, { ICountry } from 'rn-international-phone-number';
 
 export default function App() {
-  const [selectedCountry, setSelectedCountry] =
-    useState<null | ICountry>(null);
-  const [inputValue, setInputValue] = useState<string>('');
-
-  function handleInputValue(phoneNumber: string) {
-    setInputValue(phoneNumber);
-  }
-
-  function handleSelectedCountry(country: ICountry) {
-    setSelectedCountry(country);
-  }
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState<ICountry | null>(null);
 
   return (
     <View style={{ width: '100%', flex: 1, padding: 24 }}>
       <PhoneInput
-        defaultValue="+12505550199"
-        value={inputValue}
-        onChangePhoneNumber={handleInputValue}
-        selectedCountry={selectedCountry}
-        onChangeSelectedCountry={handleSelectedCountry}
+        value={phone}
+        onChangePhoneNumber={setPhone}
+        country={country}
+        onChangeCountry={setCountry}
       />
-      <View style={{ marginTop: 10 }}>
-        <Text>
-          Country:{' '}
-          {`${selectedCountry?.translations?.eng?.common} (${selectedCountry?.cca2})`}
-        </Text>
-        <Text>
-          Phone Number:{' '}
-          {`${selectedCountry?.idd?.root} ${inputValue}`}
-        </Text>
-        <Text>
-          isValid:{' '}
-          {isValidPhoneNumber(inputValue, selectedCountry)
-            ? 'true'
-            : 'false'}
-        </Text>
-      </View>
+
+      <Text style={{ marginTop: 12 }}>
+        {`Country: ${country?.translations?.eng?.common || '-'}
+National: ${phone}`}
+      </Text>
     </View>
   );
 }
@@ -321,51 +219,33 @@ export default function App() {
 
 <br>
 
-## Intermediate Usage
-
-- ### Typescript + useRef + defaultValue
+- ### Using useRef
 
 ```tsx
 import React, { useRef } from 'react';
-import { View, Text } from 'react-native';
-import PhoneInput, {
-  ICountry,
-  IPhoneInputRef,
-} from 'rn-international-phone-number';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import PhoneInput, { IPhoneInputRef } from 'rn-international-phone-number';
 
 export default function App() {
   const phoneInputRef = useRef<IPhoneInputRef>(null);
 
-  function onSubmitRef() {
+  function onSubmit() {
     Alert.alert(
-      'Intermediate Result',
-      `Country: ${inputRef.current?.selectedCountry?.translations?.eng?.common} \nPhone Number: ${inputRef.current?.fullPhoneNumber} \nisValid: ${inputRef.current?.isValid}`
+      'Result',
+      `Country: ${phoneInputRef.current?.country?.translations?.eng?.common}
+National phone number: ${phoneInputRef.current?.nationalPhoneNumber}
+National phone number formatted: ${phoneInputRef.current?.nationalPhoneNumberFormatted}
+International phone number: ${phoneInputRef.current?.internationalPhoneNumber}
+International phone number formatted: ${phoneInputRef.current?.internationalPhoneNumberFormatted}
+isValidPhoneNumber: ${phoneInputRef.current?.isValidPhoneNumber}`
     );
   }
 
   return (
     <View style={{ width: '100%', flex: 1, padding: 24 }}>
-      <PhoneInput ref={phoneInputRef} defaultValue="+12505550199" />
-      <TouchableOpacity
-        style={{
-          width: '100%',
-          paddingVertical: 12,
-          backgroundColor: '#2196F3',
-          borderRadius: 4,
-          marginTop: 10,
-        }}
-        onPress={onSubmit}
-      >
-        <Text
-          style={{
-            color: '#F3F3F3',
-            textAlign: 'center',
-            fontSize: 16,
-            fontWeight: 'bold',
-          }}
-        >
-          Submit
-        </Text>
+      <PhoneInput ref={phoneInputRef} />
+      <TouchableOpacity onPress={onSubmit} style={{ marginTop: 12 }}>
+        <Text>Submit</Text>
       </TouchableOpacity>
     </View>
   );
@@ -374,79 +254,33 @@ export default function App() {
 
 <br>
 
-## Advanced Usage
-
-- ### React-Hook-Form + Typescript + defaultValue
+- ### Setting a default value
 
 ```tsx
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import PhoneInput, {
-  ICountry,
-  isValidPhoneNumber,
-} from 'rn-international-phone-number';
-import { Controller, FieldValues } from 'react-hook-form';
-
-interface FormProps extends FieldValues {
-  phoneNumber: string;
-}
+import React, { useRef } from 'react';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import PhoneInput, { IPhoneInputRef } from 'rn-international-phone-number';
 
 export default function App() {
-  const [selectedCountry, setSelectedCountry] = useState<
-    undefined | ICountry
-  >(undefined);
+  const phoneInputRef = useRef<IPhoneInputRef>(null);
 
-  function handleSelectedCountry(country: ICountry) {
-    setSelectedCountry(country);
-  }
-
-  function onSubmit(form: FormProps) {
-    const phoneNumber = `${selectedCountry?.idd?.root} ${form.phoneNumber}`;
-    const isValid = isValidPhoneNumber(
-      form.phoneNumber,
-      selectedCountry as ICountry
-    );
-
+  function onSubmit() {
     Alert.alert(
-      'Advanced Result',
-      `Country: ${selectedCountry?.translations?.eng?.common} \nPhone Number: ${phoneNumber} \nisValid: ${isValid}`
+      'Result',
+      `Country: ${phoneInputRef.current?.country?.translations?.eng?.common}
+National phone number: ${phoneInputRef.current?.nationalPhoneNumber}
+National phone number formatted: ${phoneInputRef.current?.nationalPhoneNumberFormatted}
+International phone number: ${phoneInputRef.current?.internationalPhoneNumber}
+International phone number formatted: ${phoneInputRef.current?.internationalPhoneNumberFormatted}
+isValidPhoneNumber: ${phoneInputRef.current?.isValidPhoneNumber}`
     );
   }
 
   return (
     <View style={{ width: '100%', flex: 1, padding: 24 }}>
-      <Controller
-        name="phoneNumber"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <PhoneInput
-            defaultValue="+12505550199"
-            value={value}
-            onChangePhoneNumber={onChange}
-            selectedCountry={selectedCountry}
-            onChangeSelectedCountry={handleSelectedCountry}
-          />
-        )}
-      />
-      <TouchableOpacity
-        style={{
-          width: '100%',
-          paddingVertical: 12,
-          backgroundColor: '#2196F3',
-          borderRadius: 4,
-        }}
-        onPress={handleSubmit(onSubmit)}
-      >
-        <Text
-          style={{
-            color: '#F3F3F3',
-            textAlign: 'center',
-            fontSize: 16,
-            fontWeight: 'bold',
-          }}
-        >
-          Submit
-        </Text>
+      <PhoneInput ref={phoneInputRef} defaultPhoneNumber="+12505550199" />
+      <TouchableOpacity onPress={onSubmit} style={{ marginTop: 12 }}>
+        <Text>Submit</Text>
       </TouchableOpacity>
     </View>
   );
@@ -455,8 +289,150 @@ export default function App() {
 
 > Observations:
 >
-> 1. You need to use a default value with the following format: `+(country callling code)(area code)(number phone)`
-> 2. The lib has the mechanism to set the flag and mask of the supplied `defaultValue`. However, if the supplied `defaultValue` does not match any international standard, the `input mask of the defaultValue` will be set to "BR" (please make sure that the default value is in the format mentioned above).
+> 1. Use `defaultPhoneNumber` with the following format: `+(country code)(area code)(number)`.
+> 2. If `defaultPhoneNumber` is not E.164-compatible, the component keeps the best possible local formatting.
+
+<br>
+
+- ### Controlled by React Hook Form
+
+```tsx
+import React, { useRef } from 'react';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { useForm } from 'react-hook-form';
+import PhoneInput, {
+  IPhoneInputRef,
+  getNationalPhoneNumber,
+} from 'rn-international-phone-number';
+
+type FormValues = {
+  name: string;
+  phone: string;
+};
+
+export default function App() {
+  const phoneInputRef = useRef<IPhoneInputRef>(null);
+  const { setValue, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      name: '',
+      phone: getNationalPhoneNumber('+12505550199'),
+    },
+  });
+
+  const onSubmit = handleSubmit((data) => {
+    Alert.alert('Result', JSON.stringify(data, null, 2));
+  });
+
+  function onPressSubmit() {
+    // Sync ref value into RHF right before submit.
+    setValue(
+      'phone',
+      phoneInputRef.current?.internationalPhoneNumberFormatted || ''
+    );
+    onSubmit();
+  }
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput ref={phoneInputRef} defaultPhoneNumber="+12505550199" />
+      <TouchableOpacity onPress={onPressSubmit} style={{ marginTop: 12 }}>
+        <Text>Submit with RHF</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+```
+
+> Observations:
+>
+> 1. Use `defaultPhoneNumber` with the following format: `+(country code)(area code)(number)`.
+> 2. If `defaultPhoneNumber` is not E.164-compatible, the component keeps the best possible local formatting.
+
+<br>
+
+- ### Controlled by Formik
+
+```tsx
+import React, { useRef } from 'react';
+import { View } from 'react-native';
+import { useFormik } from 'formik';
+import PhoneInput, {
+  IPhoneInputRef,
+  getNationalPhoneNumber,
+} from 'rn-international-phone-number';
+
+type FormValues = {
+  phone: string;
+};
+
+export default function App() {
+  const phoneInputRef = useRef<IPhoneInputRef>(null);
+
+  const formik = useFormik<FormValues>({
+    initialValues: {
+      phone: getNationalPhoneNumber('+12505550199'),
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <PhoneInput
+        ref={phoneInputRef}
+        defaultPhoneNumber="+12505550199"
+        value={formik.values.phone}
+        onChangePhoneNumber={(next) =>
+          formik.setFieldValue('phone', next)
+        }
+      />
+    </View>
+  );
+}
+```
+
+<br>
+
+- ### Controlled by TanStack Form
+
+```tsx
+import React, { useRef } from 'react';
+import { View } from 'react-native';
+import { useForm } from '@tanstack/react-form';
+import PhoneInput, {
+  IPhoneInputRef,
+  getNationalPhoneNumber,
+} from 'rn-international-phone-number';
+
+export default function App() {
+  const phoneInputRef = useRef<IPhoneInputRef>(null);
+
+  const form = useForm({
+    defaultValues: {
+      phone: getNationalPhoneNumber('+12505550199'),
+    },
+    onSubmit: async ({ value }) => {
+      console.log(value);
+    },
+  });
+
+  return (
+    <View style={{ width: '100%', flex: 1, padding: 24 }}>
+      <form.Field name="phone">
+        {(field) => (
+          <PhoneInput
+            ref={phoneInputRef}
+            defaultPhoneNumber="+12505550199"
+            value={field.state.value}
+            onChangePhoneNumber={(next) => field.handleChange(next)}
+          />
+        )}
+      </form.Field>
+    </View>
+  );
+}
+```
 
 <br>
 
@@ -512,12 +488,13 @@ export default function App() {
 | -------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
 | `theme`                                | `ITheme`                           | Theme configuration for the component                                     |
 | `language`                             | `ILanguage`                        | Language for country names and UI                                         |
-| `defaultValue`                         | `string`                           | Default phone number value (format: `+(country code)(area code)(number)`) |
-| `value`                                | `string`                           | Controlled phone number value                                             |
-| `onChangePhoneNumber`                  | `(phoneNumber: string) => void`    | Callback when phone number changes                                        |
-| `defaultCountry`                       | `ICountryCca2`                     | Default selected country (ISO 3166-1 alpha-2)                             |
-| `selectedCountry`                      | `ICountry`                         | Currently selected country object                                         |
-| `onChangeSelectedCountry`              | `(country: ICountry) => void`      | Callback when country selection changes                                   |
+| `defaultPhoneNumber`                   | `string`                           | Default phone number value (format: `+(country code)(area code)(number)`) |
+| `defaultValue`                         | `string`                           | Deprecated alias of `defaultPhoneNumber`                                  |
+| `value`                                | `string`                           | Controlled phone number value                                              |
+| `onChangePhoneNumber`                  | `(phoneNumber: string) => void`    | Callback fired when the phone number changes                              |
+| `defaultCountry`                       | `ICountryCca2`                     | Default selected country (ISO 3166-1 alpha-2). |
+| `country`                              | `ICountry \| null`                 | Controlled selected country                                                |
+| `onChangeCountry`                      | `(country: ICountry) => void`      | Callback fired when selected country changes                              |
 | `placeholder`                          | `string`                           | Placeholder text for phone input                                          |
 | `phoneInputPlaceholderTextColor`       | `string`                           | Color of placeholder text                                                 |
 | `phoneInputSelectionColor`             | `string`                           | Color of text selection                                                   |
@@ -540,8 +517,8 @@ export default function App() {
 | `modalSearchInputSelectionColor`       | `string`                           | Color of modal search text selection                                      |
 | `modalPopularCountriesTitle`           | `string`                           | Title for popular countries section                                       |
 | `modalAllCountriesTitle`               | `string`                           | Title for all countries section                                           |
-| `modalSectionTitleComponent`           | `() => ReactNode`                  | Custom section title component                                            |
-| `modalCountryItemComponent`            | `() => ReactNode`                  | Custom country item component                                             |
+| `modalSectionTitleComponent`           | `(item: ISectionTitle) => ReactElement` | Custom section title component                                       |
+| `modalCountryItemComponent`            | `(item: ICountry) => ReactElement`      | Custom country item component                                        |
 | `modalCloseButtonComponent`            | `() => ReactNode`                  | Custom close button component                                             |
 | `modalSectionTitleDisabled`            | `boolean`                          | Disable section titles in modal                                           |
 | `modalNotFoundCountryMessage`          | `string`                           | Message when no countries found                                           |
@@ -557,7 +534,51 @@ export default function App() {
 | `initialBottomsheetHeight`             | `number \| string`                 | Initial height of the bottom sheet modal                                  |
 | `minBottomsheetHeight`                 | `number \| string`                 | Minimum height of the bottom sheet modal                                  |
 | `maxBottomsheetHeight`                 | `number \| string`                 | Maximum height of the bottom sheet modal                                  |
-| `ref`                                  | `Ref<IPhoneInputRef>`              | Ref to access component methods                                           |
+| `ref`                                  | `Ref<IPhoneInputRef>`              | Ref to access national/international values, country, isValidPhoneNumber and native input methods |
+
+<br>
+
+## Ref Properties ([IPhoneInputRef](lib/interfaces/phoneInputRef.ts))
+
+The `ref` prop gives imperative access to the component. Below is the full interface:
+
+### Phone Number Values
+
+| Property / Method                    | Type       | Description                                              |
+| ------------------------------------ | ---------- | -------------------------------------------------------- |
+| `nationalPhoneNumber`                | `string`   | National number without country code (digits only)       |
+| `getNationalPhoneNumber()`           | `string`   | Method form of `nationalPhoneNumber`                     |
+| `nationalPhoneNumberFormatted`       | `string`   | National number with formatting applied                  |
+| `getNationalPhoneNumberFormatted()`  | `string`   | Method form of `nationalPhoneNumberFormatted`            |
+| `internationalPhoneNumber`           | `string`   | Country calling code + national number (digits only)     |
+| `getInternationalPhoneNumber()`      | `string`   | Method form of `internationalPhoneNumber`                |
+| `internationalPhoneNumberFormatted`  | `string`   | Country calling code + national number with formatting   |
+| `getInternationalPhoneNumberFormatted()` | `string` | Method form of `internationalPhoneNumberFormatted`      |
+| `internationalPhoneNumberLength`     | `number`   | Total digit count of calling code + phone number         |
+
+### Country & Validation
+
+| Property / Method      | Type       | Description                                                  |
+| ---------------------- | ---------- | ------------------------------------------------------------ |
+| `country`              | `ICountry` | Currently selected country object                            |
+| `getCountry()`         | `ICountry` | Method form of `country`                                     |
+| `isValidPhoneNumber`   | `boolean`  | Whether the current number is valid for the selected country |
+| `props`                | `PhoneInputProps` | All props passed to the component                     |
+
+### TextInput Methods (forwarded)
+
+| Method                  | Description                                  |
+| ----------------------- | -------------------------------------------- |
+| `focus()`               | Focus the input                              |
+| `blur()`                | Blur the input                               |
+| `clear()`               | Clear the input                              |
+| `isFocused()`           | Returns `true` if the input is focused       |
+| `setNativeProps(props)` | Set native props on the underlying TextInput |
+| `measure(callback)`     | Measure component dimensions                 |
+| `measureInWindow(callback)` | Measure dimensions relative to the window |
+| `measureLayout(node, onSuccess, onFail)` | Measure position relative to another node |
+
+> **Tip:** `ref.isValidPhoneNumber` uses the currently selected country automatically. The exported `isValidPhoneNumber(phoneNumber, country)` function requires passing the country explicitly — useful for validation outside the component.
 
 <br>
 
@@ -565,13 +586,14 @@ export default function App() {
 
 | Function                    | Parameters                                 | Return Type               | Description                                                           |
 | --------------------------- | ------------------------------------------ | ------------------------- | --------------------------------------------------------------------- |
-| `getAllCountries`           | `()`                                       | `ICountry[]`              | Returns an array of all available countries                           |
-| `getCountriesByCallingCode` | `(callingCode: string)`                    | `ICountry[] \| undefined` | Returns countries that match the given calling code                   |
-| `getCountryByCca2`          | `(cca2: string)`                           | `ICountry \| undefined`   | Returns a country by its ISO 3166-1 alpha-2 code                      |
-| `getCountriesByName`        | `(name: string, language: ILanguage)`      | `ICountry[] \| undefined` | Returns countries that match the given name in the specified language |
-| `getCountryByPhoneNumber`   | `(phoneNumber: string)`                    | `ICountry \| undefined`   | Returns the country that matches the given phone number               |
-| `isValidPhoneNumber`        | `(phoneNumber: string, country: ICountry)` | `boolean`                 | Validates if a phone number is valid for the given country            |
-| `getPhoneNumberLength`      | `(country: ICountry, phoneNumber: string)` | `number`                  | Returns total digits of calling code + phone number                   |
+| `getAllCountries`                 | `()`                                       | `ICountry[]`              | Returns an array of all available countries                           |
+| `getNationalPhoneNumber`          | `(internationalPhoneNumber: string)`                    | `string`                  | Returns the national phone number from an international phone number               |
+| `getCountriesByCallingCode`       | `(callingCode: string)`                    | `ICountry[] \| undefined` | Returns countries that match the given calling code                   |
+| `getCountryByCca2`                | `(cca2: string)`                           | `ICountry \| undefined`   | Returns a country by its ISO 3166-1 alpha-2 code                      |
+| `getCountriesByName`              | `(name: string, language: ILanguage)`      | `ICountry[] \| undefined` | Returns countries that match the given name in the specified language |
+| `getCountryByPhoneNumber`         | `(phoneNumber: string)`                    | `ICountry \| undefined`   | Returns the country that matches the given phone number               |
+| `isValidPhoneNumber`              | `(phoneNumber: string, country: ICountry)` | `boolean`                 | Validates if a phone number is valid for the given country            |
+| `getInternationalPhoneNumberLength` | `(country: ICountry, phoneNumber: string)` | `number`                | Returns total digits of calling code + phone number                   |
 
 </br>
 
@@ -652,24 +674,26 @@ Ensure your app is inclusive and usable by everyone by leveraging built-in React
 
 ### Custom Accessibility Props Available
 
-- `accessibilityLabelPhoneInput`: Accessibility label for the phone input;
-- `accessibilityHintPhoneInput`: Accessibility hint for the phone input;
-- `accessibilityLabelCountriesButton`: Accessibility label for the countries button to open modal;
-- `accessibilityHintCountriesButton`: Accessibility hint for the countries button to open modal;
-- `accessibilityLabelBackdrop`: Accessibility label for the backdrop;
-- `accessibilityHintBackdrop`: Accessibility hint for the backdrop;
-- `accessibilityLabelCloseButton`: Accessibility label for the close button;
-- `accessibilityHintCloseButton`: Accessibility hint for the close button;
-- `accessibilityLabelSearchInput`: Accessibility label for the search input;
-- `accessibilityHintSearchInput`: Accessibility hint for the search input;
-- `accessibilityLabelCountriesList`: Accessibility label for the countries list;
-- `accessibilityHintCountriesList`: Accessibility hint for the countries list;
-- `accessibilityLabelCountryItem`: Accessibility label for individual country items;
-- `accessibilityHintCountryItem`: Accessibility hint for individual country;
-- `accessibilityLabelAlphabetFilter`: Accessibility label for alphabet filter list;
-- `accessibilityHintAlphabetFilter`: Accessibility hint for alphabet filter list;
-- `accessibilityLabelAlphabetLetter`: Accessibility label for individual alphabet filter letter;
-- `accessibilityHintAlphabetLetter`: Accessibility hint for individual alphabet filter letter.
+| Prop                                  | Description                                          |
+| ------------------------------------- | ---------------------------------------------------- |
+| `accessibilityLabelPhoneInput`        | Accessibility label for the phone input              |
+| `accessibilityHintPhoneInput`         | Accessibility hint for the phone input               |
+| `accessibilityLabelCountriesButton`   | Accessibility label for the countries button to open modal |
+| `accessibilityHintCountriesButton`    | Accessibility hint for the countries button to open modal  |
+| `accessibilityLabelBackdrop`          | Accessibility label for the backdrop                 |
+| `accessibilityHintBackdrop`           | Accessibility hint for the backdrop                  |
+| `accessibilityLabelCloseButton`       | Accessibility label for the close button             |
+| `accessibilityHintCloseButton`        | Accessibility hint for the close button              |
+| `accessibilityLabelSearchInput`       | Accessibility label for the search input             |
+| `accessibilityHintSearchInput`        | Accessibility hint for the search input              |
+| `accessibilityLabelCountriesList`     | Accessibility label for the countries list           |
+| `accessibilityHintCountriesList`      | Accessibility hint for the countries list            |
+| `accessibilityLabelCountryItem`       | Accessibility label for individual country items     |
+| `accessibilityHintCountryItem`        | Accessibility hint for individual country items      |
+| `accessibilityLabelAlphabetFilter`    | Accessibility label for the alphabet filter list     |
+| `accessibilityHintAlphabetFilter`     | Accessibility hint for the alphabet filter list      |
+| `accessibilityLabelAlphabetLetter`    | Accessibility label for individual alphabet filter letters |
+| `accessibilityHintAlphabetLetter`     | Accessibility hint for individual alphabet filter letters  |
 
 <br>
 

@@ -13,7 +13,7 @@ import { ITheme } from './theme';
 import { IPhoneInputStyles } from './phoneInputStyles';
 import { IPhoneInputRef } from './phoneInputRef';
 
-interface BasePhoneInput extends TextInputProps {
+interface BasePhoneInput extends Omit<TextInputProps, 'value' | 'onChangeText'> {
   theme?: ITheme;
   language?: ICountrySelectLanguages;
   placeholder?: string;
@@ -24,7 +24,15 @@ interface BasePhoneInput extends TextInputProps {
   disabled?: boolean;
   modalDisabled?: boolean;
   defaultCountry?: ICountryCca2;
+  defaultPhoneNumber?: string;
+  /**
+   * @deprecated Use defaultPhoneNumber instead.
+   */
   defaultValue?: string;
+  value?: string;
+  onChangePhoneNumber?: (phoneNumber: string) => void;
+  country?: ICountry | null;
+  onChangeCountry?: (country: ICountry) => void;
   customMask?: string;
   visibleCountries?: Array<ICountryCca2>;
   hiddenCountries?: Array<ICountryCca2>;
@@ -41,6 +49,7 @@ interface BasePhoneInput extends TextInputProps {
   modalSearchInputPlaceholderTextColor?: string;
   modalSearchInputPlaceholder?: string;
   modalSearchInputSelectionColor?: string;
+  modalSearchInputFocusedBorderColor?: string;
   modalPopularCountriesTitle?: string;
   modalAllCountriesTitle?: string;
   modalSectionTitleComponent?: (
@@ -79,24 +88,7 @@ interface BasePhoneInput extends TextInputProps {
   accessibilityHintAlphabetFilter?: string;
   accessibilityLabelAlphabetLetter?: string;
   accessibilityHintAlphabetLetter?: string;
-}
-
-interface PhoneInputPropsWithoutRef extends BasePhoneInput {
-  value: string;
-  onChangePhoneNumber: (phoneNumber: string) => void;
-  selectedCountry: ICountry | undefined | null;
-  onChangeSelectedCountry: (country: ICountry) => void;
   ref?: Ref<IPhoneInputRef>;
 }
 
-interface PhoneInputPropsWithRef extends BasePhoneInput {
-  ref: Ref<IPhoneInputRef>;
-  value?: string;
-  onChangePhoneNumber?: (phoneNumber: string) => void;
-  selectedCountry?: ICountry | undefined | null;
-  onChangeSelectedCountry?: (country: ICountry) => void;
-}
-
-export type PhoneInputProps =
-  | PhoneInputPropsWithoutRef
-  | PhoneInputPropsWithRef;
+export type PhoneInputProps = BasePhoneInput;

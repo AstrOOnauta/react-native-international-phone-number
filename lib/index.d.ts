@@ -9,6 +9,10 @@ declare function PhoneInput(props: PhoneInputProps): JSX.Element;
 
 declare function getAllCountries(): ICountry[];
 
+declare function getNationalPhoneNumber(
+  phoneNumber: string,
+): string;
+
 declare function getCountryByPhoneNumber(
   phoneNumber: string,
 ): ICountry | undefined;
@@ -29,8 +33,8 @@ declare function isValidPhoneNumber(
   country: ICountry,
 ): boolean;
 
-declare function getPhoneNumberLength(
-  selectedCountry: ICountry,
+declare function getInternationalPhoneNumberLength(
+  country: ICountry,
   phoneNumber: string,
 ): number;
 
@@ -38,12 +42,13 @@ export default PhoneInput;
 
 export {
   getAllCountries,
+  getNationalPhoneNumber,
   getCountryByPhoneNumber,
   getCountryByCca2,
   getCountriesByCallingCode,
   getCountriesByName,
   isValidPhoneNumber,
-  getPhoneNumberLength,
+  getInternationalPhoneNumberLength,
   ITheme,
   ICountrySelectLanguages,
   ICountry,

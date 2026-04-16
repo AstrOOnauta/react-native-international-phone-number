@@ -5,7 +5,6 @@ import { PhoneInputProps } from './phoneInputProps';
 
 export interface IPhoneInputRef extends TextInput {
   props: PhoneInputProps;
-  // Métodos nativos do TextInput
   onFocus: () => void;
   focus: () => void;
   blur: () => void;
@@ -40,14 +39,16 @@ export interface IPhoneInputRef extends TextInput {
     ) => void,
     onFail: () => void
   ) => void;
-  getValue: () => string;
-  value: string;
-  getValueFormatted: () => string;
-  valueFormatted: string;
-  getFullPhoneNumber: () => string;
-  fullPhoneNumber: string;
-  phoneNumberLength: number;
-  getSelectedCountry: () => ICountry;
-  selectedCountry: ICountry;
-  isValid: boolean;
+  getNationalPhoneNumber: () => string;
+  nationalPhoneNumber: string;
+  getNationalPhoneNumberFormatted: () => string;
+  nationalPhoneNumberFormatted: string;
+  getInternationalPhoneNumber: () => string;
+  internationalPhoneNumber: string;
+  getInternationalPhoneNumberFormatted: () => string;
+  internationalPhoneNumberFormatted: string;
+  internationalPhoneNumberLength: number;
+  getCountry: () => ICountry;
+  country: ICountry;
+  isValidPhoneNumber: boolean;
 }

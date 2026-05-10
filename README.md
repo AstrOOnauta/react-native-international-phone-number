@@ -1,7 +1,7 @@
 <br>
 
 <div align="center">
-  <img src="https://astroonauta.github.io/react-native-international-phone-number/lib/assets/images/preview.png" alt="React Native International Phone Number Input Lib preview">
+  <img src="https://astroonauta.github.io/react-native-international-phone-number/lib/assets/images/preview.png" alt="rn-international-phone-number preview - React Native international phone number input, country dial code selector, flag picker with auto phone mask, validation and i18n (33 languages)">
 </div>
 
 <br>
@@ -10,22 +10,22 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/rn-international-phone-number">
-    <img src="https://img.shields.io/npm/v/rn-international-phone-number.svg?style=flat-square">
+    <img src="https://img.shields.io/npm/v/rn-international-phone-number.svg?style=flat-square" alt="rn-international-phone-number npm version - React Native international phone number input">
   </a>
   <a href="https://www.npmjs.com/package/rn-international-phone-number">
-    <img src="https://img.shields.io/npm/dt/rn-international-phone-number.svg?style=flat-square&color=success">
+    <img src="https://img.shields.io/npm/dt/rn-international-phone-number.svg?style=flat-square&color=success" alt="rn-international-phone-number npm downloads - React Native international phone number input">
   </a>
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
-    <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success"/>
+    <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success" alt="GitHub stars - React Native international phone number"/>
   </a>
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/issues">
-    <img src="https://img.shields.io/github/issues/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue"/>
+    <img src="https://img.shields.io/github/issues/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue" alt="GitHub issues - React Native international phone number"/>
   </a>
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/pulls">
-    <img src="https://img.shields.io/github/issues-pr/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue"/>
+    <img src="https://img.shields.io/github/issues-pr/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=blue" alt="GitHub pull requests - rn-international-phone-number"/>
   </a>
   <a href="LICENSE.md">
-    <img src="https://img.shields.io/:license-isc-yellow.svg?style=flat-square"/>
+    <img src="https://img.shields.io/:license-isc-yellow.svg?style=flat-square" alt="ISC License"/>
   </a>
 </p>
 
@@ -33,7 +33,7 @@
 
 <div align="center">
     <a href="https://www.buymeacoffee.com/astroonautadev" target="_blank">
-        <img src="https://survivingmexico.files.wordpress.com/2018/07/button-gif.gif" alt="Buy Me A Coffee" style="height: auto !important;width: 60% !important;">
+        <img src="https://survivingmexico.files.wordpress.com/2018/07/button-gif.gif" alt="Buy Me A Coffee - Support rn-international-phone-number" style="height: auto !important;width: 60% !important;">
     </a>
 </div>
 
@@ -47,7 +47,7 @@
 - 🧩 **Flexible Integration** – Supports both **React Native CLI & Expo**;
 - 👨‍💻 **Component Versatility** - Works with **functional & class components**;
 - 🎨 **Modern UI** - Custom component with sleek design;
-- 🈶 **internationalization** - Supports **32 languages**;
+- 🈶 **Internationalization** - Supports **33 languages**, accepts both **ISO 639-1** (`pt`, `en`, `es`) and **ISO 639-2** (`por`, `eng`, `spa`);
 - 🧪 **Test Ready** – Smooth testing integration;
 - ♿ **Accessibility** – Accessibility standards to screen readers.
 
@@ -177,7 +177,7 @@ export default class App extends React.Component {
         />
 
         <Text style={{ marginTop: 12 }}>
-          {`Country: ${this.state.country?.translations?.eng?.common || '-'}
+          {`Country: ${this.state.country?.name?.common || '-'}
 National: ${this.state.phone}`}
         </Text>
       </View>
@@ -209,7 +209,7 @@ export default function App() {
       />
 
       <Text style={{ marginTop: 12 }}>
-        {`Country: ${country?.translations?.eng?.common || '-'}
+        {`Country: ${country?.name?.common || '-'}
 National: ${phone}`}
       </Text>
     </View>
@@ -232,7 +232,7 @@ export default function App() {
   function onSubmit() {
     Alert.alert(
       'Result',
-      `Country: ${phoneInputRef.current?.country?.translations?.eng?.common}
+      `Country: ${phoneInputRef.current?.country?.name?.common}
 National phone number: ${phoneInputRef.current?.nationalPhoneNumber}
 National phone number formatted: ${phoneInputRef.current?.nationalPhoneNumberFormatted}
 International phone number: ${phoneInputRef.current?.internationalPhoneNumber}
@@ -267,7 +267,7 @@ export default function App() {
   function onSubmit() {
     Alert.alert(
       'Result',
-      `Country: ${phoneInputRef.current?.country?.translations?.eng?.common}
+      `Country: ${phoneInputRef.current?.country?.name?.common}
 National phone number: ${phoneInputRef.current?.nationalPhoneNumber}
 National phone number formatted: ${phoneInputRef.current?.nationalPhoneNumberFormatted}
 International phone number: ${phoneInputRef.current?.internationalPhoneNumber}
@@ -590,7 +590,7 @@ The `ref` prop gives imperative access to the component. Below is the full inter
 | `getNationalPhoneNumber`          | `(internationalPhoneNumber: string)`                    | `string`                  | Returns the national phone number from an international phone number               |
 | `getCountriesByCallingCode`       | `(callingCode: string)`                    | `ICountry[] \| undefined` | Returns countries that match the given calling code                   |
 | `getCountryByCca2`                | `(cca2: string)`                           | `ICountry \| undefined`   | Returns a country by its ISO 3166-1 alpha-2 code                      |
-| `getCountriesByName`              | `(name: string, language: ILanguage)`      | `ICountry[] \| undefined` | Returns countries that match the given name in the specified language |
+| `getCountriesByName`              | `(name: string, language?: ILanguage)`     | `ICountry[]`              | Returns countries that match the given name in the specified language |
 | `getCountryByPhoneNumber`         | `(phoneNumber: string)`                    | `ICountry \| undefined`   | Returns the country that matches the given phone number               |
 | `isValidPhoneNumber`              | `(phoneNumber: string, country: ICountry)` | `boolean`                 | Validates if a phone number is valid for the given country            |
 | `getInternationalPhoneNumberLength` | `(country: ICountry, phoneNumber: string)` | `number`                | Returns total digits of calling code + phone number                   |
@@ -599,43 +599,43 @@ The `ref` prop gives imperative access to the component. Below is the full inter
 
 ## Supported languages
 
-The `language` prop supports the following values:
+The `language` prop accepts either an ISO 639-1 code (2 letters) or an ISO 639-2 code (3 letters):
 
-| Code       | Language            |
-| ---------- | ------------------- |
-| `ara`      | Arabic              |
-| `bel`      | Belarusian          |
-| `bre`      | Breton              |
-| `bul`      | Bulgarian           |
-| `ces`      | Czech               |
-| `deu`      | German              |
-| `ell`      | Greek               |
-| `eng`      | English             |
-| `est`      | Estonian            |
-| `fin`      | Finnish             |
-| `fra`      | French              |
-| `heb`      | Hebrew              |
-| `hrv`      | Croatian            |
-| `hun`      | Hungarian           |
-| `ita`      | Italian             |
-| `jpn`      | Japanese            |
-| `kor`      | Korean              |
-| `nld`      | Dutch               |
-| `per`      | Persian             |
-| `pol`      | Polish              |
-| `por`      | Portuguese          |
-| `ron`      | Romanian            |
-| `rus`      | Russian             |
-| `slk`      | Slovak              |
-| `spa`      | Spanish             |
-| `srp`      | Serbian             |
-| `swe`      | Swedish             |
-| `tur`      | Turkish             |
-| `ukr`      | Ukrainian           |
-| `urd`      | Urdu                |
-| `zho`      | Chinese             |
-| `zho-Hans` | Simplified Chinese  |
-| `zho-Hant` | Traditional Chinese |
+| ISO 639-1 | ISO 639-2  | Language            |
+| --------- | ---------- | ------------------- |
+| `ar`      | `ara`      | Arabic              |
+| `be`      | `bel`      | Belarusian          |
+| `br`      | `bre`      | Breton              |
+| `bg`      | `bul`      | Bulgarian           |
+| `cs`      | `ces`      | Czech               |
+| `de`      | `deu`      | German              |
+| `el`      | `ell`      | Greek               |
+| `en`      | `eng`      | English             |
+| `et`      | `est`      | Estonian            |
+| `fi`      | `fin`      | Finnish             |
+| `fr`      | `fra`      | French              |
+| `he`      | `heb`      | Hebrew              |
+| `hr`      | `hrv`      | Croatian            |
+| `hu`      | `hun`      | Hungarian           |
+| `it`      | `ita`      | Italian             |
+| `ja`      | `jpn`      | Japanese            |
+| `ko`      | `kor`      | Korean              |
+| `nl`      | `nld`      | Dutch               |
+| `fa`      | `per`      | Persian             |
+| `pl`      | `pol`      | Polish              |
+| `pt`      | `por`      | Portuguese          |
+| `ro`      | `ron`      | Romanian            |
+| `ru`      | `rus`      | Russian             |
+| `sk`      | `slk`      | Slovak              |
+| `es`      | `spa`      | Spanish             |
+| `sr`      | `srp`      | Serbian             |
+| `sv`      | `swe`      | Swedish             |
+| `tr`      | `tur`      | Turkish             |
+| `uk`      | `ukr`      | Ukrainian           |
+| `ur`      | `urd`      | Urdu                |
+| `zh`      | `zho`      | Chinese             |
+| `zh-Hans` | `zho-Hans` | Simplified Chinese  |
+| `zh-Hant` | `zho-Hant` | Traditional Chinese |
 
 <br>
 
@@ -717,7 +717,7 @@ Ensure your app is inclusive and usable by everyone by leveraging built-in React
 
 <br>
 
-<div align = "center">
+<div align="center">
 	<br>
 	  Thanks for stopping by! 😁
 	<br>

@@ -40,12 +40,12 @@
   },
   "homepage": "https://github.com/AstrOOnauta/react-native-international-phone-number",
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+    "react": "^18.2.0",
+    "react-native": "^0.71.0"
   },
   "dependencies": {
-    "rn-country-select": "0.4.1",
-    "libphonenumber-js": "1.12.41"
+    "rn-country-select": "0.5.2",
+    "libphonenumber-js": "1.13.0"
   },
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.61.0"

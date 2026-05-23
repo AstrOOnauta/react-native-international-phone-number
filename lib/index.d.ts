@@ -5,6 +5,10 @@ import {ITheme} from './interfaces/theme';
 import {IPhoneInputRef} from './interfaces/phoneInputRef';
 import {PhoneInputProps} from './interfaces/phoneInputProps';
 import {PhoneNumberType} from './interfaces/phoneNumberType';
+import usePhoneInput, {
+  UsePhoneInputOptions,
+  UsePhoneInputResult,
+} from './hooks/usePhoneInput';
 
 declare function PhoneInput(props: PhoneInputProps): JSX.Element;
 
@@ -56,6 +60,9 @@ export {
   getInternationalPhoneNumberLength,
   getPhoneNumberType,
   PhoneNumberType,
+  usePhoneInput,
+  UsePhoneInputOptions,
+  UsePhoneInputResult,
   ITheme,
   ICountrySelectLanguages,
   ICountry,

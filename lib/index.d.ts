@@ -4,6 +4,7 @@ import {ICountry, ICountrySelectLanguages} from 'rn-country-select';
 import {ITheme} from './interfaces/theme';
 import {IPhoneInputRef} from './interfaces/phoneInputRef';
 import {PhoneInputProps} from './interfaces/phoneInputProps';
+import {PhoneNumberType} from './interfaces/phoneNumberType';
 
 declare function PhoneInput(props: PhoneInputProps): JSX.Element;
 
@@ -38,6 +39,10 @@ declare function getInternationalPhoneNumberLength(
   phoneNumber: string,
 ): number;
 
+declare function getPhoneNumberType(
+  phoneNumber: string,
+): PhoneNumberType | null;
+
 export default PhoneInput;
 
 export {
@@ -49,6 +54,8 @@ export {
   getCountriesByName,
   isValidPhoneNumber,
   getInternationalPhoneNumberLength,
+  getPhoneNumberType,
+  PhoneNumberType,
   ITheme,
   ICountrySelectLanguages,
   ICountry,

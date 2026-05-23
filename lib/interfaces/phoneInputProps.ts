@@ -12,6 +12,7 @@ import {
 import { ITheme } from './theme';
 import { IPhoneInputStyles } from './phoneInputStyles';
 import { IPhoneInputRef } from './phoneInputRef';
+import { PhoneNumberType } from './phoneNumberType';
 
 interface BasePhoneInput extends Omit<TextInputProps, 'value' | 'onChangeText'> {
   theme?: ITheme;
@@ -33,6 +34,7 @@ interface BasePhoneInput extends Omit<TextInputProps, 'value' | 'onChangeText'> 
   onChangePhoneNumber?: (phoneNumber: string) => void;
   country?: ICountry | null;
   onChangeCountry?: (country: ICountry) => void;
+  onPhoneNumberTypeChange?: (type: PhoneNumberType | null) => void;
   customMask?: string;
   visibleCountries?: Array<ICountryCca2>;
   hiddenCountries?: Array<ICountryCca2>;

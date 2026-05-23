@@ -1,6 +1,7 @@
 import { TextInput } from 'react-native';
 import { ICountry } from 'rn-country-select';
 
+import { PhoneNumberType } from './phoneNumberType';
 import { PhoneInputProps } from './phoneInputProps';
 
 export interface IPhoneInputRef extends TextInput {
@@ -51,4 +52,6 @@ export interface IPhoneInputRef extends TextInput {
   getCountry: () => ICountry;
   country: ICountry;
   isValidPhoneNumber: boolean;
+  phoneNumberType: PhoneNumberType | null;
+  getPhoneNumberType: () => PhoneNumberType | null;
 }

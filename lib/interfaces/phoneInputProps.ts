@@ -35,6 +35,11 @@ interface BasePhoneInput extends Omit<TextInputProps, 'value' | 'onChangeText'> 
   country?: ICountry | null;
   onChangeCountry?: (country: ICountry) => void;
   onPhoneNumberTypeChange?: (type: PhoneNumberType | null) => void;
+  onValidationChange?: (
+    isValid: boolean,
+    type: PhoneNumberType | null,
+    country: ICountry,
+  ) => void;
   customMask?: string;
   visibleCountries?: Array<ICountryCca2>;
   hiddenCountries?: Array<ICountryCca2>;

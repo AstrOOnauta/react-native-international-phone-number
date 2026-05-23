@@ -18,6 +18,7 @@ interface BasePhoneInput extends Omit<TextInputProps, 'value' | 'onChangeText'> 
   theme?: ITheme;
   language?: ICountrySelectLanguages;
   placeholder?: string;
+  placeholderType?: 'number' | 'text';
   phoneInputPlaceholderTextColor?: string;
   phoneInputSelectionColor?: string;
   phoneInputStyles?: IPhoneInputStyles;

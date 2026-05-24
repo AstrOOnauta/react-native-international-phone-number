@@ -5,6 +5,11 @@
   "description": "International mobile phone input component with mask for React Native",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -38,7 +43,7 @@
   "bugs": {
     "url": "https://github.com/AstrOOnauta/react-native-international-phone-number/issues"
   },
-  "homepage": "https://github.com/AstrOOnauta/react-native-international-phone-number",
+  "homepage": "https://astroonauta.github.io/react-native-international-phone-number/",
   "peerDependencies": {
     "react": ">=18.2.0",
     "react-native": ">=0.71.0"

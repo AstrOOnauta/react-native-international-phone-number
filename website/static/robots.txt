@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astroonauta.github.io/react-native-international-phone-number/sitemap.xml

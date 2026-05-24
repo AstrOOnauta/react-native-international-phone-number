@@ -29,7 +29,7 @@ export interface UsePhoneInputResult {
   isValidPhoneNumber: boolean;
   phoneNumberType: PhoneNumberType | null;
   setCountry: (country: ICountry) => void;
-  setPhoneNumber: (value: string) => void;
+  setPhoneNumber: (value: string, options?: { emitChange?: boolean }) => void;
   onChangePhoneNumber: (text: string) => void;
 }
 

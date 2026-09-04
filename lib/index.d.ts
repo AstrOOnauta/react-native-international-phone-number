@@ -1,7 +1,13 @@
 import {JSX} from 'react';
-import {ICountry, ICountrySelectLanguages} from 'rn-country-select';
+import {
+  ICountry,
+  ICountryCca2,
+  ICountrySelectLanguages,
+  ICountrySelectStyle,
+} from 'rn-country-select';
 
 import {ITheme} from './interfaces/theme';
+import {IPhoneInputStyles} from './interfaces/phoneInputStyles';
 import {IPhoneInputRef} from './interfaces/phoneInputRef';
 import {PhoneInputProps} from './interfaces/phoneInputProps';
 import {PhoneNumberType} from './interfaces/phoneNumberType';
@@ -65,7 +71,10 @@ export {
   UsePhoneInputResult,
   ITheme,
   ICountrySelectLanguages,
+  ICountrySelectStyle,
   ICountry,
+  ICountryCca2,
   IPhoneInputRef,
+  IPhoneInputStyles,
   PhoneInputProps,
 };

@@ -41,6 +41,8 @@
 
 International mobile phone input for **React Native**, **Expo** and **React Native Web**. Country dial code selector, flag picker, auto phone mask, validation, line-type detection, smart paste, and i18n for 33 languages.
 
+> ⚠️ **Install `rn-international-phone-number`.** This library was previously published as `react-native-international-phone-number`. The npm account behind that package is no longer under the author's control, so it is frozen at `v0.12.3`, receives no fixes or security patches from this project, and cannot be deprecated by the author. Every release from `v0.13.0` on lives here. See the [migration guide](https://astroonauta.github.io/react-native-international-phone-number/migration).
+
 ## Features
 
 - 🌎 **Phone Input Mask** – Auto-formatting per selected country
@@ -91,21 +93,92 @@ export default function App() {
 }
 ```
 
+## Common configurations
+
+Every prop with a copy-paste snippet lives in [Props by Example](https://astroonauta.github.io/react-native-international-phone-number/guides/props-by-example). The ones people reach for first:
+
+```tsx
+// Dark mode
+<PhoneInput theme="dark" />
+
+// Right-to-left layout
+<PhoneInput rtl language="ar" />
+
+// Starting country / starting number (E.164 — country is inferred)
+<PhoneInput defaultCountry="US" />
+<PhoneInput defaultPhoneNumber="+12505550199" />
+
+// Change the language of country names and modal copy (33 languages)
+<PhoneInput language="pt" />
+
+// Force one mask for every country
+<PhoneInput customMask="(###) ###-####" />
+
+// Restrict, exclude or pin countries in the modal
+<PhoneInput visibleCountries={['BR', 'PT', 'US']} />
+<PhoneInput hiddenCountries={['RU']} />
+<PhoneInput popularCountries={['BR', 'US']} />
+
+// Lock the country, or the whole input
+<PhoneInput defaultCountry="BR" modalDisabled />
+<PhoneInput disabled />
+
+// Validation and line type (MOBILE, FIXED_LINE, TOLL_FREE, VOIP…)
+<PhoneInput
+  onValidationChange={(isValid, type, country) => setCanSubmit(isValid)}
+  onPhoneNumberTypeChange={(type) => setLineType(type)}
+/>
+
+// Bottom sheet sizing (mobile) — 'popup' is the default on Web
+<PhoneInput modalType="bottomSheet" initialBottomsheetHeight="60%" showModalAlphabetFilter />
+
+// Replace the caret and the flag
+<PhoneInput
+  customCaret={() => <Icon name="chevron-down" size={20} />}
+  customFlag={(country) => <Image source={flags[country.cca2]} />}
+/>
+
+// Custom styles — full key list in the theming guide
+<PhoneInput
+  phoneInputStyles={{container: {borderRadius: 12}, input: {color: '#fff'}}}
+  modalStyles={{content: {backgroundColor: '#111827'}, countryName: {color: '#fff'}}}
+/>
+
+// Any TextInput prop works too (except `value` / `onChangeText`)
+<PhoneInput autoFocus onBlur={handleBlur} returnKeyType="done" testID="phone-input" />
+```
+
+Read the E.164 value for your backend from the ref:
+
+```tsx
+const ref = useRef<IPhoneInputRef>(null);
+
+<PhoneInput ref={ref} />;
+
+ref.current?.internationalPhoneNumber; // '+5511912345678'
+ref.current?.isValidPhoneNumber;       // true
+```
+
 ## Documentation
 
 | Topic | Link |
 | --- | --- |
+| Props by Example (all props) | [astroonauta.github.io/.../guides/props-by-example](https://astroonauta.github.io/react-native-international-phone-number/guides/props-by-example) |
 | Installation | [astroonauta.github.io/.../installation](https://astroonauta.github.io/react-native-international-phone-number/installation) |
 | Quick Start | [astroonauta.github.io/.../quick-start](https://astroonauta.github.io/react-native-international-phone-number/quick-start) |
-| Props API (51 props) | [astroonauta.github.io/.../api/props](https://astroonauta.github.io/react-native-international-phone-number/api/props) |
+| Props API | [astroonauta.github.io/.../api/props](https://astroonauta.github.io/react-native-international-phone-number/api/props) |
 | Ref API | [astroonauta.github.io/.../api/ref](https://astroonauta.github.io/react-native-international-phone-number/api/ref) |
 | `usePhoneInput` hook | [astroonauta.github.io/.../api/hooks](https://astroonauta.github.io/react-native-international-phone-number/api/hooks) |
 | Utility functions | [astroonauta.github.io/.../api/utilities](https://astroonauta.github.io/react-native-international-phone-number/api/utilities) |
-| Theming & styles | [astroonauta.github.io/.../guides/theming](https://astroonauta.github.io/react-native-international-phone-number/guides/theming) |
+| Theming, dark mode & RTL | [astroonauta.github.io/.../guides/theming](https://astroonauta.github.io/react-native-international-phone-number/guides/theming) |
+| Validation & line type | [astroonauta.github.io/.../guides/validation](https://astroonauta.github.io/react-native-international-phone-number/guides/validation) |
 | i18n (33 languages) | [astroonauta.github.io/.../guides/i18n](https://astroonauta.github.io/react-native-international-phone-number/guides/i18n) |
 | Accessibility | [astroonauta.github.io/.../guides/accessibility](https://astroonauta.github.io/react-native-international-phone-number/guides/accessibility) |
 | Testing | [astroonauta.github.io/.../guides/testing](https://astroonauta.github.io/react-native-international-phone-number/guides/testing) |
 | React Hook Form / Formik / TanStack Form | [astroonauta.github.io/.../examples](https://astroonauta.github.io/react-native-international-phone-number/examples/react-hook-form) |
+| FAQ & Troubleshooting | [astroonauta.github.io/.../faq](https://astroonauta.github.io/react-native-international-phone-number/faq) |
+| Migration guide | [astroonauta.github.io/.../migration](https://astroonauta.github.io/react-native-international-phone-number/migration) |
+| Changelog | [astroonauta.github.io/.../changelog](https://astroonauta.github.io/react-native-international-phone-number/changelog) |
 
 ## Contributing
 

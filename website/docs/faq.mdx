@@ -1,0 +1,217 @@
+---
+id: faq
+title: FAQ & Troubleshooting
+description: Answers to the most common problems with the React Native phone input — flags not showing, react-native-safe-area-context, E.164 output, validation before submit, Expo Go, default country.
+sidebar_label: FAQ & Troubleshooting
+sidebar_position: 8
+keywords:
+  - react native flag emoji not showing
+  - react native phone input troubleshooting
+  - react-native-safe-area-context
+  - E.164 react native
+  - expo phone input flags
+image: img/og.png
+---
+
+import Head from '@docusaurus/Head';
+
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Why are country flags not showing on Web or Android?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Flags are emoji. Platforms without an emoji font for regional indicator symbols render them as two letters. Bundle the TwemojiMozilla font shipped inside rn-country-select and recompile the app.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Do I have to install react-native-safe-area-context?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. It is a required peer dependency used by the country selector modal. Install it and run npx pod-install ios. You do not need to add a SafeAreaProvider yourself — the modal ships its own.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How do I get an E.164 phone number to send to my backend?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Read internationalPhoneNumber from the ref or from the usePhoneInput hook. It returns the calling code plus the national digits with no spaces or punctuation, which is exactly E.164.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Why does the input default to Brazil?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Brazil is the fallback when neither defaultCountry nor defaultPhoneNumber is provided, and when a supplied defaultPhoneNumber cannot be matched to any country. Set defaultCountry to pick a different starting country.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does the React Native phone input work with Expo Go?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. The library is pure JavaScript. Its only native peer dependency, react-native-safe-area-context, is included in the Expo Go runtime. Custom fonts for flag emoji require a development build or a recompiled app.',
+          },
+        },
+      ],
+    })}
+  </script>
+</Head>
+
+# FAQ & Troubleshooting
+
+## Flags show up as two letters instead of a flag
+
+Country flags are emoji (regional indicator symbols). Web browsers and many Android
+devices have no font that renders them, so `🇧🇷` falls back to `BR`.
+
+Bundle the `TwemojiMozilla` font that ships inside `rn-country-select` and recompile —
+step by step in the [Installation guide](./installation.md#additional-config-for-web).
+
+:::note
+Adding a font requires a native rebuild. Reloading the JS bundle is not enough.
+:::
+
+If you would rather not ship a font, replace the emoji entirely with your own images:
+
+```tsx
+<PhoneInput customFlag={(country) => <Image source={flags[country.cca2]} />} />
+```
+
+## `react-native-safe-area-context` — do I really need it?
+
+Yes. It is a **required peer dependency** — the country selector modal uses it:
+
+```bash
+npm install react-native-safe-area-context
+npx pod-install ios
+```
+
+You do **not** need to wrap your app in a `SafeAreaProvider` for the modal to work;
+it renders its own.
+
+## How do I get an E.164 number for my backend?
+
+`internationalPhoneNumber` is already E.164 — calling code plus national digits, no
+spaces, no punctuation:
+
+```tsx
+const ref = useRef<IPhoneInputRef>(null);
+
+ref.current?.nationalPhoneNumber;               // '11912345678'
+ref.current?.nationalPhoneNumberFormatted;      // '11 91234-5678'
+ref.current?.internationalPhoneNumber;          // '+5511912345678'  ← send this
+ref.current?.internationalPhoneNumberFormatted; // '+55 11 91234-5678'
+```
+
+## How do I block submit until the number is valid?
+
+Three ways, pick the one that matches your form — full walkthrough in the
+[Validation guide](./guides/validation.md).
+
+```tsx
+// 1. imperative, at submit time
+if (!ref.current?.isValidPhoneNumber) return;
+
+// 2. reactive, drives a disabled button
+<PhoneInput onValidationChange={(isValid) => setCanSubmit(isValid)} />
+
+// 3. standalone (e.g. re-validating stored data)
+import {isValidPhoneNumber, getCountryByCca2} from 'rn-international-phone-number';
+isValidPhoneNumber('11912345678', getCountryByCca2('BR')!);
+```
+
+## Why does the input start on Brazil?
+
+`BR` is the fallback when you pass neither `defaultCountry` nor `defaultPhoneNumber`,
+and also when the `defaultPhoneNumber` you passed matches no country. Fix it by being
+explicit:
+
+```tsx
+<PhoneInput defaultCountry="US" />
+<PhoneInput defaultPhoneNumber="+12505550199" /> // country inferred from the number
+```
+
+## The country does not switch when I paste an international number
+
+It does — as long as the pasted text is E.164 (`+` + calling code + number) and the
+value flows back into the component. If you keep the value in state, make sure
+`onChangePhoneNumber` writes to that same state:
+
+```tsx
+<PhoneInput value={phone} onChangePhoneNumber={setPhone} />
+```
+
+Setting a number programmatically? Use the hook's `setPhoneNumber`, which routes
+through the same smart-paste pipeline:
+
+```tsx
+const {setPhoneNumber} = usePhoneInput();
+setPhoneNumber('+12025550123'); // switches to US and formats
+```
+
+## Does it work with Expo / Expo Go?
+
+Yes. The library itself is pure JavaScript, and its native peer
+`react-native-safe-area-context` is part of the Expo Go runtime. The only thing Expo Go
+cannot do is load the flag font — for that you need a development build or a
+recompiled app.
+
+## Can I use my own UI instead of the built-in input?
+
+Yes — [`usePhoneInput`](./api/hooks.md) is the same engine with no UI attached.
+
+```tsx
+const {nationalPhoneNumberFormatted, onChangePhoneNumber, country} = usePhoneInput({
+  defaultCountry: 'US',
+});
+```
+
+## Can I pass `keyboardType`, `autoFocus`, `onBlur`…?
+
+Yes. `PhoneInput` extends React Native's `TextInputProps` — every `TextInput` prop is
+forwarded, except `value` and `onChangeText`, which the component owns (use `value` +
+`onChangePhoneNumber` instead).
+
+```tsx
+<PhoneInput autoFocus onBlur={handleBlur} returnKeyType="done" maxLength={20} />
+```
+
+## Can I hide the modal / show only a few countries?
+
+```tsx
+<PhoneInput modalDisabled />                          // lock the country
+<PhoneInput visibleCountries={['BR', 'PT', 'US']} />  // allow-list
+<PhoneInput hiddenCountries={['RU']} />               // deny-list
+<PhoneInput popularCountries={['BR', 'US']} />        // pinned to the top
+```
+
+## Where did `react-native-international-phone-number` go?
+
+Same library, new package name: **`rn-international-phone-number`**.
+
+:::danger The old package is not maintained
+The npm account that published `react-native-international-phone-number` is no longer
+under the author's control, so that package is frozen at `v0.12.3` and gets no fixes or
+security patches from this project — and cannot be deprecated by the author.
+
+Development continues only under `rn-international-phone-number`. Switch your dependency
+with the [Migration guide](./migration.md).
+:::
+
+## How do I test the component?
+
+Every interactive element exposes a `testID` — see the [Testing guide](./guides/testing.md).
+
+## Still stuck?
+
+[Open an issue](https://github.com/AstrOOnauta/react-native-international-phone-number/issues)
+with your React Native version, platform, and a minimal reproduction.

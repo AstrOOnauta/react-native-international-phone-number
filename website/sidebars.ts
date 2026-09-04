@@ -21,8 +21,10 @@ const sidebars: SidebarsConfig = {
       label: 'Guides',
       collapsed: false,
       items: [
+        'guides/props-by-example',
         'guides/theming',
         'guides/i18n',
+        'guides/validation',
         'guides/accessibility',
         'guides/testing',
       ],
@@ -40,6 +42,9 @@ const sidebars: SidebarsConfig = {
         'examples/tanstack-form',
       ],
     },
+    'faq',
+    'migration',
+    'changelog',
     'contributing',
   ],
 };

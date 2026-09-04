@@ -40,6 +40,11 @@ jobs:
 
       - name: Build site
         working-directory: website
+        # Both are optional: define them as repository variables to enable
+        # Google Analytics and Search Console verification. Absent = skipped.
+        env:
+          GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
+          GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
         run: npm run build
 
       - name: Setup Pages

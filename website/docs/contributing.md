@@ -24,7 +24,7 @@ Contributions are very welcome.
 
 ## License
 
-Released under the [ISC License](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/main/LICENSE.md).
+Released under the [ISC License](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/LICENSE.md).
 
 ---
 

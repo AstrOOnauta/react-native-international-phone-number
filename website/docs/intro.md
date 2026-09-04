@@ -1,21 +1,26 @@
 ---
 id: intro
-title: rn-international-phone-number
-description: International phone number input component for React Native. Auto-formatting mask, validation, line-type detection, smart paste, 33 languages, iOS/Android/Web.
+title: React Native International Phone Number Input
+description: International phone number input component for React Native, Expo and React Native Web. Auto-formatting mask per country, validation, line-type detection, smart paste, country picker and 33 languages.
 slug: /
 sidebar_label: Introduction
 sidebar_position: 1
 keywords:
-  - react-native phone input
-  - international phone number
+  - react native phone input
+  - react native international phone number
+  - react native phone number input
   - react native country picker
-  - libphonenumber
-  - phone mask
+  - react native country code picker
+  - phone number mask react native
+  - expo phone input
+  - libphonenumber react native
   - rn-international-phone-number
 image: img/og.png
 ---
 
-# rn-international-phone-number
+# React Native International Phone Number Input
+
+> npm: [`rn-international-phone-number`](https://www.npmjs.com/package/rn-international-phone-number) — formerly `react-native-international-phone-number` ([migration guide](./migration.md))
 
 International mobile phone input for **React Native**, **Expo** and **React Native Web**. Country dial code selector, flag picker, auto phone mask, validation, line-type detection, smart paste, and i18n for 33 languages.
 
@@ -29,7 +34,7 @@ International mobile phone input for **React Native**, **Expo** and **React Nati
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
     <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success" alt="GitHub stars" />
   </a>
-  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/main/LICENSE.md">
+  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/LICENSE.md">
     <img src="https://img.shields.io/:license-isc-yellow.svg?style=flat-square" alt="ISC License" />
   </a>
 </p>
@@ -60,8 +65,12 @@ International mobile phone input for **React Native**, **Expo** and **React Nati
 
 - [Install the package](./installation.md)
 - [Quick start example](./quick-start.md)
+- [Every prop by example](./guides/props-by-example.md)
 - [Browse the Props API](./api/props.md)
+- [Validate phone numbers](./guides/validation.md)
 - [Use the `usePhoneInput` hook](./api/hooks.md)
+- [FAQ & Troubleshooting](./faq.mdx) — flags not rendering, E.164 output, Expo Go
+- [Migrating from `react-native-international-phone-number`](./migration.md)
 
 ## Support the project
 

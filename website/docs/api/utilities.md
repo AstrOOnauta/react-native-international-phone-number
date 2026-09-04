@@ -28,6 +28,25 @@ These are exported alongside the `PhoneInput` component for use outside the comp
 | `getInternationalPhoneNumberLength` | `(country: ICountry, phoneNumber: string)` | `number`                  | Returns total digits of calling code + phone number                                                      |
 | `getPhoneNumberType`                | `(phoneNumber: string)`                    | `PhoneNumberType \| null` | Returns the line type (`MOBILE`, `FIXED_LINE`, `TOLL_FREE`, etc) of an E.164 number, or `null` when invalid |
 
+## Exported types
+
+```ts
+import type {
+  ICountry,          // a country object (name, cca2, idd, flag, translations…)
+  ICountryCca2,      // ISO 3166-1 alpha-2 union — 'BR' | 'US' | …
+  ICountrySelectLanguages, // language codes accepted by `language`
+  ICountrySelectStyle,     // shape of `modalStyles`
+  IPhoneInputStyles, // shape of `phoneInputStyles`
+  IPhoneInputRef,    // shape of the `ref`
+  ITheme,            // 'light' | 'dark'
+  PhoneInputProps,
+  PhoneNumberType,
+} from 'rn-international-phone-number';
+
+const allowed: ICountryCca2[] = ['BR', 'PT', 'US'];
+<PhoneInput visibleCountries={allowed} />;
+```
+
 ## Example
 
 ```ts

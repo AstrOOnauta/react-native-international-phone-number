@@ -25,6 +25,13 @@ Since `react-native-safe-area-context` ships native code, install the iOS pods o
 npx pod-install ios
 ```
 
+:::info Why `react-native-safe-area-context`?
+The country selector modal is rendered by
+[`rn-country-select`](https://github.com/AstrOOnauta/react-native-country-select), which
+uses it. You do **not** need to add a `SafeAreaProvider` yourself — the modal ships its
+own.
+:::
+
 ## Additional config for Web
 
 ### Using React Native CLI
@@ -75,3 +82,5 @@ Recompile your project after adding new fonts.
 
 - [Quick start](./quick-start.md) — minimal working example
 - [Props API](./api/props.md)
+- [FAQ & Troubleshooting](./faq.mdx) — flags rendering as `BR` instead of 🇧🇷, Expo Go, E.164
+- [Migrating from `react-native-international-phone-number`](./migration.md)

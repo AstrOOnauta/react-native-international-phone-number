@@ -3,7 +3,7 @@ id: accessibility
 title: Accessibility
 description: Built-in screen-reader support — customize labels and hints for every interactive element of the phone input and country selector modal.
 sidebar_label: Accessibility
-sidebar_position: 3
+sidebar_position: 5
 keywords:
   - react native phone input accessibility
   - a11y

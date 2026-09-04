@@ -13,7 +13,7 @@ keywords:
 
 # Ref Properties — `IPhoneInputRef`
 
-Source: [lib/interfaces/phoneInputRef.ts](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/main/lib/interfaces/phoneInputRef.ts)
+Source: [lib/interfaces/phoneInputRef.ts](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputRef.ts)
 
 The `ref` prop gives imperative access to the component.
 
@@ -21,11 +21,11 @@ The `ref` prop gives imperative access to the component.
 
 | Property / Method                        | Type      | Description                                              |
 | ---------------------------------------- | --------- | -------------------------------------------------------- |
-| `nationalPhoneNumber`                    | `string`  | National number without country code (digits only)       |
+| `nationalPhoneNumber`                    | `string`  | National number without country code, digits only (`11912345678`) |
 | `getNationalPhoneNumber()`               | `string`  | Method form of `nationalPhoneNumber`                     |
-| `nationalPhoneNumberFormatted`           | `string`  | National number with formatting applied                  |
+| `nationalPhoneNumberFormatted`           | `string`  | National number with formatting applied (`11 91234-5678`) |
 | `getNationalPhoneNumberFormatted()`      | `string`  | Method form of `nationalPhoneNumberFormatted`            |
-| `internationalPhoneNumber`               | `string`  | Country calling code + national number (digits only)     |
+| `internationalPhoneNumber`               | `string`  | **E.164** — calling code + national number, unformatted (`+5511912345678`). This is what you persist. |
 | `getInternationalPhoneNumber()`          | `string`  | Method form of `internationalPhoneNumber`                |
 | `internationalPhoneNumberFormatted`      | `string`  | Country calling code + national number with formatting   |
 | `getInternationalPhoneNumberFormatted()` | `string`  | Method form of `internationalPhoneNumberFormatted`       |

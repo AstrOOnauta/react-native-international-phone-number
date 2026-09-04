@@ -3,7 +3,7 @@ id: testing
 title: Testing
 description: testID values exposed by PhoneInput and the country selector modal — works with @testing-library/react-native and Maestro.
 sidebar_label: Testing
-sidebar_position: 4
+sidebar_position: 6
 keywords:
   - react native phone input testing
   - testID

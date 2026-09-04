@@ -1,7 +1,7 @@
 ---
 id: props
 title: Props API (PhoneInputProps)
-description: Complete reference for all 51 props of the PhoneInput component, including theme, language, validation callbacks, modal customization, and accessibility.
+description: Complete reference for every prop of the PhoneInput component, including theme, language, validation callbacks, modal customization, and accessibility.
 sidebar_label: Props
 sidebar_position: 1
 keywords:
@@ -12,7 +12,20 @@ keywords:
 
 # Component Props — `PhoneInputProps`
 
-Source: [lib/interfaces/phoneInputProps.ts](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/main/lib/interfaces/phoneInputProps.ts)
+Source: [lib/interfaces/phoneInputProps.ts](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputProps.ts)
+
+Looking for a snippet instead of a type? Every prop has one in
+[Props by Example](../guides/props-by-example.md).
+
+:::tip Every `TextInput` prop works too
+`PhoneInputProps` extends React Native's
+[`TextInputProps`](https://reactnative.dev/docs/textinput#props), so `autoFocus`,
+`keyboardType`, `onBlur`, `onFocus`, `returnKeyType`, `maxLength`, `testID` and the rest
+are forwarded to the underlying input.
+
+The two exceptions are `value` and `onChangeText`, which the component owns — use
+`value` + `onChangePhoneNumber` instead.
+:::
 
 | Prop                                   | Type                               | Description                                                               |
 | -------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
@@ -48,6 +61,7 @@ Source: [lib/interfaces/phoneInputProps.ts](https://github.com/AstrOOnauta/react
 | `modalSearchInputPlaceholderTextColor` | `string`                           | Color of modal search placeholder text                                    |
 | `modalSearchInputPlaceholder`          | `string`                           | Placeholder text for modal search input                                   |
 | `modalSearchInputSelectionColor`       | `string`                           | Color of modal search text selection                                      |
+| `modalSearchInputFocusedBorderColor`   | `string`                           | Border color of the modal search input while focused                      |
 | `modalPopularCountriesTitle`           | `string`                           | Title for popular countries section                                       |
 | `modalAllCountriesTitle`               | `string`                           | Title for all countries section                                           |
 | `modalSectionTitleComponent`           | `(item: ISectionTitle) => ReactElement` | Custom section title component                                       |
@@ -69,4 +83,21 @@ Source: [lib/interfaces/phoneInputProps.ts](https://github.com/AstrOOnauta/react
 | `maxBottomsheetHeight`                 | `number \| string`                 | Maximum height of the bottom sheet modal                                  |
 | `ref`                                  | `Ref<IPhoneInputRef>`              | Ref to access national/international values, country, isValidPhoneNumber and native input methods |
 
-See also: [Ref properties](./ref.md), [Hooks](./hooks.md), [Utilities](./utilities.md).
+## Defaults worth knowing
+
+| Prop              | Default                                            |
+| ----------------- | -------------------------------------------------- |
+| `theme`           | `'light'`                                          |
+| `placeholderType` | `'number'` — a real example number for the country |
+| `modalType`       | `'popup'` on Web, `'bottomSheet'` on iOS/Android    |
+| `isFullScreen`    | `false`                                            |
+| `allowFontScaling`| `true`                                             |
+| `defaultCountry`  | `'BR'` when no `defaultCountry`/`defaultPhoneNumber` is given |
+
+## Accessibility props
+
+Eighteen `accessibilityLabel*` / `accessibilityHint*` props cover every interactive
+element — listed in the [Accessibility guide](../guides/accessibility.md).
+
+See also: [Ref properties](./ref.md), [Hooks](./hooks.md), [Utilities](./utilities.md),
+[Validation](../guides/validation.md), [Theming](../guides/theming.md).

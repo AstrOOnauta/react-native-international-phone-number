@@ -3,7 +3,7 @@ id: theming
 title: Theming & Styles
 description: Customize the PhoneInput component and country selector modal — phoneInputStyles and modalStyles full reference.
 sidebar_label: Theming
-sidebar_position: 1
+sidebar_position: 2
 keywords:
   - phoneInputStyles
   - modalStyles
@@ -13,11 +13,77 @@ keywords:
 
 # Theming & Styles
 
-The component exposes two style objects: one for the input itself, and one for the country-selection modal.
+Three levels of customization, from cheapest to most granular:
+
+1. **`theme`** — a ready-made `light` / `dark` palette
+2. **`phoneInputStyles` / `modalStyles`** — override any individual element
+3. **`customFlag` / `customCaret` / `modalCountryItemComponent`…** — replace whole pieces of UI
+
+## Dark mode — `theme`
+
+```tsx
+<PhoneInput theme="dark" />
+```
+
+`theme` accepts `'light'` (default) or `'dark'`, and applies to both the input and the
+country selector modal.
+
+Follow the OS setting with React Native's `useColorScheme`:
+
+```tsx
+import {useColorScheme} from 'react-native';
+
+const scheme = useColorScheme(); // 'light' | 'dark' | null
+
+<PhoneInput theme={scheme === 'dark' ? 'dark' : 'light'} />;
+```
+
+`theme` is the base layer — anything you pass in `phoneInputStyles` or `modalStyles`
+wins over it, so you can start from `dark` and repaint only what you need.
+
+## Right-to-left — `rtl`
+
+```tsx
+<PhoneInput rtl />
+```
+
+Swaps the flag/calling-code block to the right of the input, for Arabic, Hebrew, Persian
+and Urdu layouts. Pair it with the matching [`language`](./i18n.md):
+
+```tsx
+import {I18nManager} from 'react-native';
+
+<PhoneInput rtl={I18nManager.isRTL} language="ar" />;
+```
+
+## Custom caret and flag
+
+```tsx
+<PhoneInput
+  customCaret={() => <Icon name="chevron-down" size={20} color="#6b7280" />}
+  customFlag={(country) => <Image source={flags[country.cca2]} style={{width: 24}} />}
+/>
+```
+
+`customFlag` also removes the need for the [flag emoji font](../installation.md#additional-config-for-web).
+
+## Modal presentation
+
+```tsx
+<PhoneInput
+  modalType="bottomSheet"          // 'bottomSheet' | 'popup'
+  initialBottomsheetHeight="60%"
+  minBottomsheetHeight="40%"
+  maxBottomsheetHeight="90%"
+  isFullScreen={false}
+/>
+```
+
+`modalType` defaults to `'popup'` on Web and `'bottomSheet'` on iOS/Android.
 
 ## `phoneInputStyles`
 
-Source: [lib/interfaces/phoneInputStyles.ts](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/main/lib/interfaces/phoneInputStyles.ts)
+Source: [lib/interfaces/phoneInputStyles.ts](https://github.com/AstrOOnauta/react-native-international-phone-number/blob/master/lib/interfaces/phoneInputStyles.ts)
 
 | Property        | Type        | Description                 |
 | --------------- | ----------- | --------------------------- |
@@ -79,3 +145,41 @@ Source: [rn-country-select countrySelectStyles](https://github.com/AstrOOnauta/r
   }}
 />
 ```
+
+## Styling the disabled state
+
+`disabled` blocks the whole component; `modalDisabled` locks only the country. Neither
+applies a style of its own, so drive it from your own state:
+
+```tsx
+const [isDisabled, setIsDisabled] = useState(true);
+
+<PhoneInput
+  disabled={isDisabled}
+  phoneInputStyles={{
+    container: isDisabled ? {backgroundColor: '#e5e7eb', opacity: 0.7} : {},
+  }}
+/>;
+```
+
+## Placeholders and modal copy
+
+```tsx
+<PhoneInput
+  placeholderType="number"                    // default: real example number per country
+  placeholder="Your phone number"             // overrides placeholderType
+  modalSearchInputPlaceholder="Search country"
+  modalNotFoundCountryMessage="No country found"
+  modalPopularCountriesTitle="Popular"
+  modalAllCountriesTitle="All countries"
+/>
+```
+
+Leave these out and they are translated automatically from the
+[`language`](./i18n.md) prop.
+
+## Next
+
+- [Full props reference](../api/props.md)
+- [Internationalization](./i18n.md)
+- [Accessibility](./accessibility.md)

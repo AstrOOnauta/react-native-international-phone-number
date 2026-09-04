@@ -37,7 +37,7 @@ A headless hook exposing the same state, formatting and smart-paste pipeline tha
 | ----------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `nationalPhoneNumber`               | `string`                                                      | National number without calling code (digits only)                                                                                                                                                |
 | `nationalPhoneNumberFormatted`      | `string`                                                      | National number with formatting applied                                                                                                                                                           |
-| `internationalPhoneNumber`          | `string`                                                      | Calling code + national number (digits only)                                                                                                                                                      |
+| `internationalPhoneNumber`          | `string`                                                      | E.164 string — calling code + national number, unformatted (`+5511912345678`)                                                                                                                     |
 | `internationalPhoneNumberFormatted` | `string`                                                      | Calling code + national number with formatting                                                                                                                                                    |
 | `internationalPhoneNumberLength`    | `number`                                                      | Total digit count                                                                                                                                                                                 |
 | `country`                           | `ICountry`                                                    | Currently selected country object                                                                                                                                                                 |
@@ -66,7 +66,7 @@ export default function CustomPhoneInput() {
       <TextInput
         value={nationalPhoneNumberFormatted}
         onChangeText={onChangePhoneNumber}
-        placeholder={`${country?.callingCode} phone`}
+        placeholder={`${country?.idd?.root} phone`}
       />
     </View>
   );

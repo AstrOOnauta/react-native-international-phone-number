@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: 24
       - run: npm ci --legacy-peer-deps
-      # - run: npm test
-      
+      - run: npm test
+
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -27,6 +27,5 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org/
-      - run: npm install -g npm@latest
       - run: npm ci --legacy-peer-deps
       - run: npm publish --access public --provenance

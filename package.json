@@ -60,6 +60,9 @@
     "rn-country-select": "0.5.3"
   },
   "devDependencies": {
+    "@types/react": "^19.2.18",
+    "react": "^19.2.8",
+    "react-native": "^0.82.1",
     "typescript": "^5.9.3"
   }
 }

@@ -23,13 +23,21 @@ The `ref` prop gives imperative access to the component.
 | ---------------------------------------- | --------- | -------------------------------------------------------- |
 | `nationalPhoneNumber`                    | `string`  | National number without country code, digits only (`11912345678`) |
 | `getNationalPhoneNumber()`               | `string`  | Method form of `nationalPhoneNumber`                     |
-| `nationalPhoneNumberFormatted`           | `string`  | National number with formatting applied (`11 91234-5678`) |
+| `nationalPhoneNumberFormatted`           | `string`  | National number with formatting applied (`11 91234 5678`) |
 | `getNationalPhoneNumberFormatted()`      | `string`  | Method form of `nationalPhoneNumberFormatted`            |
 | `internationalPhoneNumber`               | `string`  | **E.164** — calling code + national number, unformatted (`+5511912345678`). This is what you persist. |
 | `getInternationalPhoneNumber()`          | `string`  | Method form of `internationalPhoneNumber`                |
 | `internationalPhoneNumberFormatted`      | `string`  | Country calling code + national number with formatting   |
 | `getInternationalPhoneNumberFormatted()` | `string`  | Method form of `internationalPhoneNumberFormatted`       |
 | `internationalPhoneNumberLength`         | `number`  | Total digit count of calling code + phone number         |
+
+:::note National trunk prefix
+Many countries print their numbers with a leading `0` that is not part of the
+international number — the example-number placeholder shows it (`07400 123456` for the
+UK). Typing it is fine: `nationalPhoneNumber` and `internationalPhoneNumber` drop it, so
+the E.164 value stays correct. The leading zero is kept where it is significant, as in
+Italy.
+:::
 
 ## Country, validation & line type
 

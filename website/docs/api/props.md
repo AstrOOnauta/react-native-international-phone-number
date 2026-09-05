@@ -88,10 +88,12 @@ The two exceptions are `value` and `onChangeText`, which the component owns — 
 | Prop              | Default                                            |
 | ----------------- | -------------------------------------------------- |
 | `theme`           | `'light'`                                          |
+| `language`        | `'eng'` — also the fallback for an unrecognized code |
 | `placeholderType` | `'number'` — a real example number for the country |
 | `modalType`       | `'popup'` on Web, `'bottomSheet'` on iOS/Android    |
 | `isFullScreen`    | `false`                                            |
 | `allowFontScaling`| `true`                                             |
+| `keyboardType`    | `'number-pad'` — pass any `TextInput` value to override |
 | `defaultCountry`  | `'BR'` when no `defaultCountry`/`defaultPhoneNumber` is given |
 
 ## Accessibility props

@@ -89,7 +89,7 @@ Install it or the modal will fail to render.
 
 ```diff
 - ref.current?.fullPhoneNumber   // '+55 11 91234-5678'
-+ ref.current?.internationalPhoneNumberFormatted // '+55 11 91234-5678'
++ ref.current?.internationalPhoneNumberFormatted // '+55 11 91234 5678'
 + ref.current?.internationalPhoneNumber          // '+5511912345678' (E.164)
 
 - ref.current?.isValid

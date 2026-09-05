@@ -63,9 +63,12 @@ export default function App() {
 ```
 
 :::note
-`onValidationChange` fires only on **transitions** — when validity actually flips. It
-does not fire on mount, so an input that starts empty (and therefore invalid) produces
-no initial call. Initialize your own state to `false`.
+`onValidationChange` fires on **transitions** — when validity actually flips. An input
+that starts empty produces no initial call, so initialize your own state to `false`.
+
+An input that starts pre-filled (`defaultPhoneNumber`, or a controlled `value`) does get
+one call on mount with its initial validity — otherwise a form opening on an already
+valid number would sit on that `false` forever.
 :::
 
 ## 2. Imperative — `ref.isValidPhoneNumber`

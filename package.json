@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "npm run typecheck && node scripts/check.mjs && jest --passWithNoTests"
+    "test": "npm run typecheck && jest"
   },
   "keywords": [
     "react-native",

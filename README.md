@@ -15,6 +15,9 @@
   <a href="https://www.npmjs.com/package/rn-international-phone-number">
     <img src="https://img.shields.io/npm/dt/rn-international-phone-number.svg?style=flat-square&color=success" alt="npm downloads">
   </a>
+  <a href="https://github.com/AstrOOnauta/react-native-international-phone-number/actions/workflows/test.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/AstrOOnauta/react-native-international-phone-number/test.yml?branch=master&style=flat-square&label=tests" alt="tests"/>
+  </a>
   <a href="https://github.com/AstrOOnauta/react-native-international-phone-number">
     <img src="https://img.shields.io/github/stars/AstrOOnauta/react-native-international-phone-number?style=flat-square&color=success" alt="GitHub stars"/>
   </a>

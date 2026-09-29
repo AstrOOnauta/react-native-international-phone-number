@@ -58,7 +58,7 @@ describe('typing', () => {
 
   test('bidi marks pasted with the number are stripped', async () => {
     await render(<PhoneInput />);
-    await fireEvent.changeText(phoneInput(), '‎11912345678‏');
+    await fireEvent.changeText(phoneInput(), '\u200E11912345678\u200F');
     expect(phoneInput()).toHaveDisplayValue('11 91234 5678');
   });
 });

@@ -144,7 +144,7 @@ describe('custom mask', () => {
 });
 
 describe('controlled value', () => {
-  test('typing reports the formatted value but leaves the value to the parent', async () => {
+  test('a change reports the formatted value but leaves the value to the parent', async () => {
     const onChangePhoneNumber = jest.fn();
     const { result } = await renderHook(() =>
       usePhoneInput({ value: '', onChangePhoneNumber })
@@ -230,6 +230,7 @@ describe('validation and type callbacks', () => {
       'MOBILE',
       expect.objectContaining({ cca2: 'BR' })
     );
+    expect(onPhoneNumberTypeChange).toHaveBeenCalledTimes(1);
     expect(onPhoneNumberTypeChange).toHaveBeenLastCalledWith('MOBILE');
 
     await act(async () => {
@@ -241,6 +242,8 @@ describe('validation and type callbacks', () => {
       null,
       expect.objectContaining({ cca2: 'BR' })
     );
+    expect(onPhoneNumberTypeChange).toHaveBeenCalledTimes(2);
+    expect(onPhoneNumberTypeChange).toHaveBeenLastCalledWith(null);
   });
 
   test('a prefilled number is reported on mount', async () => {

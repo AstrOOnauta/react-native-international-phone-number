@@ -14,5 +14,8 @@ module.exports = {
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context|rn-country-select)/)',
   ],
   setupFiles: ['./jest.setup.js'],
+  // The first render in each component file loads React Native, which takes ~2.5x
+  // longer on GitHub runners than locally and can brush the 5 s default.
+  testTimeout: 15000,
   testMatch: ['<rootDir>/__tests__/**/*.test.js'],
 };

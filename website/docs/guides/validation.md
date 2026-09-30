@@ -121,6 +121,12 @@ isValidPhoneNumber('11912345678', getCountryByCca2('BR')!); // true
 const stored = '+12025550123';
 const country = getCountryByPhoneNumber(stored);
 isValidPhoneNumber(stored, country!); // true
+
+// same restrictions as the PhoneInput props: with Jersey hidden, a Jersey
+// mobile is accepted under the United Kingdom
+isValidPhoneNumber('07797 712345', getCountryByCca2('GB')!, {
+  hiddenCountries: ['JE'],
+}); // true
 ```
 
 With a schema validator:

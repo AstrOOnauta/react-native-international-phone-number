@@ -63,6 +63,47 @@ describe('typing', () => {
   });
 });
 
+describe('hiddenCountries', () => {
+  test('a pasted number from a hidden country does not select it', async () => {
+    const user = userEvent.setup();
+    const onChangeCountry = jest.fn();
+    await render(
+      <PhoneInput
+        defaultCountry="US"
+        hiddenCountries={['JE']}
+        onChangeCountry={onChangeCountry}
+      />
+    );
+
+    await user.paste(phoneInput(), '+44 7797 712345');
+
+    expect(phoneInput()).toHaveDisplayValue('7797 712345');
+    expect(onChangeCountry).toHaveBeenLastCalledWith(
+      expect.objectContaining({ cca2: 'GB' })
+    );
+  });
+
+  test("a hidden country's national number is valid under the visible one", async () => {
+    const user = userEvent.setup();
+    const onValidationChange = jest.fn();
+    await render(
+      <PhoneInput
+        defaultCountry="GB"
+        hiddenCountries={['JE']}
+        onValidationChange={onValidationChange}
+      />
+    );
+
+    await user.type(phoneInput(), '07797712345');
+
+    expect(onValidationChange).toHaveBeenLastCalledWith(
+      true,
+      expect.anything(),
+      expect.objectContaining({ cca2: 'GB' })
+    );
+  });
+});
+
 describe('country picker', () => {
   test('picking a country updates the calling code, clears the input and notifies', async () => {
     const user = userEvent.setup();

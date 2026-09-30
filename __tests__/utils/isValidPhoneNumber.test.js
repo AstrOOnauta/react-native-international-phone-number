@@ -70,3 +70,34 @@ test('example mobile number is valid and round-trips to E.164 for every country'
   assert.deepEqual(invalid, [], 'countries rejecting their own example number');
   assert.deepEqual(wrongE164, [], 'countries producing a wrong E.164');
 });
+
+test('accepts a number from an unselectable country on the same calling code', () => {
+  // A Jersey mobile is its own country to libphonenumber, so with JE hidden the only
+  // country left for it is GB.
+  const jersey = exampleOf('JE');
+  assert.equal(isValidPhoneNumber(jersey, country('GB')), false, 'no restrictions');
+  assert.equal(
+    isValidPhoneNumber(jersey, country('GB'), { hiddenCountries: ['JE'] }),
+    true,
+    'JE hidden'
+  );
+  assert.equal(
+    isValidPhoneNumber(jersey, country('GB'), { visibleCountries: ['GB', 'US'] }),
+    true,
+    'JE not visible'
+  );
+  assert.equal(
+    isValidPhoneNumber(jersey, country('GB'), { visibleCountries: ['GB', 'JE'] }),
+    false,
+    'JE still selectable'
+  );
+});
+
+test('an unselectable country never lends its numbers across calling codes', () => {
+  assert.equal(
+    isValidPhoneNumber(`+33${exampleOf('FR')}`, country('GB'), {
+      hiddenCountries: ['FR'],
+    }),
+    false
+  );
+});

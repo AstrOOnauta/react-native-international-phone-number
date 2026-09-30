@@ -17,6 +17,10 @@ export interface UsePhoneInputOptions {
     type: PhoneNumberType | null,
     country: ICountry,
   ) => void;
+  /** Countries a detected number may switch to. Same as the PhoneInput prop. */
+  visibleCountries?: Array<ICountryCca2>;
+  /** Countries a detected number never switches to. Same as the PhoneInput prop. */
+  hiddenCountries?: Array<ICountryCca2>;
 }
 
 export interface UsePhoneInputResult {

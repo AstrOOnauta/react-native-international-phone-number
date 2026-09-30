@@ -42,6 +42,10 @@ declare function getCountriesByName(
 declare function isValidPhoneNumber(
   phoneNumber: string,
   country: ICountry,
+  restrictions?: {
+    visibleCountries?: Array<ICountryCca2>;
+    hiddenCountries?: Array<ICountryCca2>;
+  },
 ): boolean;
 
 declare function getInternationalPhoneNumberLength(

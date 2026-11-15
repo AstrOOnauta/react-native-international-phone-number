@@ -27,7 +27,15 @@ Upgrading across a rename or a major version? Start with the
   Validation is unchanged: the number must still belong to the selected country, so a
   Jersey mobile under the United Kingdom stays invalid. With no selectable country for
   the calling code, a paste is ignored and a `defaultPhoneNumber` is dropped in favour of
-  `defaultCountry`.
+  `defaultCountry`. A pre-filled number from a hidden country prefers `defaultCountry`
+  when it shares the calling code: `defaultCountry="GG"` keeps a Jersey number on
+  Guernsey instead of the United Kingdom.
+- Without `defaultCountry`, the input no longer starts on Brazil when `visibleCountries`
+  or `hiddenCountries` leave it out. It starts on the first selectable country instead,
+  in `visibleCountries` order.
+- `internationalPhoneNumber` is right for a controlled E.164 `value`. The calling code
+  was prefixed a second time, so `value="+447400123456"` reported `+44447400123456`.
+  Only +1 numbers came out right.
 - `internationalPhoneNumber` is now a real E.164 string. It was built by concatenating
   the calling code with the typed digits, which kept the national trunk prefix that the
   example-number placeholder invites users to type — GB `07400 123456` produced

@@ -53,7 +53,8 @@ Full ref surface in the [Ref API](../api/ref.md).
 <PhoneInput defaultCountry="US" />
 ```
 
-ISO 3166-1 alpha-2. Falls back to `'BR'` when omitted.
+ISO 3166-1 alpha-2. Falls back to `'BR'` when omitted, or to the first selectable
+country when `visibleCountries` / `hiddenCountries` leave Brazil out.
 
 ### Starting phone number
 

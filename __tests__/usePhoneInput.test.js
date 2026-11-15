@@ -203,6 +203,30 @@ describe('hidden and visible countries', () => {
     expect(onChangeCountry).not.toHaveBeenCalled();
   });
 
+  test('without defaultCountry, the starting country respects the restrictions', async () => {
+    const visible = await renderHook(() =>
+      usePhoneInput({ visibleCountries: ['US', 'GB'] })
+    );
+    expect(visible.result.current.country.cca2).toBe('US');
+
+    const hidden = await renderHook(() =>
+      usePhoneInput({ hiddenCountries: ['BR'] })
+    );
+    expect(hidden.result.current.country.cca2).not.toBe('BR');
+  });
+
+  test('a pre-filled number from a hidden country prefers defaultCountry on the same code', async () => {
+    const { result } = await renderHook(() =>
+      usePhoneInput({
+        defaultCountry: 'GG',
+        defaultPhoneNumber: '+447797712345',
+        hiddenCountries: ['JE'],
+      })
+    );
+    expect(result.current.country.cca2).toBe('GG');
+    expect(result.current.nationalPhoneNumberFormatted).toBe('7797 712345');
+  });
+
   test('a controlled value with no selectable country can still be deleted', async () => {
     const onChangePhoneNumber = jest.fn();
     const { result } = await renderHook(() =>

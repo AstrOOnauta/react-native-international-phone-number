@@ -33,6 +33,18 @@ test('national number drops the trunk prefix too', () => {
   assert.equal(getPhoneNumberParts('11 91234 5678', country('BR')).national, '11912345678');
 });
 
+test('reads an E.164 value as is instead of prefixing the calling code again', () => {
+  // A controlled `value` can be a stored E.164 string. +1 only looked right because
+  // libphonenumber reads the extra "1" as a trunk prefix.
+  const gb = getPhoneNumberParts('+447400123456', country('GB'));
+  assert.equal(gb.international, '+447400123456');
+  assert.equal(gb.national, '7400123456');
+  assert.equal(
+    getPhoneNumberParts('+5511912345678', country('BR')).international,
+    '+5511912345678'
+  );
+});
+
 test('falls back to concatenation while still being typed', () => {
   assert.equal(getPhoneNumberParts('11 9', country('BR')).international, '+55119');
   assert.equal(getPhoneNumberParts('11 9', country('BR')).national, '119');

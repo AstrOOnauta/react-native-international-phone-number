@@ -147,7 +147,6 @@ describe('hidden and visible countries', () => {
 
     expect(result.current.country.cca2).toBe('GB');
     expect(result.current.nationalPhoneNumberFormatted).toBe('7797 712345');
-    expect(result.current.isValidPhoneNumber).toBe(true);
     expect(onChangeCountry).toHaveBeenLastCalledWith(
       expect.objectContaining({ cca2: 'GB' })
     );
@@ -162,37 +161,74 @@ describe('hidden and visible countries', () => {
     await paste(result, jerseyMobile);
 
     expect(result.current.country.cca2).toBe('GB');
-    expect(result.current.isValidPhoneNumber).toBe(true);
     expect(onChangeCountry).not.toHaveBeenCalled();
   });
 
-  test("a hidden country's national number is valid under the visible one", async () => {
+  test('validation still requires the exact country', async () => {
     const { result } = await renderHook(() =>
-      usePhoneInput({ defaultCountry: 'GB', hiddenCountries: ['JE'] })
+      usePhoneInput({ defaultCountry: 'US', visibleCountries: ['US'] })
     );
 
-    await type(result, '07797712345');
+    await paste(result, '+1 604 555 0123');
 
-    expect(result.current.country.cca2).toBe('GB');
-    expect(result.current.isValidPhoneNumber).toBe(true);
-    expect(result.current.internationalPhoneNumber).toBe('+447797712345');
+    expect(result.current.country.cca2).toBe('US');
+    expect(result.current.isValidPhoneNumber).toBe(false);
   });
 
-  test('no selectable country for the calling code: the country stays', async () => {
+  test('a pasted number with no selectable country is ignored', async () => {
+    const onChangePhoneNumber = jest.fn();
     const onChangeCountry = jest.fn();
     const { result } = await renderHook(() =>
       usePhoneInput({
         defaultCountry: 'US',
         visibleCountries: ['US', 'GB'],
+        onChangePhoneNumber,
         onChangeCountry,
       })
     );
 
+    await type(result, '202');
+    const { nationalPhoneNumberFormatted, internationalPhoneNumber } =
+      result.current;
+    onChangePhoneNumber.mockClear();
+
     await paste(result, '+33 6 12 34 56 78');
 
     expect(result.current.country.cca2).toBe('US');
-    expect(result.current.isValidPhoneNumber).toBe(false);
+    expect(result.current.nationalPhoneNumberFormatted).toBe(
+      nationalPhoneNumberFormatted
+    );
+    expect(result.current.internationalPhoneNumber).toBe(internationalPhoneNumber);
+    expect(onChangePhoneNumber).not.toHaveBeenCalled();
     expect(onChangeCountry).not.toHaveBeenCalled();
+  });
+
+  test('a controlled value with no selectable country can still be deleted', async () => {
+    const onChangePhoneNumber = jest.fn();
+    const { result } = await renderHook(() =>
+      usePhoneInput({
+        value: '+33612345678',
+        defaultCountry: 'US',
+        visibleCountries: ['US', 'GB'],
+        onChangePhoneNumber,
+      })
+    );
+
+    await paste(result, '+3361234567');
+
+    expect(onChangePhoneNumber).toHaveBeenCalled();
+  });
+
+  test('without restrictions, a number missing from the country list still goes through', async () => {
+    // Ascension Island (+247) is known to libphonenumber but not to rn-country-select.
+    const onChangePhoneNumber = jest.fn();
+    const { result } = await renderHook(() =>
+      usePhoneInput({ defaultCountry: 'US', onChangePhoneNumber })
+    );
+
+    await paste(result, '+247 40123');
+
+    expect(onChangePhoneNumber).toHaveBeenCalled();
   });
 
   test("a hidden country's E.164 defaultPhoneNumber starts on the visible one", async () => {
@@ -200,7 +236,19 @@ describe('hidden and visible countries', () => {
       usePhoneInput({ defaultPhoneNumber: '+447797712345', hiddenCountries: ['JE'] })
     );
     expect(result.current.country.cca2).toBe('GB');
-    expect(result.current.isValidPhoneNumber).toBe(true);
+    expect(result.current.nationalPhoneNumberFormatted).toBe('7797 712345');
+  });
+
+  test('a defaultPhoneNumber with no selectable country starts empty on defaultCountry', async () => {
+    const { result } = await renderHook(() =>
+      usePhoneInput({
+        defaultCountry: 'US',
+        defaultPhoneNumber: '+33612345678',
+        visibleCountries: ['US', 'GB'],
+      })
+    );
+    expect(result.current.country.cca2).toBe('US');
+    expect(result.current.nationalPhoneNumberFormatted).toBe('');
   });
 
   test("a hidden country's controlled E.164 value re-detects to the visible one", async () => {

@@ -135,7 +135,8 @@ in the [Validation guide](./validation.md).
 
 `visibleCountries` and `hiddenCountries` also apply when a pasted or E.164 number is
 detected: with `hiddenCountries={['JE']}`, a Jersey number lands on the United Kingdom
-(same +44 calling code) and validates there, instead of selecting Jersey.
+(same +44 calling code) instead of selecting Jersey. It is still validated against the
+selected country. A number with no selectable country for its calling code is ignored.
 
 ```tsx
 // rename the two sections

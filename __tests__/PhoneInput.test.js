@@ -82,26 +82,6 @@ describe('hiddenCountries', () => {
       expect.objectContaining({ cca2: 'GB' })
     );
   });
-
-  test("a hidden country's national number is valid under the visible one", async () => {
-    const user = userEvent.setup();
-    const onValidationChange = jest.fn();
-    await render(
-      <PhoneInput
-        defaultCountry="GB"
-        hiddenCountries={['JE']}
-        onValidationChange={onValidationChange}
-      />
-    );
-
-    await user.type(phoneInput(), '07797712345');
-
-    expect(onValidationChange).toHaveBeenLastCalledWith(
-      true,
-      expect.anything(),
-      expect.objectContaining({ cca2: 'GB' })
-    );
-  });
 });
 
 describe('country picker', () => {

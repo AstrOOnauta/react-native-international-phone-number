@@ -213,6 +213,39 @@ describe('hidden and visible countries', () => {
       usePhoneInput({ hiddenCountries: ['BR'] })
     );
     expect(hidden.result.current.country.cca2).not.toBe('BR');
+
+    // The modal never lists countries without a numbering plan.
+    const noPlan = await renderHook(() =>
+      usePhoneInput({ visibleCountries: ['AQ', 'US'] })
+    );
+    expect(noPlan.result.current.country.cca2).toBe('US');
+  });
+
+  test('a pre-filled number whose calling code has no selectable country never starts on a hidden one', async () => {
+    // Tristan da Cunha (TA) is missing from rn-country-select; Saint Helena shares +290.
+    const { result } = await renderHook(() =>
+      usePhoneInput({ hiddenCountries: ['SH'], defaultPhoneNumber: '+2908999' })
+    );
+    expect(result.current.country.cca2).not.toBe('SH');
+    expect(result.current.nationalPhoneNumberFormatted).toBe('');
+  });
+
+  test('a shorter foreign paste is still ignored', async () => {
+    const onChangePhoneNumber = jest.fn();
+    const { result } = await renderHook(() =>
+      usePhoneInput({
+        defaultCountry: 'BR',
+        visibleCountries: ['BR'],
+        onChangePhoneNumber,
+      })
+    );
+
+    await paste(result, '11912345678');
+    onChangePhoneNumber.mockClear();
+    await paste(result, '+376 312 345');
+
+    expect(result.current.nationalPhoneNumberFormatted).toBe('11 91234 5678');
+    expect(onChangePhoneNumber).not.toHaveBeenCalled();
   });
 
   test('a pre-filled number from a hidden country prefers defaultCountry on the same code', async () => {

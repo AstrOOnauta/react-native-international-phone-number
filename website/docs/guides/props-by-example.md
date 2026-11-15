@@ -72,7 +72,9 @@ cleared, since they no longer fit the new country's format. Change `defaultPhone
 and the number is re-applied through the smart-paste pipeline.
 
 When `defaultPhoneNumber` is set, `defaultCountry` is ignored: the country comes from
-the number itself.
+the number itself. The exception is a number whose country `visibleCountries` /
+`hiddenCountries` leave out: `defaultCountry` is then preferred when it shares the
+calling code, and used with an empty input when no selectable country does.
 :::
 
 ## Mask & placeholder

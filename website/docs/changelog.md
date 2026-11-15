@@ -22,20 +22,67 @@ Upgrading across a rename or a major version? Start with the
 - `hiddenCountries` and `visibleCountries` now apply to country auto-detection, not just
   the modal list. A pasted, pre-filled or controlled E.164 number used to switch the input
   to its own country even when that country was hidden — `+44 7797 712345` selected
-  Jersey with `hiddenCountries={['JE']}`. The input now keeps the current country when it
-  shares the calling code, or falls back to the main selectable one (GB for +44).
+  Jersey with `hiddenCountries={['JE']}`. The input now lands on a selectable country
+  sharing the calling code: the current one (or `defaultCountry`, for a pre-filled
+  number) when it qualifies, otherwise the main one for that code (GB for +44).
   Validation is unchanged: the number must still belong to the selected country, so a
-  Jersey mobile under the United Kingdom stays invalid. With no selectable country for
-  the calling code, a paste is ignored and a `defaultPhoneNumber` is dropped in favour of
-  `defaultCountry`. A pre-filled number from a hidden country prefers `defaultCountry`
-  when it shares the calling code: `defaultCountry="GG"` keeps a Jersey number on
-  Guernsey instead of the United Kingdom.
+  Jersey mobile under the United Kingdom stays invalid.
+- When no selectable country shares the calling code, a pasted or typed number is
+  ignored and the previous value stays; deleting from such a value still works. An
+  initial `defaultPhoneNumber` like that is dropped: the input starts empty on
+  `defaultCountry`, or on the fallback country below.
 - Without `defaultCountry`, the input no longer starts on Brazil when `visibleCountries`
-  or `hiddenCountries` leave it out. It starts on the first selectable country instead,
-  in `visibleCountries` order.
-- `internationalPhoneNumber` is right for a controlled E.164 `value`. The calling code
-  was prefixed a second time, so `value="+447400123456"` reported `+44447400123456`.
-  Only +1 numbers came out right.
+  or `hiddenCountries` leave it out. It starts on the first selectable entry of
+  `visibleCountries`; with only `hiddenCountries`, on the first country left in
+  rn-country-select's list (ISO alpha-3 order, so Aruba). Pass `defaultCountry` to choose.
+- A controlled E.164 `value` (`value="+447400123456"`) is read as the number it is. The
+  calling code was prefixed a second time, so `internationalPhoneNumber` reported
+  `+44447400123456`, and `nationalPhoneNumber`, `internationalPhoneNumberFormatted`,
+  `internationalPhoneNumberLength`, `phoneNumberType` and the line type passed to
+  `onPhoneNumberTypeChange` / `onValidationChange` were off with it. Only +1 numbers came
+  out right. The same applies to any input starting with `+` while it is being typed,
+  and to `getInternationalPhoneNumberLength()`.
+
+**Changed**
+
+- Updated `rn-country-select` to 0.5.5: country objects carry corrected currency data
+  (withdrawn ISO 4217 currencies replaced, Zimbabwe's ZAR symbol fixed).
+- Updated `libphonenumber-js` to 1.13.16, with refreshed metadata.
+
+**Internal**
+
+- Pinned the remaining dev dependencies (`typescript`, `@types/react`) to exact versions.
+
+## v0.15.1
+
+**Fixed**
+
+- The calling code no longer stays in the input when it arrives without a leading `+`,
+  as browser autofill (Chrome) sends it: `5511999998888` under Brazil lands as
+  `11 99999 8888`, and `1 202 555 0123` under the US as `202 555 0123`. National numbers
+  that start with the calling code's digits, such as Brazilian area code 55 or Kazakh
+  mobiles starting with 701, are left untouched.
+- A digit typed after a complete number is rejected. `55 99468 9706` + `7` under Brazil
+  used to pass the length check, because libphonenumber read the digits as
+  `+55 99 4689 7067`.
+
+**Changed**
+
+- Updated `rn-country-select` to 0.5.4: the re-exported `getCountriesByName` ignores
+  diacritics (`"sao tome"` finds São Tomé and Príncipe).
+- Updated `libphonenumber-js` to 1.13.14, with refreshed metadata for 16 countries (BD,
+  CA, CD, EE, HK, IL, IN, LI, PA, PT, SB, SR, TR, UG, VN, ZW).
+
+**Internal**
+
+- Tests moved to Jest and React Native Testing Library, covering `usePhoneInput` and
+  `PhoneInput` end to end, and a `Tests` workflow runs them on every push and pull
+  request.
+
+## v0.15.0
+
+**Fixed**
+
 - `internationalPhoneNumber` is now a real E.164 string. It was built by concatenating
   the calling code with the typed digits, which kept the national trunk prefix that the
   example-number placeholder invites users to type — GB `07400 123456` produced

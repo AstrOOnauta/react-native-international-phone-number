@@ -50,7 +50,7 @@ import Head from '@docusaurus/Head';
           name: 'Why does the input default to Brazil?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Brazil is the fallback when neither defaultCountry nor defaultPhoneNumber is provided, and when a supplied defaultPhoneNumber cannot be matched to any country. Set defaultCountry to pick a different starting country.',
+            text: 'Brazil is the fallback when neither defaultCountry nor defaultPhoneNumber is provided, and when a supplied defaultPhoneNumber cannot be matched to any country. If visibleCountries or hiddenCountries leave Brazil out, the first selectable country is used instead. Set defaultCountry to pick a different starting country.',
           },
         },
         {
@@ -132,8 +132,9 @@ isValidPhoneNumber('11912345678', getCountryByCca2('BR')!);
 ## Why does the input start on Brazil?
 
 `BR` is the fallback when you pass neither `defaultCountry` nor `defaultPhoneNumber`,
-and also when the `defaultPhoneNumber` you passed matches no country. Fix it by being
-explicit:
+and also when the `defaultPhoneNumber` you passed matches no country. If
+`visibleCountries` or `hiddenCountries` leave Brazil out, the first selectable country is
+used instead. Fix it by being explicit:
 
 ```tsx
 <PhoneInput defaultCountry="US" />
@@ -143,7 +144,9 @@ explicit:
 ## The country does not switch when I paste an international number
 
 It does — as long as the pasted text is E.164 (`+` + calling code + number) and the
-value flows back into the component. If you keep the value in state, make sure
+value flows back into the component. With `visibleCountries` or `hiddenCountries`, it
+switches to a selectable country sharing the calling code (GB for a hidden Jersey), and
+ignores the paste when there is none. If you keep the value in state, make sure
 `onChangePhoneNumber` writes to that same state:
 
 ```tsx

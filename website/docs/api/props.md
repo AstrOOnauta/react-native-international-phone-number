@@ -49,8 +49,8 @@ The two exceptions are `value` and `onChangeText`, which the component owns — 
 | `disabled`                             | `boolean`                          | Disable the entire phone input                                            |
 | `modalDisabled`                        | `boolean`                          | Disable only the country selection modal                                  |
 | `customMask`                           | `string`                           | Custom phone number mask (format like this: `(###) ###-####`)             |
-| `visibleCountries`                     | `ICountryCca2[]`                   | Array of country codes to show in modal                                   |
-| `hiddenCountries`                      | `ICountryCca2[]`                   | Array of country codes to hide from modal                                 |
+| `visibleCountries`                     | `ICountryCca2[]`                   | Countries to show in the modal; detected numbers only switch to these     |
+| `hiddenCountries`                      | `ICountryCca2[]`                   | Countries to hide from the modal; detected numbers never switch to these  |
 | `popularCountries`                     | `ICountryCca2[]`                   | Array of country codes to show in popular section                         |
 | `customCaret`                          | `() => ReactNode`                  | Custom dropdown arrow component                                           |
 | `customFlag`                           | `(country: ICountry) => ReactNode` | Custom flag component to replace default flag emoji                       |
@@ -94,7 +94,7 @@ The two exceptions are `value` and `onChangeText`, which the component owns — 
 | `isFullScreen`    | `false`                                            |
 | `allowFontScaling`| `true`                                             |
 | `keyboardType`    | `'number-pad'` — pass any `TextInput` value to override |
-| `defaultCountry`  | `'BR'` when no `defaultCountry`/`defaultPhoneNumber` is given |
+| `defaultCountry`  | `'BR'` when no `defaultCountry`/`defaultPhoneNumber` is given (the first selectable country if `visibleCountries`/`hiddenCountries` leave Brazil out) |
 
 ## Accessibility props
 

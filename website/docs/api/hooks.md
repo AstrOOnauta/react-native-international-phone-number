@@ -26,6 +26,8 @@ A headless hook exposing the same state, formatting and smart-paste pipeline tha
 | `value`                   | `string`                                                        | Controlled phone value                                 |
 | `country`                 | `ICountry \| null`                                              | Controlled country                                     |
 | `customMask`              | `string`                                                        | Custom mask pattern (e.g. `(###) ###-####`)            |
+| `visibleCountries`        | `ICountryCca2[]`                                                | Countries a detected number may switch to              |
+| `hiddenCountries`         | `ICountryCca2[]`                                                | Countries a detected number never switches to          |
 | `onChangePhoneNumber`     | `(phoneNumber: string) => void`                                 | Fires when the formatted national value changes        |
 | `onChangeCountry`         | `(country: ICountry) => void`                                   | Fires when the country changes                         |
 | `onPhoneNumberTypeChange` | `(type: PhoneNumberType \| null) => void`                       | Fires when the detected line type changes              |

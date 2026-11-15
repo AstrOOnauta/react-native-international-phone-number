@@ -117,7 +117,7 @@ Every prop with a copy-paste snippet lives in [Props by Example](https://astroon
 // Force one mask for every country
 <PhoneInput customMask="(###) ###-####" />
 
-// Restrict, exclude or pin countries in the modal
+// Restrict, exclude or pin countries (also applies to pasted/E.164 numbers)
 <PhoneInput visibleCountries={['BR', 'PT', 'US']} />
 <PhoneInput hiddenCountries={['RU']} />
 <PhoneInput popularCountries={['BR', 'US']} />

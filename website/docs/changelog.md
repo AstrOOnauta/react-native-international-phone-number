@@ -19,6 +19,16 @@ Upgrading across a rename or a major version? Start with the
 
 **Fixed**
 
+- `hiddenCountries` and `visibleCountries` now apply to country auto-detection, not just
+  the modal list. A pasted, pre-filled or controlled E.164 number used to switch the input
+  to its own country even when that country was hidden — `+44 7797 712345` selected
+  Jersey with `hiddenCountries={['JE']}`. The input now keeps the current country when it
+  shares the calling code, or falls back to the main selectable one (GB for +44), and
+  leaves the country alone when none is selectable.
+- With a country hidden, its numbers validate under the selectable country that shares
+  its calling code: with `hiddenCountries={['JE']}`, a Jersey mobile is valid with the
+  United Kingdom selected instead of being impossible to enter. `isValidPhoneNumber()`
+  takes the same restrictions as an optional third argument.
 - `internationalPhoneNumber` is now a real E.164 string. It was built by concatenating
   the calling code with the typed digits, which kept the national trunk prefix that the
   example-number placeholder invites users to type — GB `07400 123456` produced

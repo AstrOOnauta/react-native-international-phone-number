@@ -133,6 +133,89 @@ describe('smart paste', () => {
   });
 });
 
+describe('hidden and visible countries', () => {
+  // Jersey mobiles share +44 with the UK but resolve to JE in libphonenumber.
+  const jerseyMobile = '+44 7797 712345';
+
+  test("a hidden country's pasted number lands on the main country for its code", async () => {
+    const onChangeCountry = jest.fn();
+    const { result } = await renderHook(() =>
+      usePhoneInput({ defaultCountry: 'US', hiddenCountries: ['JE'], onChangeCountry })
+    );
+
+    await paste(result, jerseyMobile);
+
+    expect(result.current.country.cca2).toBe('GB');
+    expect(result.current.nationalPhoneNumberFormatted).toBe('7797 712345');
+    expect(result.current.isValidPhoneNumber).toBe(true);
+    expect(onChangeCountry).toHaveBeenLastCalledWith(
+      expect.objectContaining({ cca2: 'GB' })
+    );
+  });
+
+  test('the current country is kept when it shares the calling code', async () => {
+    const onChangeCountry = jest.fn();
+    const { result } = await renderHook(() =>
+      usePhoneInput({ defaultCountry: 'GB', hiddenCountries: ['JE'], onChangeCountry })
+    );
+
+    await paste(result, jerseyMobile);
+
+    expect(result.current.country.cca2).toBe('GB');
+    expect(result.current.isValidPhoneNumber).toBe(true);
+    expect(onChangeCountry).not.toHaveBeenCalled();
+  });
+
+  test("a hidden country's national number is valid under the visible one", async () => {
+    const { result } = await renderHook(() =>
+      usePhoneInput({ defaultCountry: 'GB', hiddenCountries: ['JE'] })
+    );
+
+    await type(result, '07797712345');
+
+    expect(result.current.country.cca2).toBe('GB');
+    expect(result.current.isValidPhoneNumber).toBe(true);
+    expect(result.current.internationalPhoneNumber).toBe('+447797712345');
+  });
+
+  test('no selectable country for the calling code: the country stays', async () => {
+    const onChangeCountry = jest.fn();
+    const { result } = await renderHook(() =>
+      usePhoneInput({
+        defaultCountry: 'US',
+        visibleCountries: ['US', 'GB'],
+        onChangeCountry,
+      })
+    );
+
+    await paste(result, '+33 6 12 34 56 78');
+
+    expect(result.current.country.cca2).toBe('US');
+    expect(result.current.isValidPhoneNumber).toBe(false);
+    expect(onChangeCountry).not.toHaveBeenCalled();
+  });
+
+  test("a hidden country's E.164 defaultPhoneNumber starts on the visible one", async () => {
+    const { result } = await renderHook(() =>
+      usePhoneInput({ defaultPhoneNumber: '+447797712345', hiddenCountries: ['JE'] })
+    );
+    expect(result.current.country.cca2).toBe('GB');
+    expect(result.current.isValidPhoneNumber).toBe(true);
+  });
+
+  test("a hidden country's controlled E.164 value re-detects to the visible one", async () => {
+    const { result, rerender } = await renderHook(
+      ({ value }) =>
+        usePhoneInput({ value, defaultCountry: 'US', hiddenCountries: ['JE'] }),
+      { initialProps: { value: '' } }
+    );
+
+    await rerender({ value: '+447797712345' });
+
+    expect(result.current.country.cca2).toBe('GB');
+  });
+});
+
 describe('custom mask', () => {
   test('typing follows the mask instead of the country format', async () => {
     const { result } = await renderHook(() =>

@@ -56,8 +56,8 @@
     "react-native-safe-area-context": ">=4.0.0"
   },
   "dependencies": {
-    "libphonenumber-js": "1.13.14",
-    "rn-country-select": "0.5.4"
+    "libphonenumber-js": "1.13.16",
+    "rn-country-select": "0.5.5"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",

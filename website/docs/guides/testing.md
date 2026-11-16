@@ -15,6 +15,12 @@ keywords:
 
 To target the PhoneInput component in your automated tests, the library exposes `testID` values for every interactive element. These integrate with [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/) and [Maestro](https://maestro.mobile.dev/).
 
+:::note Pin the starting country
+Without `defaultCountry`, the input starts on the country of the device locale, which
+differs between machines, CI runners and simulators. Pass `defaultCountry` in tests so
+they start the same everywhere.
+:::
+
 ```jsx
 const phoneInput = getByTestId('countryPickerPhoneInput');
 const flagContainerButton = getByTestId('countryPickerFlagContainerButton');

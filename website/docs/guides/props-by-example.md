@@ -54,12 +54,10 @@ Full ref surface in the [Ref API](../api/ref.md).
 ```
 
 ISO 3166-1 alpha-2. When omitted, the input starts on the country of the device locale
-(`pt-PT` → Portugal): the Region setting on iOS, the language variant on Android
-("English (United States)" → US), not the physical location. `'BR'` is the fallback when
-the locale has no country or `visibleCountries` / `hiddenCountries` leave it out, and
-the first selectable country after that. Pass `defaultCountry` wherever the start must
-not vary: in tests, which read the machine's locale, and with server-side rendering on
-the web.
+(`pt-PT` → Portugal), then on `'BR'`, then on the first selectable country — see
+[Which country does the input start on?](../faq.mdx#which-country-does-the-input-start-on).
+Pass `defaultCountry` wherever the start must not vary: in tests, which read the
+machine's locale, and with server-side rendering on the web.
 
 ### Starting phone number
 
@@ -76,8 +74,9 @@ Change `defaultCountry` after mount and the country switches — and the typed d
 cleared, since they no longer fit the new country's format. Change `defaultPhoneNumber`
 and the number is re-applied through the smart-paste pipeline.
 
-When `defaultPhoneNumber` is set, `defaultCountry` is ignored: the country comes from
-the number itself. The exception is a number whose country `visibleCountries` /
+When `defaultPhoneNumber` is an E.164 number, `defaultCountry` is ignored: the country
+comes from the number itself. A national-format number is read under `defaultCountry`.
+The exception is a number whose country `visibleCountries` /
 `hiddenCountries` leave out: `defaultCountry` is then preferred when it shares the
 calling code, and used with an empty input when no selectable country does.
 :::

@@ -28,9 +28,8 @@ test('falls back to Brazil when the device country is unknown or not selectable'
 
 test('then on the first selectable country', () => {
   assert.equal(fallbackFor('pt-PT', { visibleCountries: ['US', 'GB'] }), 'US');
-  assert.ok(
-    !['PT', 'BR'].includes(fallbackFor('pt-PT', { hiddenCountries: ['PT', 'BR'] }))
-  );
+  // rn-country-select's list is in ISO alpha-3 order, so Aruba (ABW) comes first.
+  assert.equal(fallbackFor('pt-PT', { hiddenCountries: ['PT', 'BR'] }), 'AW');
 });
 
 test('falls back to Brazil without Intl', () => {

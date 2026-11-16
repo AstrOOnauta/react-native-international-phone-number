@@ -50,8 +50,8 @@ told); pass [`defaultCountry`](./guides/props-by-example.md#starting-country) in
 choose the country yourself.
 
 :::note
-`defaultCountry` is ignored when `defaultPhoneNumber` is set — the country comes from the
-number itself. Use one or the other.
+`defaultCountry` is ignored when `defaultPhoneNumber` is an E.164 number — the country
+comes from the number itself. A national-format number is read under `defaultCountry`.
 :::
 
 ## What next?

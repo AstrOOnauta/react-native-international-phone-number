@@ -38,13 +38,18 @@ Upgrading across a rename or a major version? Start with the
   `onPhoneNumberTypeChange` / `onValidationChange` were off with it. Only +1 numbers came
   out right. The same applies to any input starting with `+` while it is being typed,
   and to `getInternationalPhoneNumberLength()`.
+- `defaultCountry` applies to a national-format `defaultPhoneNumber`. It was ignored
+  whenever `defaultPhoneNumber` was set, so `defaultCountry="US"` with
+  `defaultPhoneNumber="2015550123"` started on Brazil.
 
 **Changed**
 
-- Without `defaultCountry` (or a `defaultPhoneNumber` that matches a country), the input
-  starts on the country of the device locale instead of always Brazil: `pt-PT` starts on
-  Portugal. That is the Region setting on iOS and the language variant on Android
-  ("English (United States)" → US), not the physical location. Brazil stays the fallback
+- Without `defaultCountry` or an E.164 `defaultPhoneNumber`, the input starts on the
+  country of the device locale instead of always Brazil: `pt-PT` starts on Portugal. That
+  is the Region setting on iOS unless the chosen language names its own region
+  (English (UK) → GB), the language variant on Android ("English (United States)" → US)
+  and the browser language on the web, which often has no region; it is not the physical
+  location. Brazil stays the fallback
   when the locale has no country or `visibleCountries` / `hiddenCountries` leave it out.
   After that comes the first selectable entry of `visibleCountries`, or, with only
   `hiddenCountries`, the first country left in rn-country-select's list (ISO alpha-3

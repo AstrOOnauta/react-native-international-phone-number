@@ -21,9 +21,31 @@ async function paste(result, text) {
 }
 
 describe('initial country', () => {
-  test('falls back to Brazil', async () => {
-    const { result } = await renderHook(() => usePhoneInput());
-    expect(result.current.country.cca2).toBe('BR');
+  test('falls back to Brazil when the device locale has no country', async () => {
+    const spy = jest
+      .spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions')
+      .mockReturnValue({ locale: 'en' });
+    try {
+      const { result } = await renderHook(() => usePhoneInput());
+      expect(result.current.country.cca2).toBe('BR');
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
+  test('a national-format defaultPhoneNumber starts on defaultCountry', async () => {
+    const spy = jest
+      .spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions')
+      .mockReturnValue({ locale: 'en-US' });
+    try {
+      const { result } = await renderHook(() =>
+        usePhoneInput({ defaultCountry: 'BR', defaultPhoneNumber: '11912345678' })
+      );
+      expect(result.current.country.cca2).toBe('BR');
+      expect(result.current.isValidPhoneNumber).toBe(true);
+    } finally {
+      spy.mockRestore();
+    }
   });
 
   test("starts on the device locale's country", async () => {

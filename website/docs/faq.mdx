@@ -50,7 +50,7 @@ import Head from '@docusaurus/Head';
           name: 'Which country does the input start on?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Without defaultCountry or a matching defaultPhoneNumber, the input starts on the country of the device locale: the Region setting on iOS, the language variant on Android. Brazil is the fallback when the locale has no country or visibleCountries / hiddenCountries leave it out, then the first selectable country. Set defaultCountry to pick the starting country yourself.',
+            text: 'The first that applies: the country of an E.164 defaultPhoneNumber, then defaultCountry, then the country of the device locale (the Region setting on iOS unless the chosen language names its own region, the language variant on Android, the browser language on the web), then Brazil, then the first selectable country. Set defaultCountry to pick the starting country yourself.',
           },
         },
         {
@@ -131,12 +131,18 @@ isValidPhoneNumber('11912345678', getCountryByCca2('BR')!);
 
 ## Which country does the input start on?
 
-When you pass neither `defaultCountry` nor `defaultPhoneNumber`, or the
-`defaultPhoneNumber` you passed matches no country, the input starts on the country of
-the device locale (`pt-PT` → Portugal). That is the Region setting on iOS and the
-language variant on Android ("English (United States)" → US), not the physical
-location. `BR` is the fallback when the locale has no country or `visibleCountries` /
-`hiddenCountries` leave it out, and the first selectable country after that.
+The first of these that applies:
+
+1. The country of an E.164 `defaultPhoneNumber`.
+2. `defaultCountry`.
+3. The country of the device locale (`pt-PT` → Portugal), not the physical location. On
+   iOS that is the Region setting, unless the chosen language names its own region
+   (English (UK) → GB). On Android it is the language variant (English (United States)
+   → US). On the web it is the browser language, which often has no region (`de`).
+4. `BR`.
+5. The first selectable country.
+
+Steps 1 and 3–5 skip countries that `visibleCountries` / `hiddenCountries` leave out.
 
 To pick the country yourself, be explicit:
 

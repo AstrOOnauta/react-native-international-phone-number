@@ -15,7 +15,7 @@ keywords:
 Upgrading across a rename or a major version? Start with the
 [Migration guide](./migration.md).
 
-## Unreleased
+## v0.15.2
 
 **Fixed**
 

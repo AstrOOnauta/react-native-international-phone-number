@@ -47,10 +47,10 @@ import Head from '@docusaurus/Head';
         },
         {
           '@type': 'Question',
-          name: 'Why does the input default to Brazil?',
+          name: 'Which country does the input start on?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Brazil is the fallback when neither defaultCountry nor defaultPhoneNumber is provided, and when a supplied defaultPhoneNumber cannot be matched to any country. If visibleCountries or hiddenCountries leave Brazil out, the first selectable country is used instead. Set defaultCountry to pick a different starting country.',
+            text: 'Without defaultCountry or a matching defaultPhoneNumber, the input starts on the country of the device locale: the Region setting on iOS, the language variant on Android. Brazil is the fallback when the locale has no country or visibleCountries / hiddenCountries leave it out, then the first selectable country. Set defaultCountry to pick the starting country yourself.',
           },
         },
         {
@@ -129,12 +129,16 @@ import {isValidPhoneNumber, getCountryByCca2} from 'rn-international-phone-numbe
 isValidPhoneNumber('11912345678', getCountryByCca2('BR')!);
 ```
 
-## Why does the input start on Brazil?
+## Which country does the input start on?
 
-`BR` is the fallback when you pass neither `defaultCountry` nor `defaultPhoneNumber`,
-and also when the `defaultPhoneNumber` you passed matches no country. If
-`visibleCountries` or `hiddenCountries` leave Brazil out, the first selectable country is
-used instead. Fix it by being explicit:
+When you pass neither `defaultCountry` nor `defaultPhoneNumber`, or the
+`defaultPhoneNumber` you passed matches no country, the input starts on the country of
+the device locale (`pt-PT` → Portugal). That is the Region setting on iOS and the
+language variant on Android ("English (United States)" → US), not the physical
+location. `BR` is the fallback when the locale has no country or `visibleCountries` /
+`hiddenCountries` leave it out, and the first selectable country after that.
+
+To pick the country yourself, be explicit:
 
 ```tsx
 <PhoneInput defaultCountry="US" />

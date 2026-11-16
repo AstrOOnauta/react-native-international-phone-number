@@ -53,8 +53,13 @@ Full ref surface in the [Ref API](../api/ref.md).
 <PhoneInput defaultCountry="US" />
 ```
 
-ISO 3166-1 alpha-2. Falls back to `'BR'` when omitted, or to the first selectable
-country when `visibleCountries` / `hiddenCountries` leave Brazil out.
+ISO 3166-1 alpha-2. When omitted, the input starts on the country of the device locale
+(`pt-PT` → Portugal): the Region setting on iOS, the language variant on Android
+("English (United States)" → US), not the physical location. `'BR'` is the fallback when
+the locale has no country or `visibleCountries` / `hiddenCountries` leave it out, and
+the first selectable country after that. Pass `defaultCountry` wherever the start must
+not vary: in tests, which read the machine's locale, and with server-side rendering on
+the web.
 
 ### Starting phone number
 

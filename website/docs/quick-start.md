@@ -45,9 +45,9 @@ That's it. The component handles formatting, country selection, and validation a
 
 `defaultPhoneNumber` takes an [E.164](https://en.wikipedia.org/wiki/E.164) number — `+`
 plus calling code, area code and number — and sets the country, flag and mask from it.
-Drop it and the input starts empty on `BR`; pass
-[`defaultCountry`](./guides/props-by-example.md#starting-country) instead to start empty
-on another country.
+Drop it and the input starts empty on the device's country (`BR` when that can't be
+told); pass [`defaultCountry`](./guides/props-by-example.md#starting-country) instead to
+choose the country yourself.
 
 :::note
 `defaultCountry` is ignored when `defaultPhoneNumber` is set — the country comes from the

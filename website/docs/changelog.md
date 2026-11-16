@@ -30,11 +30,7 @@ Upgrading across a rename or a major version? Start with the
 - When no selectable country shares the calling code, a pasted or typed number is
   ignored and the previous value stays; deleting from such a value still works. An
   initial `defaultPhoneNumber` like that is dropped: the input starts empty on
-  `defaultCountry`, or on the fallback country below.
-- Without `defaultCountry`, the input no longer starts on Brazil when `visibleCountries`
-  or `hiddenCountries` leave it out. It starts on the first selectable entry of
-  `visibleCountries`; with only `hiddenCountries`, on the first country left in
-  rn-country-select's list (ISO alpha-3 order, so Aruba). Pass `defaultCountry` to choose.
+  `defaultCountry`, or on the starting country described under **Changed**.
 - A controlled E.164 `value` (`value="+447400123456"`) is read as the number it is. The
   calling code was prefixed a second time, so `internationalPhoneNumber` reported
   `+44447400123456`, and `nationalPhoneNumber`, `internationalPhoneNumberFormatted`,
@@ -45,6 +41,16 @@ Upgrading across a rename or a major version? Start with the
 
 **Changed**
 
+- Without `defaultCountry` (or a `defaultPhoneNumber` that matches a country), the input
+  starts on the country of the device locale instead of always Brazil: `pt-PT` starts on
+  Portugal. That is the Region setting on iOS and the language variant on Android
+  ("English (United States)" → US), not the physical location. Brazil stays the fallback
+  when the locale has no country or `visibleCountries` / `hiddenCountries` leave it out.
+  After that comes the first selectable entry of `visibleCountries`, or, with only
+  `hiddenCountries`, the first country left in rn-country-select's list (ISO alpha-3
+  order, so Aruba). Pass `defaultCountry="BR"` to keep the old start, and pass a
+  `defaultCountry` wherever the start must not vary: in tests, which read the machine's
+  locale, and with server-side rendering on the web.
 - Updated `rn-country-select` to 0.5.5: country objects carry corrected currency data
   (withdrawn ISO 4217 currencies replaced, Zimbabwe's ZAR symbol fixed).
 - Updated `libphonenumber-js` to 1.13.16, with refreshed metadata.

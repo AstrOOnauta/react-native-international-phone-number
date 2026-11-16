@@ -94,7 +94,7 @@ The two exceptions are `value` and `onChangeText`, which the component owns — 
 | `isFullScreen`    | `false`                                            |
 | `allowFontScaling`| `true`                                             |
 | `keyboardType`    | `'number-pad'` — pass any `TextInput` value to override |
-| `defaultCountry`  | `'BR'` when no `defaultCountry`/`defaultPhoneNumber` is given (the first selectable country if `visibleCountries`/`hiddenCountries` leave Brazil out) |
+| `defaultCountry`  | The device locale's country when no `defaultCountry`/`defaultPhoneNumber` is given; `'BR'` if the locale has none or the restrictions leave it out, then the first selectable country |
 
 ## Accessibility props
 

@@ -26,6 +26,18 @@ describe('initial country', () => {
     expect(result.current.country.cca2).toBe('BR');
   });
 
+  test("starts on the device locale's country", async () => {
+    const spy = jest
+      .spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions')
+      .mockReturnValue({ locale: 'pt-PT' });
+    try {
+      const { result } = await renderHook(() => usePhoneInput());
+      expect(result.current.country.cca2).toBe('PT');
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
   test('uses defaultCountry', async () => {
     const { result } = await renderHook(() =>
       usePhoneInput({ defaultCountry: 'US' })
